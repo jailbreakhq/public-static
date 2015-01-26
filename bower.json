@@ -1,0 +1,7 @@
+{
+  "name": "JailbreakHQ-Ghost",
+  "version": "0.3.0",
+  "dependencies": {
+    "bower-foundation": "https://github.com/zurb/bower-foundation.git"
+  }
+}

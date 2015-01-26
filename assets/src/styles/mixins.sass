@@ -1,0 +1,20 @@
+//
+// Mixins
+//
+
+@mixin border-radius($radius)
+  -webkit-border-radius:  $radius
+  -moz-border-radius:     $radius
+  -ms-border-radius:      $radius
+  border-radius:          $radius
+
+@mixin box-shadow($value)
+  -moz-box-shadow:    $value
+  -webkit-box-shadow: $value
+  box-shadow:         $value
+
+@mixin background-size-cover
+  -webkit-background-size: cover
+  -moz-background-size:    cover
+  -o-background-size:      cover
+  background-size:         cover
