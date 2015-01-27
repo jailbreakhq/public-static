@@ -1,5 +1,5 @@
-# Sample Static App
-A simple backbone single-page app setup the way I like it
+# JailbreakHQ 2015 Public Static
+A single-page backbone static app for jailbreakhq.org
 
 ### Language Support
 * Coffescript
