@@ -1,5 +1,19 @@
-# Jailbreak Admin Static App
-A simple backbone single-page app for managing Jailbreak. It is protected by Facebook auth and uses the `JailbreakApi` RESTful API.
+# Sample Static App
+A simple backbone single-page app setup the way I like it
+
+### Language Support
+* Coffescript
+* Jade Templates
+* SASS
+
+### Frameworks
+* Foundation CSS
+* Backbone
+
+### Tools
+* Grunt 
+* Bower for static dependency management
+* Travis config setup
 
 
 ## Development
@@ -22,6 +36,3 @@ This starts the Grunt filewatcher that will generate the output of the coffeescr
 ### Structure
 * Front-end components should be installed using bower
 * The coffeescript, sass and jade sources files are inside `assets/src`
-
-## Contributing
-If you want to join the contributing team you should email the Jailbreak 2015 Tech Officer at tech@jailbreakhq.org.
