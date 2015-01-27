@@ -1,0 +1,3 @@
+name: "public-static"
+routes:
+  "http://qa.jbapi.net/*": "http://localhost:8090"

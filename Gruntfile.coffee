@@ -74,7 +74,7 @@ module.exports = (grunt) ->
 
     concurrent:
       serve: ["coffee", "sass:server", "autoprefixer"]
-      dist: ["jshint", "coffee", "sass:dist", "jade", "autoprefixer"]
+      dist: ["jshint", "coffee", "sass:dist", "jade", "autoprefixer", "directives"]
 
     
     # Simple config to run sass, jshint and coffee any time a js or sass file is added, modified or deleted
