@@ -4,15 +4,13 @@ requirejs.config
     "jquery": "components/jquery/dist/jquery",
     "underscore": "components/underscore/underscore"
     "backbone": "components/backbone/backbone"
-    "jade-runtime": "components/jade/runtime"
+    "jade": "components/jade/runtime"
+    "jade.templates": "dist/templates/jade"
 
   shim:
     backbone:
       deps: [
         "jquery"
         "underscore"
+        "jade"
       ]
-      exports: "Backbone"
-
-    underscore:
-      exports: "_"

@@ -2,8 +2,23 @@ define [
   "jquery"
   "underscore"
   "backbone"
-], ($, _, Backbone) ->
+  "jade.templates"
+], ($, _, Backbone, jade) ->
   
   $ ->
 
-    console.log 'Hi'
+    class AppView extends Backbone.View
+      el_tag = "#body-container"
+      el: $(el_tag)
+
+      template: jade.test
+
+      initialize: =>
+        @render()
+
+      render: =>
+        # data = @template({name: "kevin"})
+        # console.log data
+        $("#body-container").html(@template({name: "kevin"}))
+
+    app = new AppView()
