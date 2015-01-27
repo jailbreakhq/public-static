@@ -6,6 +6,7 @@ requirejs.config
     "backbone": "components/backbone/backbone"
     "jade": "components/jade/runtime"
     "jade.templates": "dist/templates/jade"
+    "foundation": "dist/scripts/foundation"
 
   shim:
     backbone:
@@ -13,4 +14,5 @@ requirejs.config
         "jquery"
         "underscore"
         "jade"
+        "foundation"
       ]

@@ -24,6 +24,12 @@ module.exports = (grunt) ->
         src: ["**/*.coffee"],
         dest: "<%= paths.dist %>/scripts/",
         ext: ".js"
+
+    # Components Directives
+    directives:
+      components:
+        src: "assets/src/scripts/foundation.js"
+        dest: "assets/dist/scripts/foundation.js"
     
     # Compile Sass to CSS -  destination : source
     sass:
@@ -88,6 +94,10 @@ module.exports = (grunt) ->
       jshint:
         files: ["<%= jshint.files %>"]
         tasks: ["jshint"]
+
+      directives:
+        files: ["<%= paths.src %>/scripts/foundation.js"]
+        tasks: ["directives"]
   
   # Load the plug-ins
   require("load-grunt-tasks") grunt

@@ -21,4 +21,5 @@ define [
         # console.log data
         $("#body-container").html(@template({name: "kevin"}))
 
+    $(document).foundation();
     app = new AppView()
