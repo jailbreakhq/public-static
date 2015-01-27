@@ -25,17 +25,16 @@ module.exports = (grunt) ->
     # CoffeeScript
     coffee:
       options:
-        sourceMap: true
+        sourceMap: false
         sourceRoot: ""
 
-      dist:
-        files: [
-          expand: true
-          cwd: "<%= paths.src %>/scripts/"
-          src: ["*.coffee", "**/*.coffee", "**/**/*.coffee"]
-          dest: "<%= paths.dist %>/scripts"
-          ext: ".js"
-        ]
+      glob_to_multiple:
+        expand: true,
+        flatten: false,
+        cwd: "<%= paths.src %>/scripts/",
+        src: ["**/*.coffee"],
+        dest: "<%= paths.dist %>/scripts/",
+        ext: ".js"
 
     # Components Directives
     directives:
@@ -68,15 +67,15 @@ module.exports = (grunt) ->
         ]
 
     concurrent:
-      serve: ["coffee:dist", "sass:server", "autoprefixer"]
-      dist: ["jshint", "coffee:dist", "sass:dist", "directives", "autoprefixer"]
+      serve: ["coffee", "sass:server", "autoprefixer"]
+      dist: ["jshint", "coffee", "sass:dist", "directives", "autoprefixer"]
 
     
     # Simple config to run sass, jshint and coffee any time a js or sass file is added, modified or deleted
     watch:
       coffee:
         files: ["<%= paths.src %>/scripts/*.coffee", "<%= paths.src %>/scripts/**/*.coffee", "<%= paths.src %>/scripts/**/**/*.coffee"]
-        tasks: ["coffee:dist"]
+        tasks: ["coffee"]
 
       sass:
         files: ["<%= paths.src %>/styles/{,*/}*.scss", "<%= paths.src %>/styles/{,*/}*.sass"]
