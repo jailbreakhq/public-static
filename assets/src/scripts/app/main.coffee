@@ -26,7 +26,7 @@ define [
         @model.bind("change", @render)
 
       render: =>
-        @$el.html(@template(@model.toJson()))
+        @$el.html(@template(@model.toJSON()))
         @
 
 
@@ -35,17 +35,19 @@ define [
 
       initialize: =>
         @collection = new Teams()
-        @collection.fetch()
+        @collection.on("reset", @render)
+        @collection.fetch
+          success: @render
 
         @render()
 
       render: =>
         @$el.html(@template())
 
-        for team in @collection.models
+        _.each @collection.models, (team) =>
           teamView = new TeamView
             model: team
-          teamView.render()
+          @$el.append(teamView.render().$el)
 
         @
 
