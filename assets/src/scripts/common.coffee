@@ -9,6 +9,11 @@ requirejs.config
     "foundation": "dist/scripts/foundation"
 
   shim:
+    foundation:
+      deps: [
+        "jquery"
+      ]
+
     backbone:
       deps: [
         "jquery"
