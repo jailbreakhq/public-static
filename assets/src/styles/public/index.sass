@@ -1,17 +1,26 @@
 #teams
-  padding: 0 10px
+  padding: 0 20px
 
-#teams > li
-  text-align: center
-  border-right: 1px solid $seperator-border-color
-
-#teams
   .donate
     margin-top: 10px
 
-.university
-  font-color: $secondary-text-color
+  .university
+    font-color: $secondary-text-color
+    padding-right: 20px
 
-.bio
-  font-color: $secondary-text-color
-  font-size: 85%
+  .amount-raised
+    font-color: $secondary-text-color
+
+#teams > li
+  text-align: center
+  border-bottom: 1px solid $seperator-border-color
+  margin-bottom: 20px
+  padding-bottom: 10px
+
+#teams > li:last-child
+  border-bottom: none
+  margin-bottom: 0
+
+@media #{$medium-up}
+  #teams > li
+    border-bottom: none

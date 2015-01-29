@@ -7,7 +7,6 @@ requirejs.config
     "jade": "components/jade/runtime"
     "jade.templates": "dist/templates/jade"
     "foundation": "dist/scripts/foundation"
-    "odometer": "components/odometer/odometer.min"
 
   shim:
     foundation:

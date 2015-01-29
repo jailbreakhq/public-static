@@ -5,7 +5,6 @@
     "bower-foundation": "https://github.com/zurb/bower-foundation.git",
     "backbone": "~1.1.2",
     "requirejs": "~2.1.15",
-    "jade": "~1.9.1",
-    "odometer": "~0.4.7"
+    "jade": "~1.9.1"
   }
 }

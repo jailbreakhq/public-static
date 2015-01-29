@@ -19,7 +19,7 @@ define [
 
 
     class TeamView extends Backbone.View
-      tagName: 'li'
+      tagName: "li"
       template: jade.team
       
       initialize: =>
