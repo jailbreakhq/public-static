@@ -19,7 +19,7 @@ define [
 
 
     class TeamView extends Backbone.View
-      tagname: 'li'
+      tagName: 'li'
       template: jade.team
       
       initialize: =>
@@ -47,7 +47,7 @@ define [
         _.each @collection.models, (team) =>
           teamView = new TeamView
             model: team
-          @$el.append(teamView.render().$el)
+          $("#teams").append(teamView.render().$el)
 
         @
 
@@ -66,6 +66,7 @@ define [
         $("#body-container").html(@template())
 
         @$el.append(@teamListview.render().$el)
+        @
 
     $(document).foundation();
     app = new AppView()

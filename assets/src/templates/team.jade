@@ -1,4 +1,18 @@
+a.th.radius(href="/teams/#{id}")
+  img(src="#{avatar}", width=200, height=200)
+h3
+  a(href="/teams/#{id}")
+    | #{names}
 div
-  h3 #{names}
-  img(src="#{avatar}")
-  p #{tagLine}
+  span.university #{university} 
+  span.team-number &mdash; Team #{teamNumber}
+ul.button-group.donate
+  li
+    a.small.button(href="/teams/#{id}/donate") 
+      i.fa.fa-heart
+      |  Donate
+  li
+    a.small.button.warning(href="/teams/#{id}/donate")
+      | &euro; 
+      span.odometer
+        | #{(amountRaisedOnline+amountRaisedOffline)/100}
