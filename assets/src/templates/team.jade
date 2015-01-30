@@ -1,8 +1,5 @@
-a.th.radius(href="/teams/#{id}")
-  img(src="#{avatar}", width=150, height=150)
-h3
-  a(href="/teams/#{id}")
-    | #{names}
+h1 #{names}
+img(src="#{avatar}", width=150, height=150)
 div
   span.university #{university}
   span.amount-raised &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}

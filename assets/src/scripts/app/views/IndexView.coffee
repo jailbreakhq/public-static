@@ -4,7 +4,7 @@ define [
   "backbone"
   "jade.templates"
   "foundation"
-  "views/TeamList"
+  "views/TeamListView"
 ], ($, _, Backbone, jade, foundation, TeamListView) ->
   class Index extends Backbone.View
     el_tag = "#body-container"

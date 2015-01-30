@@ -10,9 +10,6 @@ define [
       '':         'index'
       'teams/:id': 'team'
 
-    initialize: ->
-      @index()
-
     index: ->
       mainView = new IndexView()
 

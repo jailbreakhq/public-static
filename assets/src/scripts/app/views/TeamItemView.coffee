@@ -6,7 +6,7 @@ define [
 ], ($, _, Backbone, jade) ->
   class TeamItem extends Backbone.View
     tagName: "li"
-    template: jade.team
+    template: jade.teamListItem
     
     initialize: =>
       @model.bind("change", @render)
