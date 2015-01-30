@@ -24,3 +24,12 @@
 @media #{$medium-up}  
   #teams > li
     border-bottom: none
+    border-right: 1px solid $seperator-border-color
+
+@media #{$medium-only}
+  #teams > li:nth-child(3n)
+    border-right: none
+
+@media #{$large-only}
+  #teams > li:nth-child(4n)
+    border-right: none
