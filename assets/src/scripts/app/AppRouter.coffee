@@ -20,5 +20,6 @@ define [
       team.fetch
         success: (team) ->
           teamView = new TeamView(model: team)
+          $("#body-container").html(teamView.render().$el)
         error: (collection, response) ->
           alert(response.status + ' ' + response.responseText)

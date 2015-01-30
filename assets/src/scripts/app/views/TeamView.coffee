@@ -9,14 +9,8 @@ define [
     template: jade.team
 
     initialize: =>
-      @render()
+      @model.bind("change", @render)
 
     render: =>
-      @$el.html(@template())
-
-      _.each @collection.models, (team) =>
-        teamView = new TeamItemView
-          model: team
-        $("#teams").append(teamView.render().$el)
-
+      @$el.html(@template(@model.toJSON()))
       @
