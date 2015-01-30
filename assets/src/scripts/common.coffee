@@ -1,5 +1,5 @@
 requirejs.config
-  baseUrl: "assets/dist/scripts/app"
+  baseUrl: "/assets/dist/scripts/app"
   paths:
     "jquery": "/assets/components/jquery/dist/jquery",
     "underscore": "/assets/components/underscore/underscore"
