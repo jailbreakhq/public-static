@@ -39,7 +39,7 @@ module.exports = (grunt) ->
 
       dist:
         options:
-          outputStyle: "compressed"
+          style: "compressed"
           sourceComments: "normal"
 
         files:

@@ -1,5 +1,9 @@
-h1 #{names}
-img(src="#{avatar}", width=150, height=150)
-div
-  span.university #{university}
-  span.amount-raised &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}
+.row
+  .small-12.medium-4.columns
+    img(src="#{avatar}", width=150, height=150)
+  .small-12.medium-8.columns
+    h1 #{names}
+.row
+  .small-4.columns
+    .university #{university}
+    .amount-raised &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}
