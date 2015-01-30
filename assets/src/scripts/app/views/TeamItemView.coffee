@@ -4,7 +4,7 @@ define [
   "backbone"
   "jade.templates"
 ], ($, _, Backbone, jade) ->
-  class TeamView extends Backbone.View
+  class TeamItem extends Backbone.View
     tagName: "li"
     template: jade.team
     

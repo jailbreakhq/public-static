@@ -8,4 +8,4 @@ define [
   class Team extends Backbone.Model
     urlRoot: jailbreak.api_host + "/teams"
     defaults:
-      avatar: "https://s3-eu-west-1.amazonaws.com/jailbreak15-qa-uploads/jb-default-avatar"
+      avatar: "http://qa.static.jailbreakhq.org/avatars/jb-default-avatar.jpeg"

@@ -4,16 +4,14 @@ define [
   "backbone"
   "jade.templates"
   "collections/TeamsCollection"
-  "views/TeamView"
-], ($, _, Backbone, jade, Teams, TeamView) ->
-  class TeamListView extends Backbone.View
+  "views/TeamItemView"
+], ($, _, Backbone, jade, Teams, TeamItemView) ->
+  class TeamList extends Backbone.View
     template: jade.teams
 
     initialize: =>
       @collection = new Teams()
       @collection.on("reset", @render)
-      @collection.fetch
-        success: @render
 
       @render()
 
@@ -21,7 +19,7 @@ define [
       @$el.html(@template())
 
       _.each @collection.models, (team) =>
-        teamView = new TeamView
+        teamView = new TeamItemView
           model: team
         $("#teams").append(teamView.render().$el)
 
