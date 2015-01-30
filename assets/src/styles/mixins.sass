@@ -18,3 +18,10 @@
   -moz-background-size:    cover
   -o-background-size:      cover
   background-size:         cover
+
+@mixin profiler-header($blur, $grayscale)
+  -webkit-filter: blur($blur) grayscale($grayscale)
+  -moz-filter: blur($blur) grayscale($grayscale)
+  -o-filter: blur($blur) grayscale($grayscale)
+  -ms-filter: blur($blur) grayscale($grayscale)
+  filter: blur($blur) grayscale($grayscale)

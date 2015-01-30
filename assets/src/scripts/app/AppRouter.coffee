@@ -14,7 +14,6 @@ define [
       mainView = new IndexView()
 
     team: (id) ->
-      console.log "Route Team(" + id + ")"
       team = new Team
         id: id
       team.fetch

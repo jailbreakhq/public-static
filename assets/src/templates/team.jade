@@ -1,9 +1,33 @@
-.row
-  .small-12.medium-4.columns
-    img(src="#{avatar}", width=150, height=150)
-  .small-12.medium-8.columns
-    h1 #{names}
-.row
-  .small-4.columns
-    .university #{university}
-    .amount-raised &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}
+#team
+  .row.hide-for-small-only
+    .small-12.columns
+      h2.page-header #{names}
+    .small-12.columns
+      a.th.radius
+        img(src="#{avatar}", width=150, height=150)
+  #mobile-header.show-for-small-only
+    .blurred(style="background-image: url(#{avatar})")
+    .content
+      a.th.radius
+        img(src="#{avatar}", width=150, height=150)
+      h2 #{names}
+      h4 #{teamName}
+    .hide-blur
+  .row.bar
+    .small-12.columns
+      h6 Bio
+      p.tag-line #{tagLine}
+    .small-12.columns
+      ul.small-block-grid-3.medium-block-grid-4.large-block-grid-5
+        li 
+          h6 Team No.
+          span.value #{teamNumber}
+        li 
+          h6 University
+          span.value #{university}
+        li
+          h6 Raised
+          span.value &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}
+        li
+          h6 Donations
+          span.value 43
