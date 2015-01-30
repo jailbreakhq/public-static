@@ -6,5 +6,8 @@
     "backbone": "~1.1.2",
     "requirejs": "~2.1.15",
     "jade": "~1.9.1"
+  },
+  "devDependencies": {
+    "mixen": "git@github.com:HubSpot/mixen.git#~0.5.4"
   }
 }

@@ -1,12 +1,13 @@
 requirejs.config
-  baseUrl: "assets/"
+  baseUrl: "assets/dist/scripts/app"
   paths:
-    "jquery": "components/jquery/dist/jquery",
-    "underscore": "components/underscore/underscore"
-    "backbone": "components/backbone/backbone"
-    "jade": "components/jade/runtime"
-    "jade.templates": "dist/templates/jade"
-    "foundation": "dist/scripts/foundation"
+    "jquery": "/assets/components/jquery/dist/jquery",
+    "underscore": "/assets/components/underscore/underscore"
+    "backbone": "/assets/components/backbone/backbone"
+    "jade": "/assets/components/jade/runtime"
+    "mixen": "/assets/components/mixen/mixen.min"
+    "jade.templates": "/assets/dist/templates/jade"
+    "foundation": "/assets/dist/scripts/foundation"
 
   shim:
     foundation:
@@ -18,6 +19,4 @@ requirejs.config
       deps: [
         "jquery"
         "underscore"
-        "jade"
-        "foundation"
       ]
