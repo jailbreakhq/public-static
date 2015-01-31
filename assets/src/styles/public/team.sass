@@ -1,10 +1,12 @@
 $header-blur: 7px
 $bar-background-color: #DEDEDE
+$bar-border-color: #D4D4D4
 $bar-text-color: $jb-light-grey
 
 #mobile-header
   text-align: center
   position: relative
+  overflow: hidden
 
   .blurred
     background-color: #000
@@ -25,8 +27,8 @@ $bar-text-color: $jb-light-grey
 
   .hide-blur
     position: absolute
-    bottom: $header-blur/2
-    height: $header-blur/2
+    bottom: 0
+    height: $header-blur - 2
     width: 100%
     background-color: white
 
@@ -41,6 +43,7 @@ $bar-text-color: $jb-light-grey
   .bar
     background: $bar-background-color
     padding: 10px 0
+    border-bottom: 1px solid $bar-border-color
     margin-bottom: 20px
 
     li
@@ -60,6 +63,9 @@ $bar-text-color: $jb-light-grey
     color: $bar-text-color
     display: block
 
+  .bio
+    margin-top: 12px
+    margin-bottom: 7px
 
   .tag-line
     margin-bottom: 30px

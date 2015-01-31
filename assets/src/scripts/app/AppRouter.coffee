@@ -3,22 +3,18 @@ define [
   "collections/TeamsCollection"
   "models/TeamModel"
   "views/IndexView"
-  "views/TeamView"
-], (Backbone, Teams, Team, IndexView, TeamView) ->
+  "views/SingleTeamView"
+], (Backbone, Teams, Team, IndexView, SingleTeamView) ->
   class Router extends Backbone.Router
     routes:
       '':         'index'
       'teams/:id': 'team'
 
     index: ->
-      mainView = new IndexView()
+      indexView = new IndexView()
+      $("#body-container").html indexView.render().$el
 
     team: (id) ->
-      team = new Team
-        id: id
-      team.fetch
-        success: (team) ->
-          teamView = new TeamView(model: team)
-          $("#body-container").html(teamView.render().$el)
-        error: (collection, response) ->
-          alert(response.status + ' ' + response.responseText)
+      singleTeamView = new SingleTeamView
+        teamId: id
+      $("#body-container").html singleTeamView.render().$el

@@ -9,7 +9,7 @@ define [
     template: jade.teamListItem
     
     initialize: =>
-      @model.bind("change", @render)
+      @model.bind "change", @render
 
     render: =>
       @$el.html(@template(@model.toJSON()))

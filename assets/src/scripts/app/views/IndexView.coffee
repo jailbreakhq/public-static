@@ -7,9 +7,6 @@ define [
   "views/TeamListView"
 ], ($, _, Backbone, jade, foundation, TeamListView) ->
   class Index extends Backbone.View
-    el_tag = "#body-container"
-    el: $(el_tag)
-
     template: jade.main
 
     initialize: =>
@@ -17,7 +14,5 @@ define [
       @render()
 
     render: =>
-      $("#body-container").html(@template())
-
-      @$el.append(@teamListview.render().$el)
+      @$el.append @teamListview.render().$el
       @

@@ -15,11 +15,11 @@ define [
         success: @render
 
     render: =>
-      @$el.html(@template())
+      @$el.html @template()
       
       _.each @collection.models, (team) =>
         teamView = new TeamItemView
           model: team
-        $("#teams").append(teamView.render().$el)
+        $("#teams").append teamView.render().$el
 
       @
