@@ -33,11 +33,44 @@ $bar-text-color: $jb-light-grey
     background-color: white
 
   a.th
-    margin: 10px
+    margin: 10px 0
 
   h2, h4
     color: white
     text-shadow: 2px 2px rgba(0, 0, 0, 0.3)
+
+@media #{$medium-up}
+  #header
+    text-align: left
+    
+    &.bg-1
+      @include horizontal-background-gradient(#3D7EAA, #FFE47A)
+
+    &.bg-2
+      @include horizontal-background-gradient(#134E5E, #71B280)
+
+    &.bg-3
+      @include background-gradient(#ffb347, #A83279)
+
+    &.bg-4
+      @include horizontal-background-gradient(#516395, #614385)
+    
+    &.bg-5
+      @include background-gradient(#003973, #E5E5BE)
+
+    .blurred
+      display: none
+
+    .content
+      padding-left: 40px
+
+      .th
+        float: left
+        margin-right: 50px
+        margin-bottom: 40px
+
+      .text
+        vertical-align: bottom
 
 #team
   .bar

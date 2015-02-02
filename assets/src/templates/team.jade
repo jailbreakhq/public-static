@@ -1,11 +1,13 @@
 #team
-  #header.row.collapse-small
+  - var rand = (id % 5) + 1
+  #header.row.collapse-small(class="bg-#{rand}")
     .blurred(style="background-image: url(#{avatar})")
     .content
       a.th.radius
         img(src="#{avatar}", width=200, height=200)
-      h2 #{names}
-      h4 #{teamName}
+      .text
+        h2 #{names}
+        h4 #{teamName}
     .hide-blur
   .row.bar
     .small-12.medium-4.columns
@@ -33,9 +35,9 @@
       .tabs-content
         .content.active#about-panel
           if locals.description
-            != description.autoLink().split("\n").join("<br />")
+            != _.escape(description).autoLink().split("\n").join("<br />")
           else
-            | #{tagLine}
+            | This team has not written about themselves yet. 
 
           if locals.video
             h3.video Video
