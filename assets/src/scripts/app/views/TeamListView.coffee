@@ -17,7 +17,7 @@ define [
     render: =>
       @$el.html @template()
 
-      _.each @collection.models, (team) =>
+      _.each @collection.models, (team) ->
         teamView = new TeamItemView
           model: team
         $("#teams").append teamView.render().$el

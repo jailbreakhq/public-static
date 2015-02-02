@@ -30,7 +30,7 @@ requirejs.config
         "moment"
       ]
 
-    humanize: 
+    humanize:
       exports: "Humanize"
 
     foundation:

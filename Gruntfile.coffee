@@ -11,6 +11,14 @@ module.exports = (grunt) ->
     jshint:
       files: ["Gruntfile.js", "package.json"]
 
+    # Coffeescript Linter
+    coffeelint:
+      tests:
+        files:
+          src: ["<%= paths.src %>/scripts/**/*.coffee"]
+      options:
+        configFile: "coffeelint.json"
+
     # CoffeeScript
     coffee:
       options:
@@ -56,30 +64,22 @@ module.exports = (grunt) ->
         files:
           "<%= paths.dist %>/templates/jade.js": ["<%= paths.src %>/templates/**/*.jade"]
 
-    autoprefixer:
-      options: ["last 1 version"]
-      dist:
-        files: [
-          expand: true
-          cwd: "<%= paths.dist %>/styles/"
-          src: "{,*/}*.css"
-          dest: "<%= paths.dist %>/styles/"
-        ]
+    
 
     concurrent:
-      serve: ["coffee", "sass:server", "autoprefixer"]
-      dist: ["jshint", "coffee", "sass:dist", "jade", "autoprefixer"]
+      serve: ["coffee", "sass:server"]
+      dist: ["jshint", "coffee", "sass:dist", "jade"]
 
     
     # Simple config to run sass, jshint and coffee any time a js or sass file is added, modified or deleted
     watch:
       coffee:
         files: ["<%= paths.src %>/scripts/**/*.coffee"]
-        tasks: ["coffee"]
+        tasks: ["coffeelinter", "coffee"]
 
       sass:
         files: ["<%= paths.src %>/styles/{,*/}*.scss", "<%= paths.src %>/styles/{,*/}*.sass"]
-        tasks: ["sass:server", "autoprefixer"]
+        tasks: ["sass:server"]
 
       jade:
         files: ["<%= paths.src %>/templates/**/*.jade"]
