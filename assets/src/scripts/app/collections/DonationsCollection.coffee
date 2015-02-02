@@ -8,7 +8,8 @@ define [
 ], ($, _, Backbone, Mixen, AuthMixen, Donation) ->
   class Donations extends Mixen(AuthMixen, Backbone.Collection)
     model: Donation
-    filters: {}
+    filters: null
+
     url: =>
       if @filters
         jailbreak.api_host + "/donations?filters=" + encodeURIComponent JSON.stringify @filters
@@ -16,4 +17,5 @@ define [
         jailbreak.api_host + "/donations"
 
     initialize: (data, options) ->
-      @filters = options.filters
+      if options
+        @filters = options.filters

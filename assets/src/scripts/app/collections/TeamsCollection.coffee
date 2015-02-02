@@ -8,4 +8,14 @@ define [
 ], ($, _, Backbone, Mixen, AuthMixen, Team) ->
   class Teams extends Mixen(AuthMixen, Backbone.Collection)
     model: Team
-    url: jailbreak.api_host + "/teams"
+    filters: null
+
+    url: =>
+      if @filters
+        jailbreak.api_host + "/teams?filters=" + encodeURIComponent JSON.stringify @filters
+      else
+        jailbreak.api_host + "/teams"
+
+    initialize: (data, options) ->
+      if options
+        @filters = options.filters

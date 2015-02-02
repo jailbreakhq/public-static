@@ -1,5 +1,6 @@
-#teams
+.team
   padding: 0 20px
+  text-align: center
 
   .university
     font-color: $secondary-text-color
@@ -8,25 +9,71 @@
   .amount-raised
     font-color: $secondary-text-color
 
-#teams > li
+.teams-list > li
   text-align: center
   border-bottom: 1px solid $seperator-border-color
   margin-bottom: 20px
   padding-bottom: 10px
 
-#teams > li:last-child
+.teams-list > li:last-child
   border-bottom: none
   margin-bottom: 0
 
 @media #{$medium-up}  
-  #teams > li
+  .teams-list > li
     border-bottom: none
     border-right: 1px solid $seperator-border-color
 
 @media #{$medium-only}
-  #teams > li:nth-child(3n)
-    border-right: none
+  .teams-list.medium-block-grid-2 > li:nth-child(2n),
+  .teams-list.medium-block-grid-3 > li:nth-child(3n)
+    border-right: none !important
 
 @media #{$large-only}
-  #teams > li:nth-child(4n)
-    border-right: none
+  .teams-list.large-block-grid-2 > li:nth-child(2n),
+  .teams-list.large-block-grid-3 > li:nth-child(3n),
+  .teams-list.large-block-grid-4 > li:nth-child(4n)
+    border-right: none !important
+
+.donations-list
+  margin-left: 0
+
+  li
+    background-color: $secondary-content-color
+    padding: 5px 10px
+    border-radius: 5px
+    list-style: none
+    border: 1px solid $secondary-content-border-color
+    margin-bottom: 15px
+
+    .row
+      margin: 0
+
+  .time
+    font-size: 80%
+    font-color: $third-text-color
+
+  .amount
+    text-align: right
+    padding-left: 20px
+
+    em
+      font-weight: 700
+      font-style: normal
+
+.content-button
+  display: block
+  margin: 15px 0
+  padding: 10px
+  border: 1px solid $secondary-content-border-color
+  @include border-radius(5px)
+  text-align: center
+  background: $secondary-content-color
+  font-weight: bold
+
+  &:hover
+    background: $third-content-color
+
+  &:active,
+  &:focus
+    @include inset-box-shadow(0 0 6px rgba(0, 0, 0, 0.2))

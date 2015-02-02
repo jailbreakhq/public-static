@@ -3,5 +3,4 @@ define [
 ], ($) ->
   class AuthMixen
     sync: ->
-      console.log "AuthMixen sync"
       super

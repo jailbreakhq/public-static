@@ -2,19 +2,31 @@
   - var rand = (id % 5) + 1
   #header.row.collapse-small(class="bg-#{rand}")
     .blurred(style="background-image: url(#{avatar})")
-    .content
+    .header-content
       a.th.radius
         img(src="#{avatar}", width=200, height=200)
       .text
         h2 #{names}
         h4 #{teamName}
+        p.show-for-medium-up #{tagLine}
+        ul.show-for-medium-up
+          li 
+            h6 Team No.
+            span.value #{teamNumber}
+          li 
+            h6 University
+            span.value #{university}
+          li
+            h6 Raised
+            span.value &euro;
+            = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
     .hide-blur
-  .row.bar
+  .row.bar.hide-for-medium-up
     .small-12.medium-4.columns
       h6.bio  Bio
       p.tag-line #{tagLine}
     .small-12.medium-8.columns
-      ul.small-block-grid-3.medium-block-grid-4.large-block-grid-5
+      ul.small-block-grid-3.medium-block-grid-4
         li 
           h6 Team No.
           span.value #{teamNumber}
@@ -26,14 +38,15 @@
           span.value &euro;
           = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
   .row
-    .small-12.columns.collapse-small
-      ul.tabs(data-tab)
+    .small-12.columns.no-padding
+      ul.tabs(data-tab).hide-for-large-up
         li.tab-title.active
           a(href="#about-panel") About
         li.tab-title
           a(href="#donations-panel") Donations
       .tabs-content
         .content.active#about-panel
+          h3.show-for-large-up About #{names}
           if locals.description
             != _.escape(description).autoLink().split("\n").join("<br />")
           else

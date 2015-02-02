@@ -5,10 +5,11 @@ define [
   "foundation"
   "foundation.tabs"
   "jade.templates"
+  "collections/DonationsCollection"
   "models/TeamModel"
   "views/DonationsListView"
   "autolink"
-], ($, _, Backbone, foundation, tabs, jade, Team, DonationsListView, autolink) ->
+], ($, _, Backbone, foundation, tabs, jade, Donations, Team, DonationsListView, autolink) ->
   class TeamProfile extends Backbone.View
     template: jade.team
 
@@ -19,8 +20,13 @@ define [
       @model.fetch
         success: @render
 
+      donations = new Donations [],
+        filters:
+          teamId: options.teamId
       @donationsListView = new DonationsListView
-        teamId: options.teamId
+        collection: donations
+      donations.fetch
+        success: @render
 
     render: =>
       @$el.html @template @model.toJSON()

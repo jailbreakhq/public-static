@@ -3,16 +3,41 @@ define [
   "underscore"
   "backbone"
   "jade.templates"
-  "foundation"
-  "views/TeamListView"
-], ($, _, Backbone, jade, foundation, TeamListView) ->
+  "collections/TeamsCollection"
+  "collections/DonationsCollection"
+  "views/TeamItemView"
+  "views/DonationsListView"
+], ($, _, Backbone, jade, Teams, Donations, TeamItemView, DonationsListView) ->
   class Index extends Backbone.View
-    template: jade.main
+    template: jade.index
 
     initialize: =>
-      @teamListview = new TeamListView()
+      @teams = new Teams [],
+        filters:
+          featured: true
+      @teams.fetch
+        success: @renderTeamsList
+
+      donations = new Donations
+      donations.fetch
+        success: @renderDonationsList
+      @donationsListView = new DonationsListView
+        collection: donations
+
       @render()
 
     render: =>
-      @$el.append @teamListview.render().$el
+      @$el.html @template()
       @
+
+    renderTeamsList: =>
+      list = $("#featured-teams")
+
+      _.each @teams.models, (team) =>
+        teamView = new TeamItemView
+          model: team
+        list.append teamView.render().$el
+
+    renderDonationsList: =>
+      $("#all-donations").append @donationsListView.render().$el
+

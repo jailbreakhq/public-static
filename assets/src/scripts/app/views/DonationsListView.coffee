@@ -10,11 +10,9 @@ define [
     template: jade.teamDonations
 
     initialize: (options) =>
-      @collection = new Donations [],
-        filters:
-          teamId: options.teamId
-      @collection.fetch
-        success: @render
+      if not options.collection
+        new Error("DonationsList view needs a collection in it's options")
+      @collection = options.collection
 
     render: =>
       data =

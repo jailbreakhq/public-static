@@ -9,14 +9,14 @@ define [
   class TeamList extends Backbone.View
     template: jade.teams
 
-    initialize: =>
-      @collection = new Teams()
-      @collection.fetch
-        success: @render
+    initialize: (options) =>
+      if not options.collection
+        new Error("DonationsList view needs a collection in it's options")
+      @collection = options.collection
 
     render: =>
       @$el.html @template()
-      
+
       _.each @collection.models, (team) =>
         teamView = new TeamItemView
           model: team
