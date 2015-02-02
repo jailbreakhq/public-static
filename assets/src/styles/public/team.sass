@@ -3,7 +3,7 @@ $bar-background-color: #DEDEDE
 $bar-border-color: #D4D4D4
 $bar-text-color: $jb-light-grey
 
-#mobile-header
+#header
   text-align: center
   position: relative
   overflow: hidden
@@ -41,10 +41,9 @@ $bar-text-color: $jb-light-grey
 
 #team
   .bar
-    background: $bar-background-color
+    @include background-gradient(#D6CEC3, #E4DDCA)
     padding: 10px 0
     border-bottom: 1px solid $bar-border-color
-    margin-bottom: 20px
 
     li
       list-style: none
@@ -70,6 +69,12 @@ $bar-text-color: $jb-light-grey
   .tag-line
     margin-bottom: 30px
 
+  .tabs
+    margin: 0 -15px
+
+  .tabs-content .video
+    margin-top: 20px
+
 @media #{$small-only}  
   #team li:nth-child(3n)
     border-right: none
@@ -81,3 +86,25 @@ $bar-text-color: $jb-light-grey
 @media #{$large-only}
   #team li:nth-child(5n)
     border-right: none
+
+#donations
+  margin-left: 0
+
+  li
+    margin: 0 0 20px
+    background-color: #F7F7F7
+    padding: 5px 10px
+    border-radius: 5px
+    list-style: none
+
+  .time
+    font-size: 80%
+    font-color: $third-text-color
+
+  .amount
+    text-align: right
+    padding-left: 20px
+
+    em
+      font-weight: 700
+      font-style: normal

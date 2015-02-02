@@ -3,8 +3,9 @@ require [
   "underscore"
   "backbone"
   "foundation"
+  "foundation.topbar"
   "AppRouter"
-], ($, _, Backbone, foundation, Router) ->
+], ($, _, Backbone, foundation, topbar, Router) ->
   
   $ ->
     $(document).foundation()

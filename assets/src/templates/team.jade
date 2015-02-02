@@ -1,11 +1,5 @@
 #team
-  .row.hide-for-small-only
-    .small-12.columns
-      h2.page-header #{names}
-    .small-12.columns
-      a.th.radius
-        img(src="#{avatar}", width=200, height=200)
-  #mobile-header.show-for-small-only
+  #header.row.collapse-small
     .blurred(style="background-image: url(#{avatar})")
     .content
       a.th.radius
@@ -27,4 +21,23 @@
           span.value #{university}
         li
           h6 Raised
-          span.value &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}
+          span.value &euro;
+          = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
+  .row
+    .small-12.columns.collapse-small
+      ul.tabs(data-tab)
+        li.tab-title.active
+          a(href="#about-panel") About
+        li.tab-title
+          a(href="#donations-panel") Donations
+      .tabs-content
+        .content.active#about-panel
+          if locals.description
+            != description.autoLink().split("\n").join("<br />")
+          else
+            | #{tagLine}
+
+          if locals.video
+            h3.video Video
+              | #{video}
+        .content#donations-panel

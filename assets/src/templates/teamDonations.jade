@@ -1,6 +1,11 @@
-.row#team-donations
-  .small-12.columns
-    h3.page-title Donations
-    ul#donations
-      each donation in donations
-        li #{donation.amount}
+ul#donations
+  each donation in donations
+    li.row.small-collapse
+      .small-8.columns #{donation.name} 
+      .small-4.columns.amount 
+        em &euro;
+          = Humanize.intComma(donation.amount)
+      span.time
+        = moment(donation.time*1000).fromNow()
+  else
+    li The team has no donations yet. Why don't you help them out!

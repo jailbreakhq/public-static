@@ -3,8 +3,8 @@ define [
   "collections/TeamsCollection"
   "models/TeamModel"
   "views/IndexView"
-  "views/SingleTeamView"
-], (Backbone, Teams, Team, IndexView, SingleTeamView) ->
+  "views/TeamProfileView"
+], (Backbone, Teams, Team, IndexView, TeamProfileView) ->
   class Router extends Backbone.Router
     routes:
       '':         'index'
@@ -15,6 +15,6 @@ define [
       $("#body-container").html indexView.render().$el
 
     team: (id) ->
-      singleTeamView = new SingleTeamView
+      teamProfileView = new TeamProfileView
         teamId: id
-      $("#body-container").html singleTeamView.render().$el
+      $("#body-container").html teamProfileView.render().$el

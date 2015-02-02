@@ -3,13 +3,14 @@ define [
   "underscore"
   "backbone"
   "jade.templates"
+  "humanize"
   "collections/DonationsCollection"
-], ($, _, Backbone, jade, Donations) ->
+], ($, _, Backbone, jade, Humanize, Donations) ->
   class DonationsList extends Backbone.View
     template: jade.teamDonations
 
     initialize: (options) =>
-      @collection = new Donations
+      @collection = new Donations [],
         filters:
           teamId: options.teamId
       @collection.fetch
@@ -18,7 +19,6 @@ define [
     render: =>
       data =
         donations: _.map @collection.models, (val) -> val.toJSON()
-      console.log data
       @$el.html @template data
 
       @

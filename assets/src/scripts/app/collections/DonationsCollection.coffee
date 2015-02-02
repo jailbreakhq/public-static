@@ -15,5 +15,5 @@ define [
       else
         jailbreak.api_host + "/donations"
 
-    initialize: (options) ->
+    initialize: (data, options) ->
       @filters = options.filters
