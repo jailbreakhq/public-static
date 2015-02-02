@@ -1,23 +1,47 @@
 requirejs.config
-  baseUrl: "assets/"
+  baseUrl: "/assets/dist/scripts/app"
   paths:
-    "jquery": "components/jquery/dist/jquery",
-    "underscore": "components/underscore/underscore"
-    "backbone": "components/backbone/backbone"
-    "jade": "components/jade/runtime"
-    "jade.templates": "dist/templates/jade"
-    "foundation": "dist/scripts/foundation"
+    "jquery": "/assets/components/jquery/dist/jquery",
+    "underscore": "/assets/components/underscore/underscore"
+    "backbone": "/assets/components/backbone/backbone"
+    "moment": "/assets/components/moment/moment"
+    "humanize": "/assets/components/humanize-plus/public/dist/humanize.min"
+    "jade": "/assets/components/jade/runtime"
+    "mixen": "/assets/components/mixen/mixen.min"
+    "jade.templates": "/assets/dist/templates/jade"
+    "foundation": "/assets/components/bower-foundation/js/foundation/foundation"
+    "foundation.tabs": "/assets/components/bower-foundation/js/foundation/foundation.tab"
+    "foundation.topbar": "/assets/components/bower-foundation/js/foundation/foundation.topbar"
+    "autolink": "/assets/components/autolink/autolink-min"
 
   shim:
-    foundation:
-      deps: [
-        "jquery"
-      ]
+    underscore:
+      exports: "_"
 
     backbone:
       deps: [
         "jquery"
         "underscore"
-        "jade"
-        "foundation"
       ]
+      exports: "Backbone"
+
+    jade:
+      deps: [
+        "moment"
+      ]
+
+    humanize: 
+      exports: "Humanize"
+
+    foundation:
+      deps: [
+        "jquery"
+      ]
+      exports: "Foundation"
+
+    "foundation.topbar":
+      deps: ["foundation"]
+
+
+    "foundation.tabs":
+      deps: ["foundation"]

@@ -5,6 +5,12 @@
     "bower-foundation": "https://github.com/zurb/bower-foundation.git",
     "backbone": "~1.1.2",
     "requirejs": "~2.1.15",
-    "jade": "~1.9.1"
+    "jade": "~1.9.1",
+    "moment": "~2.9.0",
+    "humanize-plus": "~1.5.0",
+    "autolink": "git@github.com:bryanwoods/autolink-js.git"
+  },
+  "devDependencies": {
+    "mixen": "git@github.com:HubSpot/mixen.git#~0.5.4"
   }
 }

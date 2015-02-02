@@ -1,71 +1,37 @@
-define [
+require [
   "jquery"
   "underscore"
   "backbone"
-  "jade.templates"
-], ($, _, Backbone, jade) ->
+  "foundation"
+  "foundation.topbar"
+  "AppRouter"
+], ($, _, Backbone, foundation, topbar, Router) ->
   
   $ ->
+    $(document).foundation()
 
-    class Team extends Backbone.Model
-      urlRoot: jailbreak.api_host + "/teams"
-      defaults:
-        avatar: "https://s3-eu-west-1.amazonaws.com/jailbreak15-qa-uploads/jb-default-avatar"
+    # Backbone setup
+    AppRouter = new Router()
 
+    # Clean up after any previous runs
+    window.location.hash = ''
+    Backbone.history.stop()
 
-    class Teams extends Backbone.Collection
-      model: Team
-      url: jailbreak.api_host + "/teams"
+    Backbone.history.start
+      pushState: true
 
+    $(document).on "click", "a[href^='/']", (event) ->
 
-    class TeamView extends Backbone.View
-      tagname: 'li'
-      template: jade.team
-      
-      initialize: =>
-        @model.bind("change", @render)
+      href = $(event.currentTarget).attr("href")
 
-      render: =>
-        @$el.html(@template(@model.toJSON()))
-        @
+      # Allow shift+click for new tabs, etc.
+      if !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey
+        event.preventDefault()
 
+        # Remove leading slashes and hash bangs (backward compatablility)
+        url = href.replace(/^\//,'').replace('\#\!\/','')
 
-    class TeamListView extends Backbone.View
-      template: jade.teams
+        # Instruct Backbone to trigger routing events
+        AppRouter.navigate url, { trigger: true }
 
-      initialize: =>
-        @collection = new Teams()
-        @collection.on("reset", @render)
-        @collection.fetch
-          success: @render
-
-        @render()
-
-      render: =>
-        @$el.html(@template())
-
-        _.each @collection.models, (team) =>
-          teamView = new TeamView
-            model: team
-          @$el.append(teamView.render().$el)
-
-        @
-
-
-    class AppView extends Backbone.View
-      el_tag = "#body-container"
-      el: $(el_tag)
-
-      template: jade.main
-
-      initialize: =>
-        @teamListview = new TeamListView()
-        @render()
-
-      render: =>
-        $("#body-container").html(@template())
-
-        @$el.append(@teamListview.render().$el)
-
-    $(document).foundation();
-    app = new AppView()
+        return false

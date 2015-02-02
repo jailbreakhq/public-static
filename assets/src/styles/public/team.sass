@@ -1,0 +1,163 @@
+$header-blur: 7px
+$bar-background-color: #DEDEDE
+$bar-border-color: #D4D4D4
+$bar-text-color: $jb-light-grey
+
+#header
+  text-align: center
+  position: relative
+  overflow: hidden
+
+  .blurred
+    background-color: #000
+    background-size: cover
+    background-repeat: no-repeat
+    height: 100%
+    width: 110%
+    @include profiler-header($header-blur, 0.2)
+    position: absolute
+    top: -$header-blur
+    left: -$header-blur
+    z-index: -1
+    padding: $header-blur
+
+  .header-content
+    z-index: 100
+    padding: 20px 10px
+
+  .hide-blur
+    position: absolute
+    bottom: 0
+    height: $header-blur - 2
+    width: 100%
+    background-color: white
+
+  a.th
+    margin: 10px 0
+
+  h2, h4
+    color: white
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.3)
+
+@media #{$medium-up}
+
+  #header
+    text-align: left
+    margin-bottom: 1px
+    
+    &.bg-1
+      @include horizontal-background-gradient(#3D7EAA, #FFE47A)
+
+    &.bg-2
+      @include horizontal-background-gradient(#134E5E, #71B280)
+
+    &.bg-3
+      @include background-gradient(#ffb347, #A83279)
+
+    &.bg-4
+      @include horizontal-background-gradient(#516395, #614385)
+    
+    &.bg-5
+      @include background-gradient(#003973, #E5E5BE)
+
+    .blurred
+      display: none
+
+    .header-content
+      padding: 5px 30px
+
+      .th
+        float: left
+        margin-right: 30px
+
+      .text
+        color: white
+
+        ul
+
+          li
+            text-align: center
+            display: inline-block
+            list-style: none
+            padding-right: 15px
+            border-right: 1px solid rgba(255, 255, 255, 0.5)
+            margin-right: 15px
+
+        h6
+          text-transform: uppercase
+          font-size: 75%
+          font-weight: 900
+          color: white
+          display: block
+
+    .hide-blur
+      display: none
+
+@media #{$large-up}
+  #header
+    margin-top: 40px
+    margin-bottom: 40px
+
+#team
+  .bar
+    @include background-gradient(#E0D9CE, #EDE6D3)
+    padding: 10px 0
+    border-bottom: 1px solid $bar-border-color
+
+    li
+      list-style: none
+      margin: 5px 0
+      padding: 7px 0
+      text-align: center
+      border-right: 1px solid $seperator-border-color
+
+    .value
+      font-color: $bar-text-color
+
+    h6
+      text-transform: uppercase
+      font-size: 75%
+      font-weight: 900
+      color: $bar-text-color
+      display: block
+
+  .bio
+    margin-top: 12px
+    margin-bottom: 7px
+
+  .tag-line
+    margin-bottom: 30px
+
+  .tabs
+    margin: 0 -15px
+
+  .tabs-content .video
+    margin-top: 20px
+
+@media #{$small-only}  
+  #team li:nth-child(3n)
+    border-right: none
+
+@media #{$medium-only}
+  #team li:nth-child(3n)
+    border-right: none
+
+@media #{$large-only}
+  $teams-tabs-gutter: 5%
+  $teams-tabs-children: 2
+
+  #team
+    li:nth-child(5n)
+      border-right: none
+
+    .content
+      display: block
+      width: (100%/$teams-tabs-children) - ($teams-tabs-gutter/$teams-tabs-children)
+      margin-right: $teams-tabs-gutter
+      float: left
+
+      &:last-child
+        margin-right: 0
+
+  .no-padding
+    padding: 0

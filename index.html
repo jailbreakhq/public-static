@@ -8,39 +8,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- favicon made using realfavicongenerator.net -->
-    <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
-    <link rel="shortcut icon" href="favicons/favicon.ico">
-    <link rel="icon" type="image/png" href="favicons/favicon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="favicons/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="/favicons/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicons/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="favicons/mstile-144x144.png">
-    <meta name="msapplication-config" content="favicons/browserconfig.xml">
+    <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 
     <!-- Bundled CSS -->
-    <link rel="stylesheet" href="assets/dist/styles/main.css">
+    <link rel="stylesheet" href="/assets/dist/styles/main.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Use require.js to load javascript -->
-    <script src="assets/components/requirejs/require.js"></script>
+    <script src="/assets/components/requirejs/require.js"></script>
     <script>
-        require(['./assets/dist/scripts/common'], function (common) {
-            require(['dist/scripts/app/main']);
+        require(['/assets/dist/scripts/common.js'], function (common) {
+            require(['main']);
         });
     </script>
   </head>
   <body>
     <div id="wrapper">
+
       <div class="contain-to-grid fixed">
         <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
@@ -52,19 +53,15 @@
           <section class="top-bar-section">
             <!-- Right Nav Section
             <ul class="right">
-              <li class="active"><a href="https://docs.google.com/forms/d/1UobBqkXvDFRcYgxR2rkR6ZiaLgNODiJM7r-L_tVJYxg/viewform">Apply Now</a></li>
+              <li class="active"><a href="#">Apply Now</a></li>
             </ul>-->
 
             <!-- Left Nav Section -->
             <ul class="left">
-              <li class="has-dropdown">
-                <a href="#">About</a>
-                <ul class="dropdown">
-                  <li><a href="/about-jailbreak/">About Jailbreak</a></li>
-                  <li><a href="/application-requirements/">Application Requirements</a></li>
-                  <li><a href="/contact/">Contact Details</a></li>
-                </ul>
-              </li>
+              <li class="divider"></li>
+              <li><a href="https://about.jailbreakhq.org/">About</a></li>
+              <li class="divider"></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
           </section>
         </nav>

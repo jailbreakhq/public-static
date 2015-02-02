@@ -13,8 +13,41 @@
   -webkit-box-shadow: $value
   box-shadow:         $value
 
+@mixin inset-box-shadow($value)
+  -moz-box-shadow:    inset $value
+  -webkit-box-shadow: inset $value
+  box-shadow:         inset $value
+
 @mixin background-size-cover
   -webkit-background-size: cover
   -moz-background-size:    cover
   -o-background-size:      cover
   background-size:         cover
+
+@mixin profiler-header($blur, $grayscale)
+  -webkit-filter: blur($blur) grayscale($grayscale)
+  -moz-filter: blur($blur) grayscale($grayscale)
+  -o-filter: blur($blur) grayscale($grayscale)
+  -ms-filter: blur($blur) grayscale($grayscale)
+  filter: blur($blur) grayscale($grayscale)
+
+@mixin background-gradient($color1, $color2, $position: 0%)
+  background: $color1
+  background: -moz-linear-gradient(top, $color1 $position, $color2 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop($position, $color1), color-stop(100%, $color2)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $color1 $position, $color2 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $color1 $position, $color2 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $color1 $position, $color2 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $color1 $position, $color2 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2', GradientType=0); /* IE6-9 */
+
+
+@mixin horizontal-background-gradient($color1, $color2, $position: 0%)
+  background: $color1
+  background: -moz-linear-gradient(left, $color1 $position, $color2 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop($position, $color1), color-stop(100%, $color2)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $color1 $position, $color2 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, $color1 $position, $color2 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, $color1 $position, $color2 100%); /* IE10+ */
+  background: linear-gradient(to right, $color1 $position, $color2 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2', GradientType=1); /* IE6-9 */

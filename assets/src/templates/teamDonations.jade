@@ -1,0 +1,12 @@
+ul#donations.donations-list
+  each donation in donations
+    li
+      .row.small-collapse
+        .small-8.columns #{donation.name} 
+        .small-4.columns.amount 
+          em &euro;
+            = Humanize.intComma(donation.amount)
+        span.time
+          = moment(donation.time*1000).fromNow()
+  else
+    span The team has no donations yet. Why don't you help them out!
