@@ -28,8 +28,16 @@
     <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 
     <!-- Bundled CSS -->
-    <link rel="stylesheet" href="/build/styles/main.css">
+    <!--(if target dev)><!-->
+      <link rel="stylesheet" href="/build/styles/main.css">
+    <!--<!(endif)-->
+
+    <!--(if target prod)><!-->
+      <link rel="stylesheet" href="/dist/styles/main.css">
+    <!--<!(endif)-->
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 
     <!--(if target dev)><!-->
       <script src="/components/requirejs/require.js"></script>
@@ -67,7 +75,7 @@
               <li class="divider"></li>
               <li><a href="https://about.jailbreakhq.org/">About</a></li>
               <li class="divider"></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><a href="https://about.jailbreakhq.org/contact">Contact</a></li>
             </ul>
           </section>
         </nav>

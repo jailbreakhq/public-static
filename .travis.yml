@@ -3,4 +3,4 @@ node_js:
   - "0.10"
 before_install: npm install -g grunt-cli coffee-script
 install: npm install && bower install
-before_script: grunt deploy
+before_script: ./deployable.sh

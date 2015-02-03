@@ -90,14 +90,6 @@ module.exports = (grunt) ->
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
 
-    cachebreaker:
-      prod:
-        options:
-          match: ["main.css", "main.js"]
-          position: "filename"
-        files:
-          src: ["<%= paths.static %>/index.html"]
-
     ##
     ## Watcher Configuation
     ##
@@ -127,4 +119,4 @@ module.exports = (grunt) ->
   
   # Default tasks
   grunt.registerTask "default", ["concurrent:build"]
-  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod", "cachebreaker:prod"]
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]
