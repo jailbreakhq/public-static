@@ -1,5 +1,6 @@
-assets/components
-assets/dist
+static/components
+static/build
+static/dist
 
 # Logs
 logs

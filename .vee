@@ -1,5 +1,8 @@
 name: "public-static"
 routes:
-  ".*/assets/": "http://localhost:8080/"
+  ".*/components/": "http://localhost:8080/"
+  ".*/build/": "http://localhost:8080/"
+  ".*/dist/": "http://localhost:8080/"
   ".*/favicons/": "http://localhost:8080/"
+  ".*/images/": "http://localhost:8080/"
   ".*": "http://localhost:8080"

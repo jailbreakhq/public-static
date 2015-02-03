@@ -4,13 +4,11 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
     paths:
-      dist: "assets/dist"
-      src: "assets/src"
+      build: "static/build"
+      src: "static/src"
+      deploy: "static/dist"
+      components: "static/components"
     
-    # JSHint JavaScript files
-    jshint:
-      files: ["Gruntfile.js", "package.json"]
-
     # Coffeescript Linter
     coffeelint:
       tests:
@@ -30,22 +28,18 @@ module.exports = (grunt) ->
         flatten: false,
         cwd: "<%= paths.src %>/scripts/",
         src: ["**/*.coffee"],
-        dest: "<%= paths.dist %>/scripts/",
+        dest: "<%= paths.build %>/scripts/",
         ext: ".js"
     
     # Compile Sass to CSS -  destination : source
     sass:
-      server:
-        files:
-          "<%= paths.dist %>/styles/main.css": "<%= paths.src %>/styles/main.sass"
-
-      dist:
+      build:
         options:
           style: "compressed"
           sourceComments: "normal"
 
         files:
-          "<%= paths.dist %>/styles/main.css": "<%= paths.src %>/styles/main.sass"
+          "<%= paths.build %>/styles/main.css": "<%= paths.src %>/styles/main.sass"
 
     # Compile Jade files
     jade:
@@ -56,26 +50,51 @@ module.exports = (grunt) ->
           amd: true
           processName: (filename) ->
             name = filename.replace ".jade", ""
-            name = name.replace "assets/src/templates/", ""
+            name = name.replace "static/src/templates/", ""
             name = name.replace "/", "."
             return name
           data:
             debug: false
         files:
-          "<%= paths.dist %>/templates/jade.js": ["<%= paths.src %>/templates/**/*.jade"]
+          "<%= paths.build %>/templates/jade.js": ["<%= paths.src %>/templates/**/*.jade"]
 
+    ##
+    ## Deployment Configuration
+    ##
+    requirejs:
+      compile: 
+        options: 
+          baseUrl: "<%= paths.build %>/scripts/app"
+          mainConfigFile: "<%= paths.build %>/scripts/common.js"
+          name: "main"
+          out: "<%= paths.deploy %>/scripts/main.js"
+
+    cssmin:
+      deploy:
+        files:
+          "<%= paths.deploy %>/styles/main.css": "<%= paths.build %>/styles/main.css"
+
+    uglify:
+      deploy:
+        files:
+          "<%= paths.deploy %>/scripts/require.js": ["<%= paths.components %>/requirejs/require.js"]
+          "<%= paths.deploy %>/scripts/main.js": ["<%= paths.deploy %>/scripts/main.js"]
     
+    env:
+      dev:
+        NODE_ENV: "DEV"
+      production:
+        NODE_ENV: "PROD"
 
-    concurrent:
-      serve: ["coffee", "sass:server"]
-      dist: ["jshint", "coffee", "sass:dist", "jade"]
 
-    
-    # Simple config to run sass, jshint and coffee any time a js or sass file is added, modified or deleted
+    ##
+    ## Watcher Configuation
+    ##
+    # Simple config to run sass, and coffee any time a js or sass file is added, modified or deleted
     watch:
       coffee:
         files: ["<%= paths.src %>/scripts/**/*.coffee"]
-        tasks: ["coffeelinter", "coffee"]
+        tasks: ["coffeelint", "coffee"]
 
       sass:
         files: ["<%= paths.src %>/styles/{,*/}*.scss", "<%= paths.src %>/styles/{,*/}*.sass"]
@@ -85,13 +104,16 @@ module.exports = (grunt) ->
         files: ["<%= paths.src %>/templates/**/*.jade"]
         tasks: ["jade"]
 
-      jshint:
-        files: ["<%= jshint.files %>"]
-        tasks: ["jshint"]
-  
+      html:
+        files: ["html/index.html"]
+        tasks: ["env:dev"]
+
+    concurrent:
+      build: ["coffee", "sass:build", "jade"]
+    
   # Load the plug-ins
   require("load-grunt-tasks") grunt
   
   # Default tasks
-  grunt.registerTask "default", ["concurrent:dist"]
-  grunt.registerTask "serve", ["concurrent:serve", "watch"]
+  grunt.registerTask "default", ["concurrent:build"]
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy"]
