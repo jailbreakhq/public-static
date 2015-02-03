@@ -4,6 +4,7 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
     paths:
+      static: "static"
       build: "static/build"
       src: "static/src"
       deploy: "static/dist"
@@ -84,10 +85,10 @@ module.exports = (grunt) ->
     targethtml:
       dev:
         files:
-          "static/index.html": "<%= paths.html %>/index.html"
+          "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
       prod:
         files:
-          "static/index.html": "<%= paths.html %>/index.html"
+          "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
 
     ##
     ## Watcher Configuation
@@ -107,8 +108,8 @@ module.exports = (grunt) ->
         tasks: ["jade"]
 
       html:
-        files: ["html/index.html"]
-        tasks: ["env:dev"]
+        files: ["<%= paths.html %>/index.html"]
+        tasks: ["targethtml:dev"]
 
     concurrent:
       build: ["coffee", "sass:build", "jade", "targethtml:dev"]
