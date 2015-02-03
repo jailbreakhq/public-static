@@ -11,6 +11,10 @@ install:
 - npm install grunt-cli bower
 - npm install
 before_script: "./build.sh"
+notifications:
+  email: false
+  slack: jailbreakhq:WSFGi4VPG5JlpA0PgU1fOsI2
+  on_success: always
 deploy:
   - provider: s3
     skip_cleanup: true
