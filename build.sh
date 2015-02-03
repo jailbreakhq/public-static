@@ -1,3 +1,4 @@
+bower install
 grunt deploy
 mkdir artifact
 cp -r static/dist artifact/dist
