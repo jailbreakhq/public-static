@@ -1,5 +1,6 @@
 bower install
-if [ $TRAVIS_BRANCH == "production" ]
+if [ "$TRAVIS_BRANCH" == "production" ]
+then
   grunt deploy:prod
 else
   grunt deploy
