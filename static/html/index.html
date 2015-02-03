@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>JailbreakHQ 2015 in aid of Amnesty and SVP</title>
+    <title>JailbreakHQ 2015 a global race in aid of Amnesty and SVP</title>
     <meta name="description" content="Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise &euro;100,000 for Amnesty International and SVP">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,16 +28,22 @@
     <meta name="msapplication-config" content="/favicons/browserconfig.xml">
 
     <!-- Bundled CSS -->
-    <link rel="stylesheet" href="/assets/dist/styles/main.css">
+    <link rel="stylesheet" href="/build/styles/main.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- Use require.js to load javascript -->
-    <script src="/assets/components/requirejs/require.js"></script>
-    <script>
-        require(['/assets/dist/scripts/common.js'], function (common) {
-            require(['main']);
-        });
-    </script>
+    <!--(if target dev)><!-->
+      <script src="/components/requirejs/require.js"></script>
+      <script>
+          require(['/build/scripts/common.js'], function (common) {
+              require(['main']);
+          });
+      </script>
+    <!--<!(endif)-->
+
+    <!--(if target prod)><!-->
+      <script src="/dist/scripts/require.js"></script>
+      <script src="/dist/scripts/main.js"></script>
+    <!--<!(endif)-->
   </head>
   <body>
     <div id="wrapper">
@@ -46,7 +52,7 @@
         <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
             <li class="name">
-              <h1 id="logo-title"><a href="/">JailbreakHQ 2015</a></h1>
+              <h1 id="logo-title"><a href="/">JailbreakHQ 2015: The Race is On!</a></h1>
             </li>
           </ul>
 
@@ -68,7 +74,7 @@
       </div>
 
       <div id="body-container">
-        <!-- Backbone App will inject the page content in here -->
+        <!-- Backbone App will inject the page contents in here -->
       </div>
 
       <footer class="main-footer">
@@ -91,8 +97,14 @@
     </div>
 
     <script>
+      var url = document.URL;
       var jailbreak = {};
-      jailbreak.api_host = "http://localhost:8090"
+      if (url.indexOf("local") != -1)
+        jailbreak.api_host = "http://localhost:8090";
+      else if (url.indexOf("qa") != -1)
+        jailbreak.api_host = "http://qa.jbapi.net";
+      else 
+        jailbreak.api_host = "https://jbapi.net";
     </script>
   </body>
 </html>

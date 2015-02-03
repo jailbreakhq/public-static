@@ -33,7 +33,7 @@ define [
     renderTeamsList: =>
       list = $("#featured-teams")
 
-      _.each @teams.models, (team) =>
+      _.each @teams.models, (team) ->
         teamView = new TeamItemView
           model: team
         list.append teamView.render().$el

@@ -12,7 +12,8 @@ define [
 
     url: =>
       if @filters
-        jailbreak.api_host + "/donations?filters=" + encodeURIComponent JSON.stringify @filters
+        encodedFilters = encodeURIComponent JSON.stringify @filters
+        jailbreak.api_host + "/donations?filters=" + encodedFilters
       else
         jailbreak.api_host + "/donations"
 

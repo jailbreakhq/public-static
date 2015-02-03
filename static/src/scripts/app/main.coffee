@@ -29,7 +29,7 @@ require [
         event.preventDefault()
 
         # Remove leading slashes and hash bangs (backward compatablility)
-        url = href.replace(/^\//,'').replace('\#\!\/','')
+        url = href.replace(/^\//, "").replace("\#\!\/", "")
 
         # Instruct Backbone to trigger routing events
         AppRouter.navigate url, { trigger: true }
