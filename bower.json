@@ -8,7 +8,7 @@
     "jade": "~1.9.1",
     "moment": "~2.9.0",
     "humanize-plus": "~1.5.0",
-    "autolink": "git@github.com:bryanwoods/autolink-js.git",
-    "mixen": "git@github.com:HubSpot/mixen.git#~0.5.4"
+    "autolink": "https://github.com/bryanwoods/autolink-js.git",
+    "mixen": "https://github.com/HubSpot/mixen.git"
   }
 }
