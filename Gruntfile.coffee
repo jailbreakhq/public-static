@@ -3,6 +3,7 @@ module.exports = (grunt) ->
   # Project configuration
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
+
     paths:
       static: "static"
       build: "static/build"
@@ -86,7 +87,16 @@ module.exports = (grunt) ->
       dev:
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
+      qa:
+        options:
+          curlyTags: 
+            build: "static-" + (process.env.TRAVIS_JOB_ID or "local")
+        files:
+          "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
       prod:
+        options:
+          curlyTags: 
+            build: "static-" + (process.env.TRAVIS_JOB_ID or "local")
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
 
@@ -119,4 +129,5 @@ module.exports = (grunt) ->
   
   # Default tasks
   grunt.registerTask "default", ["concurrent:build"]
-  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:qa"]
+  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]

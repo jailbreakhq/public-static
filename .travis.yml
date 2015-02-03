@@ -4,22 +4,41 @@ node_js:
 - '0.10'
 cache:
   directories:
-    - node_modules
-before_install: npm install grunt-cli bower
-install: npm install
+  - node_modules
+before_install:
+- openssl aes-256-cbc -K $encrypted_f96792749ea4_key -iv $encrypted_f96792749ea4_iv
+  -in deploy_key.pem.enc -out .travis/deploy_key.pem -d
+install:
+- npm install grunt-cli bower
+- npm install
 before_script: "./build.sh"
 deploy:
-  provider: s3
-  skip_cleanup: true
-  access_key_id: AKIAIX6A5B5HPFKUJTCA
-  secret_access_key:
-    secure: Etm5dc+29wTOYlo9XX6Bg0rAD6Lb57nqpOgLEju+jhPQ3uRMydbQepzsLjBVIDPwSqz7L1OiLLhQZ3Pzx6ShB7cDLu9+LQw7mIc0ErZvmXujk06y6hwp7RFaMtw8Qa/cmcahKgyFPyD6cgBPk0gOI2feIx6LwtoUEGL6x2rQdco=
-  bucket: "builds.jailbreakhq.org"
-  region: eu-west-1
-  endpoint: s3-eu-west-1.amazonaws.com
-  local-dir: artifact
-  upload-dir: build-qa
-  acl: public_read
-  on:
-    repo: jailbreakhq/public-static
-    branch: master
+  - provider: s3
+    skip_cleanup: true
+    access_key_id: AKIAIX6A5B5HPFKUJTCA
+    secret_access_key:
+      secure: Etm5dc+29wTOYlo9XX6Bg0rAD6Lb57nqpOgLEju+jhPQ3uRMydbQepzsLjBVIDPwSqz7L1OiLLhQZ3Pzx6ShB7cDLu9+LQw7mIc0ErZvmXujk06y6hwp7RFaMtw8Qa/cmcahKgyFPyD6cgBPk0gOI2feIx6LwtoUEGL6x2rQdco=
+    bucket: builds.jailbreakhq.org
+    region: eu-west-1
+    endpoint: s3-eu-west-1.amazonaws.com
+    local-dir: artifact
+    upload-dir: qa/static-${TRAVIS_JOB_ID}
+    acl: public_read
+    on:
+      repo: jailbreakhq/public-static
+      branch: master
+  - provider: s3
+    skip_cleanup: true
+    access_key_id: AKIAIX6A5B5HPFKUJTCA
+    secret_access_key:
+      secure: Etm5dc+29wTOYlo9XX6Bg0rAD6Lb57nqpOgLEju+jhPQ3uRMydbQepzsLjBVIDPwSqz7L1OiLLhQZ3Pzx6ShB7cDLu9+LQw7mIc0ErZvmXujk06y6hwp7RFaMtw8Qa/cmcahKgyFPyD6cgBPk0gOI2feIx6LwtoUEGL6x2rQdco=
+    bucket: builds.jailbreakhq.org
+    region: eu-west-1
+    endpoint: s3-eu-west-1.amazonaws.com
+    local-dir: artifact
+    upload-dir: prod/static-${TRAVIS_JOB_ID}
+    acl: public_read
+    on:
+      repo: jailbreakhq/public-static
+      branch: production
+after_success: "./deploy.sh"

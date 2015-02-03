@@ -32,13 +32,17 @@
       <link rel="stylesheet" href="/build/styles/main.css">
     <!--<!(endif)-->
 
+    <!--(if target qa)><!-->
+      <link rel="stylesheet" href="http://builds.jailbreakhq.org/qa/{{build}}/dist/styles/main.css">
+    <!--<!(endif)-->
+
     <!--(if target prod)><!-->
-      <link rel="stylesheet" href="http://builds.jailbreakhq.org/build-qa/dist/styles/main.css">
+      <link rel="stylesheet" href="http://builds.jailbreakhq.org/prod/{{build}}/dist/styles/main.css">
     <!--<!(endif)-->
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-
+    <!-- Bundled Javasript -->
     <!--(if target dev)><!-->
       <script src="/components/requirejs/require.js"></script>
       <script>
@@ -48,9 +52,14 @@
       </script>
     <!--<!(endif)-->
 
+    <!--(if target qa)><!-->
+      <script src="http://builds.jailbreakhq.org/qa/{{build}}/dist/scripts/require.js"></script>
+      <script src="http://builds.jailbreakhq.org/qa/{{build}}/dist/scripts/main.js"></script>
+    <!--<!(endif)-->
+
     <!--(if target prod)><!-->
-      <script src="http://builds.jailbreakhq.org/build-qa/dist/scripts/require.js"></script>
-      <script src="http://builds.jailbreakhq.org/build-qa/dist/scripts/main.js"></script>
+      <script src="http://builds.jailbreakhq.org/prod/{{build}}/dist/scripts/require.js"></script>
+      <script src="http://builds.jailbreakhq.org/prod/{{build}}/dist/scripts/main.js"></script>
     <!--<!(endif)-->
   </head>
   <body>

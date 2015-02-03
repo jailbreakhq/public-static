@@ -4,6 +4,8 @@ static/build
 static/dist
 static/index.html
 
+.travis
+
 # Logs
 logs
 *.log
