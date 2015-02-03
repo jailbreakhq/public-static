@@ -8,4 +8,4 @@ define [
   class Team extends Mixen(AuthMixen, Backbone.Model)
     urlRoot: jailbreak.api_host + "/teams"
     defaults:
-      avatar: "http://qa.static.jailbreakhq.org/avatars/jb-default-avatar.jpeg"
+      avatar: "https://static.jailbreakhq.org/avatars/jb-default-avatar.jpg"
