@@ -1,4 +1,4 @@
-# JailbreakHQ 2015 Public Static
+# JailbreakHQ 2015 Public Static [![Build Status](https://travis-ci.org/jailbreakhq/public-static.svg?branch=master)](https://travis-ci.org/jailbreakhq/public-static)
 A single-page backbone static app for jailbreakhq.org
 
 ### Language Support
