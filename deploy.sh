@@ -1,6 +1,6 @@
 # Deploy the index.html to my nginx server on EC2 by simply SCP'ing the file over
 echo "Deploying new index.html to nginx server"
-echo -e "Host e32designs.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+echo "Host e32designs.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 chmod 600 .travis/deploy_key.pem
 ssh-add .travis/deploy_key.pem
 
