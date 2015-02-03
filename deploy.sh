@@ -1,0 +1,1 @@
+scp static/index.html 
