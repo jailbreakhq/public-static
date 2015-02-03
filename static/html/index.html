@@ -74,7 +74,7 @@
       </div>
 
       <div id="body-container">
-        <!-- Backbone App will inject the page content in here -->
+        <!-- Backbone App will inject the page contents in here -->
       </div>
 
       <footer class="main-footer">
@@ -97,8 +97,14 @@
     </div>
 
     <script>
+      var url = document.URL;
       var jailbreak = {};
-      jailbreak.api_host = "http://localhost:8090"
+      if (url.indexOf("local") != -1)
+        jailbreak.api_host = "http://localhost:8090";
+      else if (url.indexOf("qa") != -1)
+        jailbreak.api_host = "http://qa.jbapi.net";
+      else 
+        jailbreak.api_host = "https://jbapi.net";
     </script>
   </body>
 </html>
