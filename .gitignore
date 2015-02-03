@@ -1,6 +1,7 @@
 static/components
 static/build
 static/dist
+static/index.html
 
 # Logs
 logs

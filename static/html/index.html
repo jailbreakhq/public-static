@@ -31,19 +31,19 @@
     <link rel="stylesheet" href="/build/styles/main.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- @IF NODE_ENV == 'DEV' -->
+    <!--(if target dev)><!-->
       <script src="/components/requirejs/require.js"></script>
       <script>
           require(['/build/scripts/common.js'], function (common) {
               require(['main']);
           });
       </script>
-    <!-- @endif -->
+    <!--<!(endif)-->
 
-    <!-- @IF NODE_ENV == 'PROD'
-      <script src="/build/scripts/require.js"></script>
-      <script src="/build/scripts/main.js"></script>
-    @endif -->
+    <!--(if target prod)><!-->
+      <script src="/dist/scripts/require.js"></script>
+      <script src="/dist/scripts/main.js"></script>
+    <!--<!(endif)-->
   </head>
   <body>
     <div id="wrapper">

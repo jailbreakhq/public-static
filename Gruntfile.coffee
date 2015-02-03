@@ -8,6 +8,7 @@ module.exports = (grunt) ->
       src: "static/src"
       deploy: "static/dist"
       components: "static/components"
+      html: "static/html"
     
     # Coffeescript Linter
     coffeelint:
@@ -80,12 +81,13 @@ module.exports = (grunt) ->
           "<%= paths.deploy %>/scripts/require.js": ["<%= paths.components %>/requirejs/require.js"]
           "<%= paths.deploy %>/scripts/main.js": ["<%= paths.deploy %>/scripts/main.js"]
     
-    env:
+    targethtml:
       dev:
-        NODE_ENV: "DEV"
-      production:
-        NODE_ENV: "PROD"
-
+        files:
+          "static/index.html": "<%= paths.html %>/index.html"
+      prod:
+        files:
+          "static/index.html": "<%= paths.html %>/index.html"
 
     ##
     ## Watcher Configuation
@@ -109,11 +111,11 @@ module.exports = (grunt) ->
         tasks: ["env:dev"]
 
     concurrent:
-      build: ["coffee", "sass:build", "jade"]
-    
+      build: ["coffee", "sass:build", "jade", "targethtml:dev"]
+
   # Load the plug-ins
   require("load-grunt-tasks") grunt
   
   # Default tasks
   grunt.registerTask "default", ["concurrent:build"]
-  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy"]
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]
