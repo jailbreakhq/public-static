@@ -90,13 +90,13 @@ module.exports = (grunt) ->
       qa:
         options:
           curlyTags: 
-            build: "static-" + (process.env.TRAVIS_JOB_ID or "local")
+            build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
       prod:
         options:
           curlyTags: 
-            build: "static-" + (process.env.TRAVIS_JOB_ID or "local")
+            build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
 

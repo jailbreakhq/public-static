@@ -23,7 +23,7 @@ deploy:
     region: eu-west-1
     endpoint: s3-eu-west-1.amazonaws.com
     local-dir: artifact
-    upload-dir: qa/static-${TRAVIS_JOB_ID}
+    upload-dir: qa/static-${TRAVIS_BUILD_NUMBER}
     acl: public_read
     on:
       repo: jailbreakhq/public-static
@@ -37,7 +37,7 @@ deploy:
     region: eu-west-1
     endpoint: s3-eu-west-1.amazonaws.com
     local-dir: artifact
-    upload-dir: prod/static-${TRAVIS_JOB_ID}
+    upload-dir: prod/static-${TRAVIS_BUILD_NUMBER}
     acl: public_read
     on:
       repo: jailbreakhq/public-static
