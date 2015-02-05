@@ -1,6 +1,5 @@
 #team
-  - var rand = (id % 5) + 1
-  #header.row.collapse-small(class="bg-#{rand}")
+  #header.row.collapse-small
     .blurred(style="background-image: url(#{avatar})")
     .header-content
       a.th.radius
@@ -54,5 +53,7 @@
 
           if locals.video
             h3.video Video
-              | #{video}
+            .about-video
+              .flex-video
+                != video
         .content#donations-panel

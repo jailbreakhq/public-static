@@ -111,7 +111,7 @@ module.exports = (grunt) ->
 
       sass:
         files: ["<%= paths.src %>/styles/{,*/}*.scss", "<%= paths.src %>/styles/{,*/}*.sass"]
-        tasks: ["sass:server"]
+        tasks: ["sass:build"]
 
       jade:
         files: ["<%= paths.src %>/templates/**/*.jade"]

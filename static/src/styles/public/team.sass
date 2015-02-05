@@ -33,7 +33,7 @@ $bar-text-color: $jb-light-grey
     background-color: white
 
   a.th
-    margin: 10px 0
+    margin: 10px 0 15px
 
   h2, h4
     color: white
@@ -44,21 +44,8 @@ $bar-text-color: $jb-light-grey
   #header
     text-align: left
     margin-bottom: 1px
-    
-    &.bg-1
-      @include horizontal-background-gradient(#3D7EAA, #FFE47A)
-
-    &.bg-2
-      @include horizontal-background-gradient(#134E5E, #71B280)
-
-    &.bg-3
-      @include background-gradient(#ffb347, #A83279)
-
-    &.bg-4
-      @include horizontal-background-gradient(#516395, #614385)
-    
-    &.bg-5
-      @include background-gradient(#003973, #E5E5BE)
+    background: url(../../images/team-background.png) repeat
+    background-size: 40%
 
     .blurred
       display: none
@@ -142,7 +129,10 @@ $bar-text-color: $jb-light-grey
   #team li:nth-child(3n)
     border-right: none
 
-@media #{$large-only}
+  .about-video
+    max-width: 60%
+
+@media #{$large-up}
   $teams-tabs-gutter: 5%
   $teams-tabs-children: 2
 
