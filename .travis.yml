@@ -69,4 +69,4 @@ deploy:
     acl: public_read
     on:
       repo: jailbreakhq/public-static
-      branches: production
+      branch: production
