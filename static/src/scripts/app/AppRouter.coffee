@@ -15,6 +15,7 @@ define [
     index: ->
       indexView = new IndexView()
       $("#body-container").html indexView.render().$el
+      indexView.countdownTimer()
 
     teams: ->
       teams = new Teams()
