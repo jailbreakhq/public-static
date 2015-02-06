@@ -13,6 +13,7 @@ requirejs.config
     "foundation.topbar": "../../../components/bower-foundation/js/foundation/foundation.topbar"
     "autolink": "../../../components/autolink/autolink-min"
     "jquery.countdown": "../../../components/jquery.countdown/dist/jquery.countdown.min"
+    "slick": "../../../components/slick.js/slick/slick"
     "jade.templates": "../../templates/jade"
 
   shim:
@@ -42,7 +43,6 @@ requirejs.config
 
     "foundation.topbar":
       deps: ["foundation"]
-
 
     "foundation.tabs":
       deps: ["foundation"]
