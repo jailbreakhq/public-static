@@ -8,9 +8,9 @@ define [
 ], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView) ->
   class Router extends Backbone.Router
     routes:
-      '':          'index'
-      'teams/':    'teams'
-      'teams/:id': 'team'
+      '':             'index'
+      'teams/':       'teams'
+      'teams/:slug':  'team'
 
     index: ->
       indexView = new IndexView()
@@ -25,7 +25,7 @@ define [
         success: teamsView.render
       $("#body-container").html teamsView.render().$el
 
-    team: (id) ->
+    team: (slug) ->
       teamProfileView = new TeamProfileView
-        teamId: id
+        teamSlug: slug
       $("#body-container").html teamProfileView.render().$el

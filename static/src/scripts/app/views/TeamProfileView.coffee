@@ -15,24 +15,26 @@ define [
 
     initialize: (options) =>
       @model = new Team
-        id: options.teamId
+        slug: options.teamSlug
       @model.bind "change", @render
       @model.fetch
-        success: @render
+        success: =>
+          @render
 
-      donations = new Donations [],
-        filters:
-          teamId: options.teamId
-      @donationsListView = new DonationsListView
-        collection: donations
-      donations.fetch
-        success: @render
+          donations = new Donations [],
+            filters:
+              teamId: @model.get("id")
+          @donationsListView = new DonationsListView
+            collection: donations
+          donations.fetch
+            success: @renderDonationsList
 
     render: =>
       @$el.html @template @model.toJSON()
 
-      $("#donations-panel").append @donationsListView.render().$el
-
       $(document).foundation() # tabs
 
       @
+
+    renderDonationsList: =>
+      $("#donations-panel").append @donationsListView.render().$el
