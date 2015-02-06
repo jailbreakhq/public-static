@@ -11,4 +11,9 @@ cp -r static/dist artifact/dist
 cp -r static/images artifact/images
 cp -r static/favicons artifact/favicons
 mkdir index
-cp static/index.html index/index.html
+if [ "$TRAVIS_BRANCH" == "production" ]
+then
+  cp static/index.html index/prod.html
+else
+  cp static/index.html index/qa.html
+fi
