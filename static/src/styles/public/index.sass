@@ -219,19 +219,19 @@ body, html
 .video
   position: relative
 
-.video:after
-  font-family: "FontAwesome"
-  content: "\f04b"
-  position: absolute
-  display: block
-  top: 45%
-  left: 50%
-  font-size: 2.3rem
-  width: 1px
-  height: 1px
-  color: rgba(255, 255, 255, 0.7)
-  @include transition(color 200ms ease-out)
+  &:after
+    font-family: "FontAwesome"
+    content: "\f04b"
+    position: absolute
+    display: block
+    top: 45%
+    left: 50%
+    font-size: 2.3rem
+    width: 1px
+    height: 1px
+    color: rgba(255, 255, 255, 0.7)
+    @include transition(color 200ms ease-out)
 
-.video:hover:after
-  color: rgba(255, 255, 255, 1.0)
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4)
+  &:hover:after
+    color: rgba(255, 255, 255, 1.0)
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4)

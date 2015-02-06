@@ -12,8 +12,29 @@ $slick-dot-size: 1.4rem
 
 @import "../../../components/slick.js/slick/slick-theme.scss"
 
+.slick-slider
+  position: relative
+
+  &:before,
+  &:after
+    content: ' '
+    position: absolute
+    top: 0
+    height: 100%
+    width: 15px
+    display: block
+    z-index: 100
+
+  &:before
+    left: 0
+    @include horizontal-background-gradient(white, transparent)
+
+  &:after
+    right: 0
+    @include horizontal-background-gradient(transparent, white)
+
 .slick-slide
-  margin: 0 15px
+  margin: 0 10px
   text-align: center
   padding: 3px
 
