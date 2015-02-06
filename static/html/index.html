@@ -32,12 +32,8 @@
       <link rel="stylesheet" href="/build/styles/main.css">
     <!--<!(endif)-->
 
-    <!--(if target qa)><!-->
-      <link rel="stylesheet" href="//builds.jailbreakhq.org/qa/{{build}}/dist/styles/main.css">
-    <!--<!(endif)-->
-
-    <!--(if target prod)><!-->
-      <link rel="stylesheet" href="//builds.jailbreakhq.org/prod/{{build}}/dist/styles/main.css">
+    <!--(if target deployed)><!-->
+      <link rel="stylesheet" href="//builds.jailbreakhq.org/{{build}}/dist/styles/main.css">
     <!--<!(endif)-->
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -52,14 +48,9 @@
       </script>
     <!--<!(endif)-->
 
-    <!--(if target qa)><!-->
-      <script src="//builds.jailbreakhq.org/qa/{{build}}/dist/scripts/require.js"></script>
-      <script src="//builds.jailbreakhq.org/qa/{{build}}/dist/scripts/main.js"></script>
-    <!--<!(endif)-->
-
-    <!--(if target prod)><!-->
-      <script src="//builds.jailbreakhq.org/prod/{{build}}/dist/scripts/require.js"></script>
-      <script src="//builds.jailbreakhq.org/prod/{{build}}/dist/scripts/main.js"></script>
+    <!--(if target deployed)><!-->
+      <script src="//builds.jailbreakhq.org/{{build}}/dist/scripts/require.js"></script>
+      <script src="//builds.jailbreakhq.org/{{build}}/dist/scripts/main.js"></script>
     <!--<!(endif)-->
   </head>
   <body>

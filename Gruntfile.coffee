@@ -87,13 +87,7 @@ module.exports = (grunt) ->
       dev:
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
-      qa:
-        options:
-          curlyTags: 
-            build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
-        files:
-          "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
-      prod:
+      deployed:
         options:
           curlyTags: 
             build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
@@ -129,5 +123,4 @@ module.exports = (grunt) ->
   
   # Default tasks
   grunt.registerTask "default", ["concurrent:build"]
-  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:qa"]
-  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:deployed"]
