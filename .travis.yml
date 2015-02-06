@@ -54,7 +54,6 @@ deploy:
     region: eu-west-1
     endpoint: s3-eu-west-1.amazonaws.com
     local-dir: index
-    upload-dir: prod
     acl: public_read
     on:
       repo: jailbreakhq/public-static
