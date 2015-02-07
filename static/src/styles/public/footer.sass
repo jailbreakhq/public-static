@@ -1,21 +1,28 @@
 .main-footer
   margin-top: 10px
-  padding-top: 20px
+  padding: 20px 0
   border-top: 1px solid $jb-light-border
+  color: $secondary-text-color
 
   ul
     list-style: none
-    margin: 0
+    margin-bottom: 15px
 
     li
-      display: inline-block
-      margin-right: 10px
+      display: block
+      margin-right: 12px
+      margin-top: 2px
 
-  .copy-statement
-    margin-top: 10px
+      .hide-link
+        color: $secondary-text-color
 
-@media only screen and (min-width: 40.063em)
+@media #{$medium-up}
   .main-footer
-    .copy-statement
-      text-align: right
-      margin-top: 0
+    ul
+      margin: 0
+
+      li
+        display: inline-block
+
+    ul.footer-right
+      float: right
