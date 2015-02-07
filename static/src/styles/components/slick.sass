@@ -21,7 +21,7 @@ $slick-dot-size: 1.9rem
     position: absolute
     top: 0
     height: 100%
-    width: 15px
+    width: 17px
     display: block
     z-index: 100
 
@@ -42,3 +42,13 @@ $slick-dot-size: 1.9rem
     h5
       margin: 5px 0 0
       text-color: $secondary-text-color
+
+@media #{$medium-only}
+  .slick-slider
+    margin: 0 17px
+
+    &:before
+      left: -2px
+
+    &:after
+      right: -2px

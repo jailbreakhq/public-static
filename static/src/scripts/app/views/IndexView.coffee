@@ -72,13 +72,7 @@ define [
               dots: true
           },
           {
-            breakpoint: 600
-            settings:
-              slidesToShow: 2
-              slidesToScroll: 2
-          },
-          {
-            breakpoint: 400
+            breakpoint: 640
             settings: "unslick"
           }
         ]
