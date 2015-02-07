@@ -8,11 +8,15 @@ requirejs.config
     "humanize": "../../../components/humanize-plus/public/dist/humanize.min"
     "jade": "../../../components/jade/runtime"
     "mixen": "../../../components/mixen/mixen.min"
+    "vex": "../../../components/vex/js/vex"
+    "vex.dialog": "../../../components/vex/js/vex.dialog"
+    "modernizr": "../../../components/modernizr/modernizr"
     "foundation": "../../../components/bower-foundation/js/foundation/foundation"
     "foundation.tabs": "../../../components/bower-foundation/js/foundation/foundation.tab"
     "foundation.topbar": "../../../components/bower-foundation/js/foundation/foundation.topbar"
     "autolink": "../../../components/autolink/autolink-min"
     "jquery.countdown": "../../../components/jquery.countdown/dist/jquery.countdown.min"
+    "slick": "../../../components/slick.js/slick/slick"
     "jade.templates": "../../templates/jade"
 
   shim:
@@ -42,7 +46,6 @@ requirejs.config
 
     "foundation.topbar":
       deps: ["foundation"]
-
 
     "foundation.tabs":
       deps: ["foundation"]

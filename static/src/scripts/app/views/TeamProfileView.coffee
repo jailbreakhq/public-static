@@ -8,10 +8,13 @@ define [
   "collections/DonationsCollection"
   "models/TeamModel"
   "views/DonationsListView"
+  "vex"
   "autolink"
-], ($, _, Backbone, foundation, tabs, jade, Donations, Team, DonationsListView, autolink) ->
+], ($, _, Backbone, foundation, tabs, jade, Donations, Team, DonationsListView, vex, autolink) ->
   class TeamProfile extends Backbone.View
     template: jade.team
+    events:
+      'click .team-avatar.avatar-large': 'openLargeAvatar'
 
     initialize: (options) =>
       @model = new Team
@@ -38,3 +41,24 @@ define [
 
     renderDonationsList: =>
       $("#donations-panel").append @donationsListView.render().$el
+
+    openLargeAvatar: (event) =>
+      displayVex = =>
+        # build context
+        data =
+          avatarSrc: avatar
+        _.extend data, @model.toJSON()
+
+        # use vex to display a dialog
+        vex.defaultOptions.className = 'vex-theme-default'
+        vex.open
+          content: jade.teamAvatar data
+          contentClassName: 'wide'
+          afterOpen: ($vexContent) ->
+            $vexContent.append.$el
+
+      avatar = new Image
+      avatar.addEventListener("load", displayVex)
+      avatar.src = @model.get 'avatarLarge'
+
+      

@@ -2,6 +2,18 @@
   margin: 20px 0
   border-bottom: 1px solid $seperator-border-color
 
+.page-header-desc
+  margin-top: -17px
+  color: $secondary-text-color
+  margin-bottom: 20px
+
+.image-frame
+  @include thumb
+  @include border-radius(5px)
+
+  &:hover
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px 1px
+
 #body-container
   min-height: 500px
   overflow: hidden

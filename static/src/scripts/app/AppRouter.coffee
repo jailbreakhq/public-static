@@ -9,13 +9,13 @@ define [
   class Router extends Backbone.Router
     routes:
       '':             'index'
-      'teams/':       'teams'
+      'teams(/)':       'teams'
       'teams/:slug':  'team'
 
     index: ->
       indexView = new IndexView()
       $("#body-container").html indexView.render().$el
-      indexView.countdownTimer()
+      indexView.afterRender()
 
     teams: ->
       teams = new Teams()

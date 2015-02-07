@@ -104,7 +104,7 @@ module.exports = (grunt) ->
         tasks: ["coffeelint", "coffee"]
 
       sass:
-        files: ["<%= paths.src %>/styles/{,*/}*.scss", "<%= paths.src %>/styles/{,*/}*.sass"]
+        files: ["<%= paths.src %>/styles/**/*.scss", "<%= paths.src %>/styles/**/*.sass"]
         tasks: ["sass:build"]
 
       jade:
