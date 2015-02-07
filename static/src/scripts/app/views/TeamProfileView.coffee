@@ -14,7 +14,7 @@ define [
   class TeamProfile extends Backbone.View
     template: jade.team
     events:
-      'click .team-avatar': 'openLargeAvatar'
+      'click .team-avatar.has-large': 'openLargeAvatar'
 
     initialize: (options) =>
       @model = new Team
@@ -59,10 +59,6 @@ define [
 
       avatar = new Image
       avatar.addEventListener("load", displayVex)
-      if @model.get 'avatarLarge'
-        # if large avatar we haven't loaded that we should do that now
-        avatar.src = @model.get 'avatarLarge'
-      else
-        avatar.src = @model.get 'avatar'
+      avatar.src = @model.get 'avatarLarge'
 
       
