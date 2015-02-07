@@ -1,0 +1,33 @@
+/*
+ * HubSpot's Vex SASS has a hard dependency on compass (https://github.com/HubSpot/vex/issues/98)
+ * There is an open PR to remove that dependency however.
+ *
+ * I can't just @import the CSS files because that is glaringly obvious
+ * feature that SASS is missing. (http://stackoverflow.com/questions/7111610/import-regular-css-file-in-scss-file)
+ * 
+ * I have copied the PR code from HubSpot/vee#100 (https://github.com/HubSpot/vex/pull/100)
+ * as a temporary stop gap measure until that PR get's merged in or a nicer solution
+ * presents itself
+ */
+@import "vex/vex"
+
+$blue: $primary-color
+
+@import "vex/vex-theme-default"
+
+.vex-content-header
+  margin-top: -10px
+
+@media #{$medium-up}
+  .vex
+    padding-top: 120px
+
+  .vex-content.wide
+    width: 600px
+
+@media #{$large-up}
+  .vex
+    padding-top: 80px
+
+  .vex-content.wide
+    width: 750px

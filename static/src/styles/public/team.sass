@@ -1,3 +1,5 @@
+@import "../components/vex"
+
 $header-blur: 7px
 $bar-background-color: #DEDEDE
 $bar-border-color: #D4D4D4
@@ -32,7 +34,7 @@ $bar-text-color: $jb-light-grey
     width: 100%
     background-color: white
 
-  a.th
+  .team-avatar
     margin: 10px 0 15px
 
   h2, h4
@@ -53,7 +55,7 @@ $bar-text-color: $jb-light-grey
     .header-content
       padding: 5px 30px
 
-      .th
+      .team-avatar
         float: left
         margin-right: 30px
 
@@ -69,6 +71,9 @@ $bar-text-color: $jb-light-grey
             padding-right: 15px
             border-right: 1px solid rgba(255, 255, 255, 0.5)
             margin-right: 15px
+
+            &:last-child
+              border-right: none
 
         h6
           text-transform: uppercase

@@ -2,7 +2,7 @@
   #header.row.collapse-small
     .blurred(style="background-image: url(#{avatar})")
     .header-content
-      a.th.radius
+      a.th.radius.team-avatar
         img(src="#{avatar}", width=200, height=200)
       .text
         h2 #{names}
@@ -18,7 +18,7 @@
           li
             h6 Raised
             span.value &euro;
-            = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
+              = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
     .hide-blur
   .row.bar.hide-for-medium-up
     .small-12.medium-4.columns
