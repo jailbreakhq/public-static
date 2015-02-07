@@ -14,7 +14,7 @@ define [
   class TeamProfile extends Backbone.View
     template: jade.team
     events:
-      'click .team-avatar.has-large': 'openLargeAvatar'
+      'click .team-avatar.avatar-large': 'openLargeAvatar'
 
     initialize: (options) =>
       @model = new Team
