@@ -9,7 +9,7 @@ define [
   class Router extends Backbone.Router
     routes:
       '':             'index'
-      'teams/':       'teams'
+      'teams(/)':       'teams'
       'teams/:slug':  'team'
 
     index: ->
