@@ -129,4 +129,5 @@ module.exports = (grunt) ->
   
   # Default tasks
   grunt.registerTask "default", ["concurrent:build"]
-  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:deployed"]
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:qa"]
+  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]

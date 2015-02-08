@@ -1,6 +1,11 @@
 bower install
 
-grunt deploy
+if [ "$TRAVIS_BRANCH" == "production" ]
+then
+  grunt deploy
+else
+  grunt deploy:prod
+fi
 
 echo "Moving build static bunldes into a deployable artifact folder"
 mkdir artifact
