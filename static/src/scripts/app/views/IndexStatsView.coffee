@@ -3,9 +3,13 @@ define [
   "underscore"
   "backbone"
   "jade.templates"
-], ($, _, Backbone, jade) ->
+  "views/DonationFormView"
+  "vex"
+], ($, _, Backbone, jade, DonationFormView, vex) ->
   class TeamItem extends Backbone.View
     template: jade.indexStats
+    events:
+      "click .donate-button": "donate"
     
     initialize: =>
       @model.bind "change", @render
@@ -21,3 +25,20 @@ define [
 
       @$el.html @template data
       @
+
+    donate: (event) =>
+      donationView = new DonationFormView
+        parent: @
+
+      vex.defaultOptions.className = 'vex-theme-default'
+      $vexContent = vex.open
+        content: donationView.render().$el
+        contentClassName: 'narrow padding-less'
+        overlayClosesOnClick: false
+        afterOpen: ($vexContent) ->
+          $vexContent.append.$el
+
+      @donateVexId = $vexContent.data().vex.id
+
+    closeDonateVex: =>
+      vex.close(@donateVexId)

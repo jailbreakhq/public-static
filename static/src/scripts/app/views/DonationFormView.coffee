@@ -16,7 +16,7 @@ define [
 
     initialize: (options) =>
       @name = options.name or "JailbreakHQ"
-      @teamId = options.teamId or null
+      @teamId = options.teamId or 0
       @parentView = options.parent
 
     render: =>
