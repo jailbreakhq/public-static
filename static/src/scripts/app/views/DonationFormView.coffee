@@ -12,7 +12,6 @@ define [
   class DonationFormView extends Backbone.View
     template: jade.donationForm
     events:
-      'submit #donate-form': 'donateSubmissionHandler'
       'click #donate-submit': 'donateSubmissionHandler'
 
     initialize: (options) =>
@@ -103,6 +102,7 @@ define [
       formData =
         email: email
         amount: amount
+        backer: $("#list-me").prop("checked")
 
       @data = _.extend stripeData, formData
 
@@ -120,6 +120,7 @@ define [
           email: @data.email
           name: @data.name
           teamId: @teamId
+          backer: @data.backer
 
         $.ajax(
           type: "POST"
@@ -128,16 +129,17 @@ define [
           contentType: "application/json"
           data: JSON.stringify(attributes)
         ).done (data) =>
-          $("#donate-content").animo
-            animation: "fadeOutUp"
-            duration: 0.5
-            keep: true
-            , =>
-              $("#donate-content").slideUp()
-              $("section.content").append jade.donationThankYou()
-              $("#donate-close").click () =>
-                @parentView.closeDonateVex()
-
-          #@parent.closeDonateVex()
+          @donationThankYou()
         .fail (err) =>
           @donateFormResponse("alert", "Donation failed. Try again.")
+
+    donationThankYou: =>
+      $("#donate-content").animo
+        animation: "fadeOutUp"
+        duration: 0.5
+        keep: true
+        , =>
+          $("#donate-content").slideUp()
+          $("section.content").append jade.donationThankYou()
+          $("#donate-close").click () =>
+            @parentView.closeDonateVex()
