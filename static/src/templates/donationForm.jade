@@ -10,21 +10,21 @@ form(action="#", autocomplete="on")#donate-form
     #donate-content
       .row
         .small-12.medium-6.columns
-          input(type="text", value="Kevin Baker", placeholder="Full name", tabindex="1").radius.cc-name
+          input(type="text", placeholder="Full name", tabindex="1").radius.cc-name
           span.icon
         .small-12.medium-6.columns
-          input(type="email", value="test@test.com", placeholder="Email", tabindex="2", required).radius.cc-email
+          input(type="email", placeholder="Email", tabindex="2", required).radius.cc-email
           span.icon
       .row
         .small-12.columns
-          input(type="text", value="424242424242424", placeholder="Card Number", autocompletetype="cc-number", tabindex="3", required).radius.cc-num
+          input(type="text", placeholder="Card Number", autocompletetype="cc-number", tabindex="3", required).radius.cc-num
           span.icon
       .row
         .small-12.medium-6.columns
-          input(type="text", value="123", placeholder="CVC", autocomplete="off", tabindex="4", required).radius.cc-cvc
+          input(type="text", placeholder="CVC", autocomplete="off", tabindex="4", required).radius.cc-cvc
           span.icon
         .small-12.medium-6.columns
-          input(type="text", value="12 / 18", placeholder="MM / YY", tabindex="5", required).radius.cc-exp
+          input(type="text", placeholder="MM / YY", tabindex="5", required).radius.cc-exp
           span.icon
       .row
         .small-12.medium-4.columns
@@ -32,7 +32,7 @@ form(action="#", autocomplete="on")#donate-form
             .small-1.medium-4.columns
               span.prefix &euro;
             .small-2.medium-8.columns.end
-              input(type="number", value="20", placeholder="20", tabindex="6", required, data-numeric).cc-amount
+              input(type="number", placeholder="20", tabindex="6", required, data-numeric).cc-amount
         .small-12.medium-6.medium-offset-2.columns
           .backer
             input(type="checkbox", checked="checked", tabindex="7")#list-me
