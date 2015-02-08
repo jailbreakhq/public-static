@@ -16,10 +16,9 @@ define [
       'click #donate-submit': 'donateSubmissionHandler'
 
     initialize: (options) =>
-      if options.name
-        @name = options.name
-      else
-        @name = "JailbreakHQ"
+      @name = options.name or "JailbreakHQ"
+      @teamId = options.teamId or null
+      @parentView = options.parent
 
     render: =>
       data =
@@ -33,9 +32,12 @@ define [
       $(".cc-cvc", @$el).payment("formatCardCVC")
       $("[data-numeric]", @$el).payment("restrictNumeric")
 
-      $(@$el).foundation("alert", "reflow")
-
       @
+
+    donateFormResponse: (type, message) =>
+      $("#stripe-responses").append jade.alert {type: type, message: message}
+      $(@$el).foundation("alert", "reflow")
+      @l?.stop()
 
     donateSubmissionHandler: (event) =>
       # prevent action and disable button
@@ -59,18 +61,26 @@ define [
       if not $.payment.validateCardNumber(number)
         $(".cc-num", @$el).addClass("error-field")
         valid = false
+      else
+        $(".cc-num", @$el).removeClass("error-field")
 
       if not $.payment.validateCardExpiry(exp_month, exp_year)
         $(".cc-exp", @$el).addClass("error-field")
         valid = false
+      else
+        $(".cc-exp", @$el).removeClass("error-field")
 
       if not $.payment.validateCardCVC(cvc, $.payment.cardType(number))
         $(".cc-cvc", @$el).addClass("error-field")
         valid = false
+      else
+        $(".cc-cvc", @$el).removeClass("error-field")
 
       if not amount > 0
         $(".cc-amount", @$el).addClass("error-field")
         valid = false
+      else
+        $(".cc-amount", @$el).removeClass("error-field")
 
       if not valid
         $("#donate-form .content").animo
@@ -78,10 +88,6 @@ define [
           duration: 0.5
         @l.stop()
         return false
-
-      $(".cc-num", @$el).removeClass("error-field")
-      $(".cc-exp", @$el).removeClass("error-field")
-      $(".cc-cvc", @$el).removeClass("error-field")
 
       @l.setProgress 0.4
 
@@ -98,20 +104,40 @@ define [
         email: email
         amount: amount
 
-      console.log stripeData
-      console.log formData
+      @data = _.extend stripeData, formData
 
       Stripe.card.createToken stripeData, @stripeResponseHandler
 
     stripeResponseHandler: (status, response) =>
-      @l.setProgress 0.8
-      console.log status
-      console.log response
+      @l.setProgress 0.7
 
       if response.error
-        errors = $("#stripe-errors")
-        errors.find("span").text response.error.message
-        errors.removeClass("hide")
-        @l.stop()
+        @donateFormResponse("alert", response.error.message)
       else
-        @l.stop()
+        attributes =
+          amount: @data.amount * 100
+          token: response.id
+          email: @data.email
+          name: @data.name
+          teamId: @teamId
+
+        $.ajax(
+          type: "POST"
+          url: jailbreak.api_host + "/stripe"
+          dataType: "json"
+          contentType: "application/json"
+          data: JSON.stringify(attributes)
+        ).done (data) =>
+          $("#donate-content").animo
+            animation: "fadeOutUp"
+            duration: 0.5
+            keep: true
+            , =>
+              $("#donate-content").slideUp()
+              $("section.content").append jade.donationThankYou()
+              $("#donate-close").click () =>
+                @parentView.closeDonateVex()
+
+          #@parent.closeDonateVex()
+        .fail (err) =>
+          @donateFormResponse("alert", "Donation failed. Try again.")

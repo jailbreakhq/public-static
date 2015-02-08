@@ -65,13 +65,19 @@ define [
 
     donate: (event) =>
       donationView = new DonationFormView
-        name: @model.get('names')
+        teamId: @model.get("id")
+        name: @model.get("names")
+        parent: @
 
       vex.defaultOptions.className = 'vex-theme-default'
-      vex.open
+      $vexContent = vex.open
         content: donationView.render().$el
         contentClassName: 'narrow padding-less'
         overlayClosesOnClick: false
         afterOpen: ($vexContent) ->
           $vexContent.append.$el
-      
+
+      @donateVexId = $vexContent.data().vex.id
+
+    closeDonateVex: =>
+      vex.close(@donateVexId)
