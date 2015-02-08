@@ -3,11 +3,12 @@ define [
   "underscore"
   "backbone"
   "jade.templates"
-], ($, _, Backbone, jade) ->
+  "jquery.payment"
+], ($, _, Backbone, jade, payment) ->
   class DonationFormView extends Backbone.View
     template: jade.donationForm
     events:
-      'submit #donateForm': 'donateSubmissionHandler'
+      'submit #donate-form': 'donateSubmissionHandler'
 
     initialize: (options) =>
       if options.name
@@ -20,15 +21,32 @@ define [
         name: "JailbreakHQ"
 
       @$el.html @template data
+
+      # add stripe's jquery.payment input field restrictions (super cool)
+      $(".cc-num", @$el).payment("formatCardNumber")
+      $(".cc-exp", @$el).payment("formatCardExpiry")
+      $(".cc-cvc", @$el).payment("formatCardCVC")
+      $("[data-numeric]", @$el).payment("restrictNumeric")
+
       @
 
     donateSubmissionHandler: (event) ->
+      event.preventDefault()
+
+      number = $("#stripe-number").val()
+      cvc = $("#stripe-cvc").val()
+      exp_month = $("#stripe-exp-month").val()
+      exp_year = $("#stripe-exp-year").val()
+      name = $("#stripe-name").val()
+
+      console.log $.payment.validateCardNumber(number)
+
       stripeData =
-        number: $("#stripe-number").val()
-        cvc: $("#stripe-cvc").val()
-        exp_month: $("#stripe-exp-month").val()
-        exp_year: $("#stripe-exp-year").val()
-        name: $("#stripe-name").val()
+        number: number
+        cvc: cvc
+        exp_month:exp_month
+        exp_year: exp_year
+        name: name
 
       formData =
         email: $("#stripe-email").val()

@@ -1,10 +1,10 @@
-@import "../components/card"
-
 $logo-size: 90px
 $logo-frame-margin: 3px
 $logo-frame-size: $logo-size + (2 * $logo-frame-margin)
 
-#donateForm
+#donate-form
+  text-align: center
+
   .logos
     margin-bottom: 35px
 
@@ -43,9 +43,76 @@ $logo-frame-size: $logo-size + (2 * $logo-frame-margin)
     margin-top: 3px
     font-size: 0.9rem
 
+    input[type=checkbox]
+      font-size: 2.5rem
+
   .powered-by
     font-size: 0.8rem
     font-color: $secondary-text-color
     text-align: center
     margin: 0
     padding: 0
+
+  input[type="submit"] 
+    margin-bottom: 7px
+
+  /* Crdit Card Form Input Icons */
+  .cc-num
+    padding-right: 35px
+
+  .cc-num + .icon:before
+    font-family: "FontAwesome"
+    content: "\f09d"
+    font-size: 1.2rem
+    position: absolute
+    right: 25px
+    top: 6px
+
+  .cc-num.visa + .icon:before
+    content: "\f1f0"
+    font-size: 1.4rem
+
+  .cc-num.mastercard + .icon:before
+    content: "\f1f1"
+    font-size: 1.4rem
+
+  .cc-num.discover + .icon:before
+    content: "\f1f2"
+    font-size: 1.4rem
+
+  .cc-num.amex + .icon:before
+    content: "\f1f3"
+    font-size: 1.4rem
+
+  .cc-exp, .cc-cvc, .cc-email, .cc-name
+    padding-left: 30px
+
+  .cc-exp + .icon:before,
+  .cc-cvc + .icon:before,
+  .cc-name + .icon:before,
+  .cc-email + .icon:before
+    font-family: "FontAwesome"
+    content: "\f133"
+    font-size: 1.0rem
+    position: absolute
+    left: 25px
+    top: 6px
+
+  .cc-exp + .icon:before
+    content: "\f133"
+
+  .cc-cvc + .icon:before
+    content: "\f023"
+
+  .cc-email + .icon:before
+    content: "\f003"
+
+  .cc-name + .icon:before
+    content: "\f007"
+
+
+
+
+
+
+

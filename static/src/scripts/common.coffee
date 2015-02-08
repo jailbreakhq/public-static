@@ -16,8 +16,8 @@ requirejs.config
     "foundation.topbar": "../../../components/bower-foundation/js/foundation/foundation.topbar"
     "autolink": "../../../components/autolink/autolink-min"
     "jquery.countdown": "../../../components/jquery.countdown/dist/jquery.countdown.min"
+    "jquery.payment": "../../../components/jquery.payment/lib/jquery.payment"
     "slick": "../../../components/slick.js/slick/slick"
-    "card": "../../../components/card/lib/card"
     "jade.templates": "../../templates/jade"
 
   shim:
@@ -50,3 +50,6 @@ requirejs.config
 
     "foundation.tabs":
       deps: ["foundation"]
+
+    "jquery.payment":
+      deps: ["jquery"]
