@@ -5,13 +5,13 @@
         span.meter(style="width: #{percentageWidth}%")
           if percentage > 20
             | &euro;
-            = Humanize.intComma(amountRaised)
+            = Humanize.intComma(amountRaised/100)
             |  raised
         if percentage < 75
           | &euro;100,000 goal
       if percentage < 20
         | &euro;
-        = Humanize.intComma(amountRaised)
+        = Humanize.intComma(amountRaised/100)
         |  raised
       if percentage > 75
         | &euro;100,000 (

@@ -11,7 +11,7 @@ define [
       @model.bind "change", @render
 
     render: =>
-      percent = ((@model.get('amountRaised') / 100000) * 100) or 0
+      percent = (((@model.get('amountRaised') / 100) / 100000) * 100) or 0
       percentWidth = if (percent > 100) then 100 else percent
 
       data =
