@@ -18,6 +18,7 @@ define [
       @name = options.name or "JailbreakHQ"
       @teamId = options.teamId or 0
       @parentView = options.parent
+      @submitted = false
 
     render: =>
       data =
@@ -106,7 +107,9 @@ define [
 
       @data = _.extend stripeData, formData
 
-      Stripe.card.createToken stripeData, @stripeResponseHandler
+      if not @submitted # ensure each view can only send one donation charge request
+        @submitted = true
+        Stripe.card.createToken stripeData, @stripeResponseHandler
 
     stripeResponseHandler: (status, response) =>
       @l.setProgress 0.7
@@ -131,6 +134,7 @@ define [
         ).done (data) =>
           @donationThankYou()
         .fail (err) =>
+          @submitted = false
           @donateFormResponse("alert", "Donation failed. Try again.")
 
     donationThankYou: =>
