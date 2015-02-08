@@ -17,6 +17,7 @@ requirejs.config
     "autolink": "../../../components/autolink/autolink-min"
     "jquery.countdown": "../../../components/jquery.countdown/dist/jquery.countdown.min"
     "slick": "../../../components/slick.js/slick/slick"
+    "card": "../../../components/card/lib/card"
     "jade.templates": "../../templates/jade"
 
   shim:

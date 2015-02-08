@@ -1,0 +1,51 @@
+@import "../components/card"
+
+$logo-size: 90px
+$logo-frame-margin: 3px
+$logo-frame-size: $logo-size + (2 * $logo-frame-margin)
+
+#donateForm
+  .logos
+    margin-bottom: 35px
+
+  .logo-frame
+    position: absolute
+    top: -($logo-frame-size/2)
+    
+    background: white
+    border: 1px solid $seperator-border-color
+    @include border-radius($logo-frame-size/2)
+    @include box-shadow(0px 2px 5px rgba(0, 0, 0, 0.5))
+    width: $logo-frame-size
+    height: $logo-frame-size
+
+    .logo
+      margin: $logo-frame-margin
+      width: $logo-size
+      height: $logo-size
+      @include border-radius($logo-size/2)
+
+  .logo-frame.amnesty
+    left: 33%
+    margin-left: -($logo-frame-size/2)
+
+    .logo
+      background: url(../../images/logo/amnesty-square.png) no-repeat
+
+  .logo-frame.svp
+    right: 33%
+    margin-right: -($logo-frame-size/2)
+
+    .logo
+      background: url(../../images/logo/svp-square.png) no-repeat
+
+  .backer
+    margin-top: 3px
+    font-size: 0.9rem
+
+  .powered-by
+    font-size: 0.8rem
+    font-color: $secondary-text-color
+    text-align: center
+    margin: 0
+    padding: 0

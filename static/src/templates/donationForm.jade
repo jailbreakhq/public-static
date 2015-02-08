@@ -1,0 +1,44 @@
+form(action="#", autocomplete="on")#donateForm
+  .logos
+    .logo-frame.svp
+      .logo
+    .logo-frame.amnesty
+      .logo
+  .row
+    header.small-12.columns
+      h3 Support #{name}
+  .row
+    .small-12.columns
+      input(type="text", placeholder="Full name", tabindex="1").radius#stripe-name
+    .small-12.columns
+      input(type="email", placeholder="Email", tabindex="2").radius#stripe-email
+  .row
+    .small-12.columns
+      input(type="text", placeholder="Card Number", autocompletetype="cc-number", tabindex="3").radius#stripe-number
+  .row
+    .small-4.columns
+      input(type="text", placeholder="CVC", autocomplete="off", tabindex="4").radius#stripe-cvc
+    .small-4.columns
+      input(type="number", placeholder="MM", tabindex="5").radius#stripe-exp-month
+    .small-4.columns
+      input(type="number", placeholder="YY", tabindex="6").radius#stripe-exp-year
+  .row
+    .small-4.columns
+      .row.collapse.prefix-radius
+        .small-3.columns
+          span.prefix &euro;
+        .small-9.columns
+          input(type="number", placeholder="20", tabindex="7")#stripe-amount
+    .small-8.columns
+      .backer
+        input(type="checkbox", checked="checked", tabindex="8")#list-me
+        label(for="list-me") List me as backer
+  .row
+    .small-12.columns
+      input(type="submit", value="Donate Now" tabindex="9").button.expand.round#donateSubmit
+  .row
+    .small-12.columns
+      p.powered-by
+        | Donations proudly powered by 
+        a(href="https://stripe.com/", target="_blank") stripe
+        | .
