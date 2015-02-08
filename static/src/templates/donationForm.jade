@@ -9,22 +9,21 @@ form(action="#", autocomplete="on")#donate-form
   section.content
     .row
       .small-12.medium-6.columns
-        input(type="text", placeholder="Full name", tabindex="1").radius.cc-name#stripe-name
+        input(type="text", value="Kevin Baker", placeholder="Full name", tabindex="1").radius.cc-name
         span.icon
       .small-12.medium-6.columns
-        input(type="email", placeholder="Email", tabindex="2", required).radius.cc-email#stripe-email
+        input(type="email", value="test@test.com", placeholder="Email", tabindex="2", required).radius.cc-email
         span.icon
     .row
       .small-12.columns
-
-        input(type="text", placeholder="Card Number", autocompletetype="cc-number", tabindex="3", required).radius.cc-num#stripe-number
+        input(type="text", value="424242424242424", placeholder="Card Number", autocompletetype="cc-number", tabindex="3", required).radius.cc-num
         span.icon
     .row
       .small-12.medium-6.columns
-        input(type="text", placeholder="CVC", autocomplete="off", tabindex="4", required).radius.cc-cvc#stripe-cvc
+        input(type="text", value="123", placeholder="CVC", autocomplete="off", tabindex="4", required).radius.cc-cvc
         span.icon
       .small-12.medium-6.columns
-        input(type="text", placeholder="MM/YY", tabindex="5", required).radius.cc-exp#stripe-exp-month
+        input(type="text", value="12 / 18", placeholder="MM / YY", tabindex="5", required).radius.cc-exp
         span.icon
     .row
       .small-12.medium-4.columns
@@ -32,18 +31,23 @@ form(action="#", autocomplete="on")#donate-form
           .small-1.medium-4.columns
             span.prefix &euro;
           .small-2.medium-8.columns.end
-            input(type="number", value="20", placeholder="20", tabindex="6", required, data-numeric)#stripe-amount
+            input(type="number", value="20", placeholder="20", tabindex="6", required, data-numeric).cc-amount
       .small-12.medium-6.medium-offset-2.columns
         .backer
           input(type="checkbox", checked="checked", tabindex="7")#list-me
           label(for="list-me") List me as backer
     .row
       .small-12.columns
-        input(type="submit", value="Donate Now" tabindex="8").button.success.expand.round#donateSubmit
+        div(data-alert).alert-box.alert.radius.hide#stripe-errors
+          span
+          a(href="#").close &times;
+    .row
+      .small-12.columns
+        button(tabindex="8", data-style="slide-right").button.success.expand.round.ladda-button#donate-submit
+          | Donate Now
     .row
       .small-12.columns
         p.powered-by
           | Donations proudly powered by 
-          a(href="https://stripe.com/", target="_blank")
-            | stripe
+          a(href="https://stripe.com/", target="_blank") stripe
           | .

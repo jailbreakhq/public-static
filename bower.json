@@ -14,6 +14,7 @@
     "slick.js": "~1.4.1",
     "vex": "~2.3.0",
     "ladda": "~0.9.7",
-    "jquery.payment": "~1.2.2"
+    "jquery.payment": "~1.2.2",
+    "animo.js": "~1.0.2"
   }
 }
