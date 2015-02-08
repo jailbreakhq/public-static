@@ -26,6 +26,12 @@ $bar-text-color: $jb-light-grey
   .header-content
     z-index: 100
     padding: 20px 10px
+    position: relative
+
+    .donate-button
+      position: absolute
+      right: 30px
+      bottom: 0px
 
   .hide-blur
     position: absolute
@@ -42,7 +48,6 @@ $bar-text-color: $jb-light-grey
     text-shadow: 2px 2px rgba(0, 0, 0, 0.3)
 
 @media #{$medium-up}
-
   #header
     text-align: left
     margin-bottom: 1px
@@ -113,18 +118,22 @@ $bar-text-color: $jb-light-grey
       color: $bar-text-color
       display: block
 
-  .bio
-    margin-top: 12px
-    margin-bottom: 7px
+    .donate-button
+      margin-top: 15px
+      margin-bottom: 5px
 
-  .tag-line
-    margin-bottom: 30px
+    .bio
+      margin-top: 12px
+      margin-bottom: 7px
 
-  .tabs
-    margin: 0 -15px
+    .tag-line
+      margin-bottom: 30px
 
-  .tabs-content .video
-    margin-top: 20px
+    .tabs
+      margin: 0 -15px
+
+    .tabs-content .video
+      margin-top: 20px
 
 @media #{$small-only}  
   #team li:nth-child(3n)

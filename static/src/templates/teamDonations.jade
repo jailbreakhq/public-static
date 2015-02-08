@@ -5,8 +5,9 @@ ul#donations.donations-list
         .small-8.columns #{donation.name} 
         .small-4.columns.amount 
           em &euro;
-            = Humanize.intComma(donation.amount)
+            = Humanize.intComma(donation.amount/100)
         span.time
           = moment(donation.time*1000).fromNow()
   else
-    span There are no donations yet! Why don't you help us out?
+    span There are no donations yet! Why don't you help us out? 
+      a(href="#").donate-button Donate

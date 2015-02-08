@@ -45,7 +45,7 @@
       <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
       <meta name="msapplication-config" content="/favicons/browserconfig.xml">
     <!--<!(endif)-->
-    <!--(if target deployed)><!-->
+    <!--(if target qa || prod)><!-->
       <link rel="apple-touch-icon" sizes="57x57" href="//builds.jailbreakhq.org/{{build}}/favicons/apple-touch-icon-57x57.png">
       <link rel="apple-touch-icon" sizes="114x114" href="//builds.jailbreakhq.org/{{build}}/favicons/apple-touch-icon-114x114.png">
       <link rel="apple-touch-icon" sizes="72x72" href="//builds.jailbreakhq.org/{{build}}/favicons/apple-touch-icon-72x72.png">
@@ -71,7 +71,7 @@
       <link rel="stylesheet" href="/build/styles/main.css">
     <!--<!(endif)-->
 
-    <!--(if target deployed)><!-->
+    <!--(if target qa || prod)><!-->
       <link rel="stylesheet" href="//builds.jailbreakhq.org/{{build}}/dist/styles/main.css">
     <!--<!(endif)-->
 
@@ -87,7 +87,7 @@
       </script>
     <!--<!(endif)-->
 
-    <!--(if target deployed)><!-->
+    <!--(if target qa || prod)><!-->
       <script src="//builds.jailbreakhq.org/{{build}}/dist/scripts/require.js"></script>
       <script src="//builds.jailbreakhq.org/{{build}}/dist/scripts/main.js"></script>
     <!--<!(endif)-->
@@ -157,6 +157,7 @@
       </footer>
     </div>
 
+    <!-- Basic Jailbreak Javascript App Setup -->
     <script>
       var url = document.URL;
       var jailbreak = {};
@@ -167,5 +168,19 @@
       else 
         jailbreak.api_host = "https://jbapi.net";
     </script>
+
+    <!-- Stripe Setup -->
+    <script src="https://js.stripe.com/v2/"></script>
+    <!--(if target dev || qa)><!-->
+      <script>
+        Stripe.setPublishableKey("pk_test_elhSJvoDh3lhrYOuOv1D5i23");
+      </script>
+    <!--<!(endif)-->
+
+    <!--(if target prod)><!-->
+      <script>
+        Stripe.setPublishableKey("pk_live_lu13pTg7V1dy0MctBEh5PBB3");
+      </script>
+    <!--<!(endif)-->
   </body>
 </html>

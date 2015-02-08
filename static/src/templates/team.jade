@@ -23,7 +23,9 @@
             h6 Raised
             span.value &euro;
               = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
+        a.button.round.donate-button.show-for-medium-up Donate Now
     .hide-blur
+
   .row.bar.hide-for-medium-up
     .small-12.medium-4.columns
       h6.bio  Bio
@@ -40,6 +42,9 @@
           h6 Raised
           span.value &euro;
           = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
+    .small-12.columns
+      a.button.round.expand.donate-button.show-for-small-only Donate Now
+
   .row
     .small-12.columns.no-padding
       ul.tabs(data-tab).hide-for-large-up

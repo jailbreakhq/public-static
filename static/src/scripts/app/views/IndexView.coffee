@@ -11,7 +11,8 @@ define [
   "views/IndexStatsView"
   "jquery.countdown"
   "slick"
-], ($, _, Backbone, jade, Teams, Donations, Jailbreak, TeamItemView, DonationsListView, IndexStatsView, countdown, slick) ->
+  "vex"
+], ($, _, Backbone, jade, Teams, Donations, Jailbreak, TeamItemView, DonationsListView, IndexStatsView, countdown, slick, vex) ->
   class Index extends Backbone.View
     template: jade.index
 
@@ -90,4 +91,3 @@ define [
 
     renderIndexStatsView: =>
       $("#index-stats").append @indexStatsView.render().$el
-

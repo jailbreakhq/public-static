@@ -14,9 +14,14 @@ requirejs.config
     "foundation": "../../../components/bower-foundation/js/foundation/foundation"
     "foundation.tabs": "../../../components/bower-foundation/js/foundation/foundation.tab"
     "foundation.topbar": "../../../components/bower-foundation/js/foundation/foundation.topbar"
+    "foundation.alert": "../../../components/bower-foundation/js/foundation/foundation.alert"
     "autolink": "../../../components/autolink/autolink-min"
     "jquery.countdown": "../../../components/jquery.countdown/dist/jquery.countdown.min"
+    "jquery.payment": "../../../components/jquery.payment/lib/jquery.payment"
     "slick": "../../../components/slick.js/slick/slick"
+    "animo": "../../../components/animo.js/animo"
+    "ladda": "../../../components/ladda/js/ladda"
+    "spin": "../../../components/ladda/js/spin"
     "jade.templates": "../../templates/jade"
 
   shim:
@@ -44,8 +49,21 @@ requirejs.config
       ]
       exports: "Foundation"
 
+    "foundation.alert":
+      deps: ["foundation", "modernizr"]
+
     "foundation.topbar":
       deps: ["foundation"]
 
     "foundation.tabs":
       deps: ["foundation"]
+
+    "jquery.payment":
+      deps: ["jquery"]
+
+    animo:
+      deps: ["jquery"]
+      exports: "animo"
+
+    ladda:
+      exports: "Ladda"

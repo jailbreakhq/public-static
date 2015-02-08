@@ -12,6 +12,9 @@
     "mixen": "https://github.com/HubSpot/mixen.git#0.5.4",
     "jquery.countdown": "~2.0.4",
     "slick.js": "~1.4.1",
-    "vex": "~2.3.0"
+    "vex": "~2.3.0",
+    "ladda": "~0.9.7",
+    "jquery.payment": "~1.2.2",
+    "animo.js": "~1.0.2"
   }
 }

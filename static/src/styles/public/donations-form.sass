@@ -1,0 +1,180 @@
+$logo-size: 82px
+
+#donate-form
+
+  header
+    text-align: center
+    margin-bottom: 10px
+    padding-bottom: 10px
+    border-bottom: 1px solid #d3d3d4
+    @include background-gradient(#f5f5f7, #e9e9ea)
+    @include border-radius(5px 5px 0 0)
+
+    h3
+      margin-top: 55px
+      margin-bottom: 0
+
+    p
+      color: $secondary-text-color
+      margin: 0
+      padding: 0
+
+  .logo
+    position: absolute
+    top: -($logo-size/1.8)
+    width: $logo-size
+    height: $logo-size
+    @include border-radius($logo-size)
+
+    &:after
+      content: ''
+      display: block
+      background: url(../../images/logo/logo-border.png) no-repeat
+      width: 96px
+      height: 95px
+      z-index: 100
+      margin-left: -7px
+      margin-top: -3px
+
+  .logo.amnesty
+    left: 33%
+    margin-left: -($logo-size/2)
+    background: url(../../images/logo/amnesty-square.png) no-repeat
+
+  .logo.svp
+    right: 33%
+    margin-right: -($logo-size/2)
+    background: url(../../images/logo/svp-square.png) no-repeat
+
+  section.content
+    padding: 10px
+
+    .powered-by
+      font-size: 0.8rem
+      font-color: $secondary-text-color
+      text-align: center
+      margin: 0
+      padding: 0
+
+    #donate-submit
+      margin-bottom: 7px
+
+      &:active,
+      &:focus
+        outline: 0
+
+  .backer
+    margin-bottom: 7px
+    margin-top: -5px
+
+  @media #{$medium-up}
+    .backer
+      margin-top: 3px
+      font-size: 0.9rem
+
+      label
+        margin: 0
+        font-size: 0.8rem
+        position: absolute
+        top: 7px
+
+      input[type=checkbox]
+        font-size: 2.5rem
+        margin-right: 0.5rem
+        margin-bottom: 0
+
+  .error-field
+    border-color: #ff7076
+    @include box-shadow((inset 0 1px 2px rgba(0, 0, 0, 0), 0 1px 0 rgba(255, 255, 255, 0), 0 0 2px 0 rgba(255, 0, 0, 0.5)))
+
+  /* Crdit Card Form Input Icons */
+  .cc-num
+    padding-right: 45px
+
+  .cc-num + .icon:before
+    font-family: "FontAwesome"
+    content: "\f09d"
+    font-size: 1.1rem
+    position: absolute
+    right: 25px
+    top: 6px
+
+  .cc-num.visa + .icon:before
+    content: "\f1f0"
+    font-size: 1.4rem
+
+  .cc-num.mastercard + .icon:before
+    content: "\f1f1"
+    font-size: 1.4rem
+
+  .cc-num.discover + .icon:before
+    content: "\f1f2"
+    font-size: 1.4rem
+
+  .cc-num.amex + .icon:before
+    content: "\f1f3"
+    font-size: 1.4rem
+
+  .cc-exp, .cc-cvc, .cc-email, .cc-name
+    padding-left: 30px
+
+  .cc-exp + .icon:before,
+  .cc-cvc + .icon:before,
+  .cc-name + .icon:before,
+  .cc-email + .icon:before
+    font-family: "FontAwesome"
+    content: "\f133"
+    font-size: 1.0rem
+    position: absolute
+    left: 25px
+    top: 6px
+
+  .cc-exp + .icon:before
+    content: "\f133"
+
+  .cc-cvc + .icon:before
+    content: "\f023"
+
+  .cc-email + .icon:before
+    content: "\f003"
+
+  .cc-name + .icon:before
+    content: "\f007"
+
+
+#donate-thank-you
+  text-align: center
+
+  h1
+    height: 55px
+
+  .letter
+    letter-spacing: 0.5rem
+    font-weight: 900
+    @include text-shadow(1px 1px 5px rgba(0, 0, 0, 0.4))
+
+  #letter-t
+    color: #EF644C
+  #letter-h
+    color: #60759F
+  #letter-a
+    color: #FEDE16
+  #letter-n
+    color: #A2887C
+  #letter-k
+    color: #99B54C
+  #letter-s
+    color: #18030A
+
+  p
+    color: $secondary-text-color
+
+  button
+    &:active,
+    &:focus
+      outline: 0
+
+
+
+
+

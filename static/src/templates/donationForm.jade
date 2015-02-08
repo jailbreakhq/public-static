@@ -1,0 +1,51 @@
+form(action="#", autocomplete="on")#donate-form
+  .logo.svp
+  .logo.amnesty
+  header
+    .row
+      .small-12.columns
+        h3 Support #{name}
+        p and our two amazing charities
+  section.content
+    #donate-content
+      .row
+        .small-12.medium-6.columns
+          input(type="text", placeholder="Full name", tabindex="1").radius.cc-name
+          span.icon
+        .small-12.medium-6.columns
+          input(type="email", placeholder="Email", tabindex="2", required).radius.cc-email
+          span.icon
+      .row
+        .small-12.columns
+          input(type="text", placeholder="Card Number", autocompletetype="cc-number", tabindex="3", required).radius.cc-num
+          span.icon
+      .row
+        .small-12.medium-6.columns
+          input(type="text", placeholder="CVC", autocomplete="off", tabindex="4", required).radius.cc-cvc
+          span.icon
+        .small-12.medium-6.columns
+          input(type="text", placeholder="MM / YY", tabindex="5", required).radius.cc-exp
+          span.icon
+      .row
+        .small-12.medium-4.columns
+          .row.collapse.prefix-radius
+            .small-1.medium-4.columns
+              span.prefix &euro;
+            .small-2.medium-8.columns.end
+              input(type="number", placeholder="20", tabindex="6", required, data-numeric).cc-amount
+        .small-12.medium-6.medium-offset-2.columns
+          .backer
+            input(type="checkbox", checked="checked", tabindex="7")#list-me
+            label(for="list-me") List me as backer
+      .row
+        .small-12.columns#stripe-responses
+      .row
+        .small-12.columns
+          button(tabindex="8", data-style="slide-right").button.success.expand.round.ladda-button#donate-submit
+            | Donate Now
+      .row
+        .small-12.columns
+          p.powered-by
+            | Donations proudly powered by 
+            a(href="https://stripe.com/", target="_blank") stripe
+            | .
