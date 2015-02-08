@@ -70,7 +70,7 @@ define [
       vex.defaultOptions.className = 'vex-theme-default'
       vex.open
         content: donationView.render().$el
-        contentClassName: 'narrow'
+        contentClassName: 'narrow padding-less'
         overlayClosesOnClick: false
         afterOpen: ($vexContent) ->
           $vexContent.append.$el

@@ -18,7 +18,7 @@ define [
 
     render: =>
       data =
-        name: "JailbreakHQ"
+        name: @name
 
       @$el.html @template data
 
