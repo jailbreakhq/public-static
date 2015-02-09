@@ -76,7 +76,8 @@ define [
       else
         $(".cc-cvc", @$el).removeClass("error-field")
 
-      if not amount > 0
+      if not (amount >= 5)
+        @donateFormResponse("alert", "Minimum donation is 5 euro.")
         $(".cc-amount", @$el).addClass("error-field")
         valid = false
       else
