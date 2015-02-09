@@ -92,7 +92,7 @@ define [
       @l.setProgress 0.4
 
       # bundle up the stripe token
-      number = parseInt number.replace /\s/g, ''
+      number = parseInt number.replace /\s/g, '' # remove any space in card number
       stripeData =
         number: number
         cvc: cvc
@@ -135,7 +135,7 @@ define [
           @donationThankYou()
         .fail (err) =>
           @submitted = false
-          @donateFormResponse("alert", "Donation failed. Try again.")
+          @donateFormResponse("alert", "Donation failed. Check your card details then try again")
 
     donationThankYou: =>
       $("#donate-content").animo
