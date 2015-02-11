@@ -42,6 +42,10 @@ define [
       $(@$el).foundation("alert", "reflow")
       @l?.stop()
 
+    validateEmail: (email) ->
+      re = /\S+@\S+\.\S+/
+      return re.test email
+
     donateSubmissionHandler: (event) =>
       # prevent action and disable button
       event.preventDefault()
@@ -56,11 +60,17 @@ define [
       name = $(".cc-name", @$el).val()
       email = $(".cc-email", @$el).val()
 
-      exp_month = parseInt exp.split("/")[0].trim()
-      exp_year = parseInt exp.split("/")[1].trim()
+      exp_month = parseInt exp.split("/")[0]?.trim()
+      exp_year = parseInt exp.split("/")[1]?.trim()
 
       # do some form validation
       valid = true
+      if not @validateEmail email
+        $(".cc-email", @$el).addClass("error-field")
+        valid = false
+      else
+        $(".cc-email", @$el).removeClass("error-field")
+
       if not $.payment.validateCardNumber(number)
         $(".cc-num", @$el).addClass("error-field")
         valid = false
