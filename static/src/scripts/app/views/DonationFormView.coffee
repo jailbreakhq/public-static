@@ -6,6 +6,7 @@ define [
   "ladda"
   "foundation"
   "foundation.alert"
+  "foundation.tooltip"
   "jquery.payment"
   "animo"
 ], ($, _, Backbone, jade, Ladda, foundation) ->
@@ -25,6 +26,8 @@ define [
         name: @name
 
       @$el.html @template data
+
+      $(@$el).foundation("tooltip", "reflow")
 
       # add stripe's jquery.payment input field restrictions (super cool)
       $(".cc-num", @$el).payment("formatCardNumber")
@@ -70,7 +73,7 @@ define [
       else
         $(".cc-exp", @$el).removeClass("error-field")
 
-      if not $.payment.validateCardCVC(cvc, $.payment.cardType(number))
+      if not $.payment.validateCardCVC(cvc)
         $(".cc-cvc", @$el).addClass("error-field")
         valid = false
       else
@@ -136,7 +139,7 @@ define [
           @donationThankYou()
         .fail (err) =>
           @submitted = false
-          @donateFormResponse("alert", "Donation failed. Check your card details then try again")
+          @donateFormResponse("alert", "Donation failed: ")
 
     donationThankYou: =>
       $("#donate-content").animo

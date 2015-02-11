@@ -14,6 +14,7 @@ requirejs.config
     "foundation": "../../../components/bower-foundation/js/foundation/foundation"
     "foundation.tabs": "../../../components/bower-foundation/js/foundation/foundation.tab"
     "foundation.topbar": "../../../components/bower-foundation/js/foundation/foundation.topbar"
+    "foundation.tooltip": "../../../components/bower-foundation/js/foundation/foundation.tooltip"
     "foundation.alert": "../../../components/bower-foundation/js/foundation/foundation.alert"
     "autolink": "../../../components/autolink/autolink-min"
     "jquery.countdown": "../../../components/jquery.countdown/dist/jquery.countdown.min"
@@ -56,6 +57,9 @@ requirejs.config
       deps: ["foundation"]
 
     "foundation.tabs":
+      deps: ["foundation"]
+
+    "foundation.tooltip":
       deps: ["foundation"]
 
     "jquery.payment":
