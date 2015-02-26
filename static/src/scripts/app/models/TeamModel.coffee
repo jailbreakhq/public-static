@@ -3,9 +3,8 @@ define [
   "underscore"
   "backbone"
   "mixen"
-  "mixens/AuthMixen"
-], ($, _, Backbone, Mixen, AuthMixen) ->
-  class Team extends Mixen(AuthMixen, Backbone.Model)
+], ($, _, Backbone, Mixen) ->
+  class Team extends Mixen(Backbone.Model)
     url: =>
       if @slug
         jailbreak.api_host + "/teams/slug/" + @slug

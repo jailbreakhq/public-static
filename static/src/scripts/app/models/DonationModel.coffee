@@ -3,7 +3,6 @@ define [
   "underscore"
   "backbone"
   "mixen"
-  "mixens/AuthMixen"
-], ($, _, Backbone, Mixen, AuthMixen) ->
-  class Donation extends Mixen(AuthMixen, Backbone.Model)
+], ($, _, Backbone, Mixen) ->
+  class Donation extends Mixen(Backbone.Model)
     # empty -- spooky
