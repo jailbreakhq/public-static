@@ -63,6 +63,11 @@
           if locals.video
             h3.video Video
             .about-video
-              .flex-video
+              if video.indexOf('facebook')
                 != video
+              else
+                .flex-video
+                  != video
         .content#donations-panel
+
+  include donationPanel.jade
