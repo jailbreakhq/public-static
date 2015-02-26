@@ -5,6 +5,7 @@ define [
   "views/IndexView"
   "views/TeamListView"
   "views/TeamProfileView"
+  "//google-analytics.com/analytics.js"
 ], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView) ->
   class Router extends Backbone.Router
     routes:
@@ -13,7 +14,7 @@ define [
       'teams/:slug':  'team'
 
     initialize: ->
-      #ga('create', jailbreak.ga_id, 'auto')
+      ga('create', jailbreak.ga_id, 'auto')
       @bind 'route', @_trackPageview
 
     index: ->
@@ -36,4 +37,4 @@ define [
 
     _trackPageview: ->
       url = Backbone.history.getFragment()
-      #ga('send', 'pageview', "/#{url}")
+      ga('send', 'pageview', "/#{url}")
