@@ -14,7 +14,7 @@ define [
       'teams/:slug':  'team'
 
     initialize: ->
-      ga('create', jailbreak.ga_id, 'auto');
+      ga('create', jailbreak.ga_id, 'auto')
       @bind 'route', @_trackPageview
 
     index: ->
@@ -37,4 +37,4 @@ define [
 
     _trackPageview: ->
       url = Backbone.history.getFragment()
-      ga('send', 'pageview', "/#{url}");
+      ga('send', 'pageview', "/#{url}")
