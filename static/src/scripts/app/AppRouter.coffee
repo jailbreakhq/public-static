@@ -5,7 +5,7 @@ define [
   "views/IndexView"
   "views/TeamListView"
   "views/TeamProfileView"
-  "google.analytics"
+  "//google-analytics.com/analytics.js"
 ], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView) ->
   class Router extends Backbone.Router
     routes:
