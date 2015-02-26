@@ -3,9 +3,8 @@ define [
   "underscore"
   "backbone"
   "mixen"
-  "mixens/AuthMixen"
-], ($, _, backbone, Mixen, AuthMixen) ->
-  class BaseCollectionMixen extends Mixen(AuthMixen, Backbone.Collection)
+], ($, _, backbone, Mixen) ->
+  class BaseCollectionMixen extends Mixen(Backbone.Collection)
     urlRoot: jailbreak.api_host
     totalCount: null
 
