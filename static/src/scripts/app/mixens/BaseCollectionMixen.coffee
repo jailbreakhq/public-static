@@ -13,12 +13,6 @@ define [
       super
       jailbreak.api_host
 
-    sync: (method, model, options) ->
-      super
-      console.log 'base collection sync'
-      @
-
-
     parse: (resp, options) ->
       super
       # parse out the total count header
