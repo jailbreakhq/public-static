@@ -3,20 +3,18 @@ define [
   "underscore"
   "backbone"
   "mixen"
-  "mixens/AuthMixen"
+  "mixens/FilterableCollectionMixen"
+  "mixens/BaseCollectionMixen"
   "models/TeamModel"
-], ($, _, Backbone, Mixen, AuthMixen, Team) ->
-  class Teams extends Mixen(AuthMixen, Backbone.Collection)
+], ($, _, Backbone, Mixen, FilterableCollectionMixen, BaseCollectionMixen, Team) ->
+  class Teams extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
     model: Team
-    filters: null
 
     url: =>
       if @filters
         encodedFilters = encodeURIComponent JSON.stringify @filters
-        jailbreak.api_host + "/teams?filters=" + encodedFilters
+        url = "/teams?filters=" + encodedFilters
       else
-        jailbreak.api_host + "/teams"
+        url = "/teams"
 
-    initialize: (data, options) ->
-      if options
-        @filters = options.filters
+      super + url

@@ -17,6 +17,7 @@ define [
     render: =>
       data =
         donations: _.map @collection.models, (val) -> val.toJSON()
+        totalCount: @collection.totalCount
       @$el.html @template data
 
       @
