@@ -5,12 +5,17 @@ define [
   "views/IndexView"
   "views/TeamListView"
   "views/TeamProfileView"
+  "google.analytics"
 ], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView) ->
   class Router extends Backbone.Router
     routes:
       '':             'index'
       'teams(/)':       'teams'
       'teams/:slug':  'team'
+
+    initialize: ->
+      ga('create', jailbreak.ga_id, 'auto');
+      @bind 'route', @_trackPageview
 
     index: ->
       indexView = new IndexView()
@@ -29,3 +34,7 @@ define [
       teamProfileView = new TeamProfileView
         teamSlug: slug
       $("#body-container").html teamProfileView.render().$el
+
+    _trackPageview: ->
+      url = Backbone.history.getFragment()
+      ga('send', 'pageview', "/#{url}");

@@ -143,13 +143,17 @@
     <!-- Basic Jailbreak Javascript App Setup -->
     <script>
       var url = document.URL;
-      var jailbreak = {};
-      if (url.indexOf("local") != -1)
+      var jailbreak = {}; 
+      if (url.indexOf("local") != -1) {
         jailbreak.api_host = "http://localhost:8090";
-      else if (url.indexOf("qa") != -1)
+        jailbreak.ga_id = "UA-58463386-2";
+      } else if (url.indexOf("qa") != -1) {
         jailbreak.api_host = "https://qa.jbapi.net";
-      else 
+        jailbreak.ga_id = "UA-58463386-2";
+      } else {
         jailbreak.api_host = "https://jbapi.net";
+        jailbreak.ga_id = "UA-58463386-1";
+      }
     </script>
 
     <!-- Stripe Setup -->
