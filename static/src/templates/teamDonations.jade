@@ -1,3 +1,4 @@
+h3.page-header.show-for-large-up Recent Donations
 ul#donations.donations-list
   each donation in donations
     li
@@ -11,3 +12,6 @@ ul#donations.donations-list
   else
     span There are no donations yet! Why don't you help us out? 
       a(href="#").donate-button Donate
+
+if totalCount > donations.length
+  p.and-more and #{totalCount-donations.length} other donations

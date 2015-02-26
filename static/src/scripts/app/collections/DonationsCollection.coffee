@@ -3,20 +3,21 @@ define [
   "underscore"
   "backbone"
   "mixen"
-  "mixens/AuthMixen"
+  "mixens/FilterableCollectionMixen"
+  "mixens/BaseCollectionMixen"
   "models/DonationModel"
-], ($, _, Backbone, Mixen, AuthMixen, Donation) ->
-  class Donations extends Mixen(AuthMixen, Backbone.Collection)
+], ($, _, Backbone, Mixen, FilterableCollectionMixen, BaseCollectionMixen, Donation) ->
+  class Donations extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
     model: Donation
-    filters: null
+
+    initialize: (data, options) ->
+      super
 
     url: =>
       if @filters
         encodedFilters = encodeURIComponent JSON.stringify @filters
-        jailbreak.api_host + "/donations?filters=" + encodedFilters
+        url = "/donations?filters=" + encodedFilters
       else
-        jailbreak.api_host + "/donations"
+        url = "/donations"
 
-    initialize: (data, options) ->
-      if options
-        @filters = options.filters
+      super + url
