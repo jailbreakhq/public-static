@@ -63,7 +63,7 @@
           if locals.video
             h3.video Video
             .about-video
-              if video.indexOf('facebook')
+              if video.indexOf('facebook') != -1
                 != video
               else
                 .flex-video
