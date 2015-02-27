@@ -55,7 +55,7 @@ define [
       # extract form fields
       number = $(".cc-num", @$el).val()
       exp = $(".cc-exp", @$el).val()
-      cvc = parseInt $(".cc-cvc", @$el).val()
+      cvc = parseInt $(".cc-cvc", @$el).val().trim()
       amount = parseInt $(".cc-amount", @$el).val()
       name = $(".cc-name", @$el).val()
       email = $(".cc-email", @$el).val()
