@@ -17,7 +17,7 @@ define [
       'donate/:slug':     'donateTeam'
 
     initialize: ->
-      ga('create', jailbreak.ga_id, 'auto')
+      ga 'create', jailbreak.ga_id, 'auto'
       @bind 'route', @_trackPageview
 
     index: ->
@@ -40,6 +40,7 @@ define [
 
     donate: ->
       donateView = new DonationFormView
+        iphoneRedirect: @_isIphoneRedirect()
       $("#body-container").html donateView.render().$el
 
     donateTeam: (slug) ->
@@ -50,8 +51,13 @@ define [
           donateView = new DonationFormView
             teamId: team.get 'id'
             name: team.get 'names'
+            iphoneRedirect: @_isIphoneRedirect()
           $("#body-container").html donateView.render().$el
+
+    _isIphoneRedirect: ->
+      url = Backbone.history.getFragment()
+      (url.indexOf('iphone') != -1)
 
     _trackPageview: ->
       url = Backbone.history.getFragment()
-      ga('send', 'pageview', "/#{url}")
+      ga 'send', 'pageview', "/#{url}"

@@ -19,6 +19,7 @@ define [
       @name = options?.name or "JailbreakHQ"
       @teamId = options?.teamId or 0
       @parentView = options?.parent
+      @iphoneRedirect = options?.iphoneRedirect or true
       @submitted = false
 
     render: =>
@@ -146,7 +147,10 @@ define [
           contentType: "application/json"
           data: JSON.stringify(attributes)
         ).done (data) =>
-          @donationThankYou()
+          if @iphoneRedirect
+            window.location "jailbreak://"
+          else
+            @donationThankYou()
         .fail (err) =>
           @submitted = false
           @donateFormResponse("alert", "Donation failed: ")
