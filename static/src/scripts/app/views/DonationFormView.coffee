@@ -148,7 +148,7 @@ define [
           data: JSON.stringify(attributes)
         ).done (data) =>
           if @iphoneRedirect
-            window.location "jailbreak://"
+            window.location = "jailbreak://"
           else
             @donationThankYou()
         .fail (err) =>
