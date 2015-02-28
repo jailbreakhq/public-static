@@ -16,9 +16,10 @@ define [
       'click #donate-submit': 'donateSubmissionHandler'
 
     initialize: (options) =>
-      @name = options.name or "JailbreakHQ"
-      @teamId = options.teamId or 0
-      @parentView = options.parent
+      @name = options?.name or "JailbreakHQ"
+      @teamId = options?.teamId or 0
+      @parentView = options?.parent
+      @iphoneRedirect = options?.iphoneRedirect or true
       @submitted = false
 
     render: =>
@@ -146,18 +147,20 @@ define [
           contentType: "application/json"
           data: JSON.stringify(attributes)
         ).done (data) =>
-          @donationThankYou()
+          if @iphoneRedirect
+            window.location "jailbreak://"
+          else
+            @donationThankYou()
         .fail (err) =>
           @submitted = false
           @donateFormResponse("alert", "Donation failed: ")
 
     donationThankYou: =>
       $("#donate-content").animo
-        animation: "fadeOutUp"
+        animation: "fadeOut"
         duration: 0.5
         keep: true
         , =>
-          $("#donate-content").slideUp()
           $("section.content").append jade.donationThankYou()
           $("#donate-close").click () =>
-            @parentView.closeDonateVex()
+            @parentView?.closeDonateVex()

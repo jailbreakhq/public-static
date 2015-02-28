@@ -1,7 +1,7 @@
 form(action="#", autocomplete="on")#donate-form
-  .logo.svp
-  .logo.amnesty
   header
+    .logo.svp
+    .logo.amnesty
     .row
       .small-12.columns
         h3 Support #{name}
@@ -20,13 +20,13 @@ form(action="#", autocomplete="on")#donate-form
           input(type="text", placeholder="Card Number", autocompletetype="cc-number", tabindex="3", required).radius.cc-num
           span.icon
       .row
-        .small-10.medium-5.columns
+        .small-5.columns
           input(type="text", placeholder="CVC", autocomplete="off", tabindex="4", required).radius.cc-cvc
           span.icon
         .small-1.columns.tooltip-column
           span(data-tooltip, aria-haspopup="true", title="The 3/4 digit number on the back of your card").has-tip
             i.fa.fa-question-circle
-        .small-12.medium-6.columns
+        .small-6.columns
           input(type="text", placeholder="MM / YY", tabindex="5", required).radius.cc-exp
           span.icon
       .row
