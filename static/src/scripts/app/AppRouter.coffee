@@ -14,7 +14,7 @@ define [
       'teams(/)':           'teams'
       'teams/:slug':        'team'
       'donate(/)':          'donate'
-      'donate/:teamId':     'donateTeam'
+      'donate/:slug':     'donateTeam'
 
     initialize: ->
       ga('create', jailbreak.ga_id, 'auto')
@@ -42,15 +42,14 @@ define [
       donateView = new DonationFormView
       $("#body-container").html donateView.render().$el
 
-    donateTeam: (teamId) ->
-      console.log 'donate team ' + teamId
+    donateTeam: (slug) ->
       team = new Team
-        id: teamId
+        slug: slug
       team.fetch
         success: =>
           donateView = new DonationFormView
-            teamId: teamId
-            name: team.get('names')
+            teamId: team.get 'id'
+            name: team.get 'names'
           $("#body-container").html donateView.render().$el
 
     _trackPageview: ->
