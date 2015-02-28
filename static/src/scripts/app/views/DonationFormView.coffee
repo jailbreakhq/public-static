@@ -16,9 +16,9 @@ define [
       'click #donate-submit': 'donateSubmissionHandler'
 
     initialize: (options) =>
-      @name = options.name or "JailbreakHQ"
-      @teamId = options.teamId or 0
-      @parentView = options.parent
+      @name = options?.name or "JailbreakHQ"
+      @teamId = options?.teamId or 0
+      @parentView = options?.parent
       @submitted = false
 
     render: =>
@@ -153,11 +153,10 @@ define [
 
     donationThankYou: =>
       $("#donate-content").animo
-        animation: "fadeOutUp"
+        animation: "fadeOut"
         duration: 0.5
         keep: true
         , =>
-          $("#donate-content").slideUp()
           $("section.content").append jade.donationThankYou()
           $("#donate-close").click () =>
-            @parentView.closeDonateVex()
+            @parentView?.closeDonateVex()

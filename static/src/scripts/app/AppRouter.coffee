@@ -5,13 +5,16 @@ define [
   "views/IndexView"
   "views/TeamListView"
   "views/TeamProfileView"
+  "views/DonationFormView"
   "//google-analytics.com/analytics.js"
-], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView) ->
+], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView) ->
   class Router extends Backbone.Router
     routes:
-      '':             'index'
-      'teams(/)':       'teams'
-      'teams/:slug':  'team'
+      '':                   'index'
+      'teams(/)':           'teams'
+      'teams/:slug':        'team'
+      'donate(/)':          'donate'
+      'donate/:teamId':     'donateTeam'
 
     initialize: ->
       ga('create', jailbreak.ga_id, 'auto')
@@ -34,6 +37,21 @@ define [
       teamProfileView = new TeamProfileView
         teamSlug: slug
       $("#body-container").html teamProfileView.render().$el
+
+    donate: ->
+      donateView = new DonationFormView
+      $("#body-container").html donateView.render().$el
+
+    donateTeam: (teamId) ->
+      console.log 'donate team ' + teamId
+      team = new Team
+        id: teamId
+      team.fetch
+        success: =>
+          donateView = new DonationFormView
+            teamId: teamId
+            name: team.get('names')
+          $("#body-container").html donateView.render().$el
 
     _trackPageview: ->
       url = Backbone.history.getFragment()
