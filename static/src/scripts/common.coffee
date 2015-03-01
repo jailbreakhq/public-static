@@ -7,6 +7,7 @@ requirejs.config
     "moment": "../../../components/moment/moment"
     "humanize": "../../../components/humanize-plus/public/dist/humanize.min"
     "jade": "../../../components/jade/runtime"
+    "raven": "../../../components/raven-js/dist/raven"
     "mixen": "../../../components/mixen/mixen.min"
     "vex": "../../../components/vex/js/vex"
     "vex.dialog": "../../../components/vex/js/vex.dialog"
@@ -40,6 +41,9 @@ requirejs.config
       deps: [
         "moment"
       ]
+
+    raven:
+      exports: "Raven"
 
     humanize:
       exports: "Humanize"
