@@ -4,10 +4,18 @@ require [
   "backbone"
   "foundation"
   "foundation.topbar"
+  "raven"
   "AppRouter"
-], ($, _, Backbone, foundation, topbar, Router) ->
+], ($, _, Backbone, foundation, topbar, Raven, Router) ->
   
   $ ->
+    # Config Sentry Raven Client
+    if jailbreak.sentry.enabled
+      Raven.config(jailbreak.sentry.dsn, {
+        whitelistUrls: ['local.jailbreakhq.org', 'builds.jailbreakhq.org']
+      }).install();
+
+    # Sentry Foundation javascript events/handlers
     $(document).foundation()
 
     # Backbone setup
@@ -20,6 +28,7 @@ require [
     Backbone.history.start
       pushState: true
 
+    # hook all links on the page
     $(document).on "click", "a[href^='/']", (event) ->
 
       href = $(event.currentTarget).attr("href")
