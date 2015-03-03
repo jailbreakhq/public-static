@@ -1,8 +1,14 @@
 module.exports = (grunt) ->
+
+  # Requirejs two files
+  # grunt.registerTask 'requirejsdeploy', 'RequireJS', (file) ->
+  #   console.log "Running requirejs compile for " + file + ".js"
+  #   grunt.config.set("requirejsFile", file);
+  #   grunt.task.run("requirejs")
   
   # Project configuration
   grunt.initConfig
-    pkg: grunt.file.readJSON("package.json")
+    pkg: grunt.file.readJSON "package.json"
 
     paths:
       static: "static"
@@ -66,12 +72,18 @@ module.exports = (grunt) ->
     ## Deployment Configuration
     ##
     requirejs:
-      compile: 
+      main:
         options: 
           baseUrl: "<%= paths.build %>/scripts/app"
           mainConfigFile: "<%= paths.build %>/scripts/common.js"
           name: "main"
           out: "<%= paths.deploy %>/scripts/main.js"
+      iframe:
+        options: 
+          baseUrl: "<%= paths.build %>/scripts/app"
+          mainConfigFile: "<%= paths.build %>/scripts/common.js"
+          name: "iframe"
+          out: "<%= paths.deploy %>/scripts/iframe.js"
 
     cssmin:
       deploy:
@@ -130,10 +142,11 @@ module.exports = (grunt) ->
     concurrent:
       build: ["coffee", "sass:build", "jade", "targethtml:dev"]
 
+
   # Load the plug-ins
   require("load-grunt-tasks") grunt
   
   # Default tasks
   grunt.registerTask "default", ["concurrent:build"]
-  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:qa"]
-  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs:main", "requirejs:iframe", "cssmin:deploy", "uglify:deploy", "targethtml:qa"]
+  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs:main", "requirejs:iframe", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]
