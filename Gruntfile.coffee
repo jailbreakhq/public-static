@@ -1,8 +1,8 @@
 module.exports = (grunt) ->
-  
+
   # Project configuration
   grunt.initConfig
-    pkg: grunt.file.readJSON("package.json")
+    pkg: grunt.file.readJSON "package.json"
 
     paths:
       static: "static"
@@ -43,6 +43,7 @@ module.exports = (grunt) ->
 
         files:
           "<%= paths.build %>/styles/main.css": "<%= paths.src %>/styles/main.sass"
+          "<%= paths.build %>/styles/iframe.css": "<%= paths.src %>/styles/iframe.sass"
 
     # Compile Jade files
     jade:
@@ -65,40 +66,51 @@ module.exports = (grunt) ->
     ## Deployment Configuration
     ##
     requirejs:
-      compile: 
+      main:
         options: 
           baseUrl: "<%= paths.build %>/scripts/app"
           mainConfigFile: "<%= paths.build %>/scripts/common.js"
           name: "main"
           out: "<%= paths.deploy %>/scripts/main.js"
+      iframe:
+        options: 
+          baseUrl: "<%= paths.build %>/scripts/app"
+          mainConfigFile: "<%= paths.build %>/scripts/common.js"
+          name: "iframe"
+          out: "<%= paths.deploy %>/scripts/iframe.js"
 
     cssmin:
       deploy:
         files:
           "<%= paths.deploy %>/styles/main.css": "<%= paths.build %>/styles/main.css"
+          "<%= paths.deploy %>/styles/iframe.css": "<%= paths.build %>/styles/iframe.css"
 
     uglify:
       deploy:
         files:
           "<%= paths.deploy %>/scripts/require.js": ["<%= paths.components %>/requirejs/require.js"]
           "<%= paths.deploy %>/scripts/main.js": ["<%= paths.deploy %>/scripts/main.js"]
+          "<%= paths.deploy %>/scripts/iframe.js": ["<%= paths.deploy %>/scripts/iframe.js"]
     
     targethtml:
       dev:
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
       qa:
         options:
           curlyTags: 
             build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
       prod:
         options:
           curlyTags: 
             build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
 
     ##
     ## Watcher Configuation
@@ -118,16 +130,17 @@ module.exports = (grunt) ->
         tasks: ["jade"]
 
       html:
-        files: ["<%= paths.html %>/index.html"]
+        files: ["<%= paths.html %>/*.html"]
         tasks: ["targethtml:dev"]
 
     concurrent:
       build: ["coffee", "sass:build", "jade", "targethtml:dev"]
+
 
   # Load the plug-ins
   require("load-grunt-tasks") grunt
   
   # Default tasks
   grunt.registerTask "default", ["concurrent:build"]
-  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:qa"]
-  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs:main", "requirejs:iframe", "cssmin:deploy", "uglify:deploy", "targethtml:qa"]
+  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs:main", "requirejs:iframe", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]

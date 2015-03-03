@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="utf-8">
+    <title>JailbreakHQ 2015 a global charity race in aid of Amnesty International and Society St. Vincent de Paul</title>
+    <meta name="description" content="Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise &euro;100,000 for Amnesty International and SVP">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bundled CSS -->
+    <!--(if target dev)><!-->
+      <link rel="stylesheet" href="/build/styles/iframe.css">
+    <!--<!(endif)-->
+
+    <!--(if target qa || prod)><!-->
+      <link rel="stylesheet" href="//builds.jailbreakhq.org/{{build}}/dist/styles/iframe.css">
+    <!--<!(endif)-->
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Bundled Javasript -->
+    <!--(if target dev)><!-->
+      <script src="/components/requirejs/require.js"></script>
+      <script>
+          require(['/build/scripts/common.js'], function (common) {
+              require(['iframe']);
+          });
+      </script>
+    <!--<!(endif)-->
+
+    <!--(if target qa || prod)><!-->
+      <script src="//builds.jailbreakhq.org/{{build}}/dist/scripts/require.js"></script>
+      <script src="//builds.jailbreakhq.org/{{build}}/dist/scripts/iframe.js"></script>
+    <!--<!(endif)-->
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1 id="logo-title"><a href="https://jailbreakhq.org/">JailbreakHQ 2015: The Race is On!</a></h1>
+          </li>
+        </ul>
+
+        <section class="top-bar-section">
+          <ul class="right">
+            <li class="active"><a href="https://jailbreakhq.org/donate">Donate</a></li>
+          </ul>
+        </section>
+      </nav>
+
+      <div id="map-canvas"></div>
+
+      <div id="leaders"></div>
+    </div>
+
+
+    <!-- Jailbreak JS App Settings  -->
+    <script>
+      var url = document.URL;
+      var jailbreak = {}; 
+      jailbreak.sentry = {};
+      jailbreak.sentry.enabled = false;
+    </script>
+
+    <!--(if target dev)><!-->
+      <script>
+        jailbreak.env = "LOCAL";
+        jailbreak.api_host = "http://localhost:8090";
+        jailbreak.ga_id = "UA-58463386-2";
+      </script>
+    <!--<!(endif)-->
+
+    <!--(if target qa)><!-->
+      <script>
+        jailbreak.env = "QA";
+        jailbreak.api_host = "https://qa.jbapi.net";
+        jailbreak.ga_id = "UA-58463386-2";
+        jailbreak.sentry.enabled = true;
+        jailbreak.sentry.dsn = "https://8bc0d346130249dc9952b52c1311e57b@app.getsentry.com/38797";
+      </script>
+    <!--<!(endif)-->
+
+    <!--(if target prod)><!-->
+      <script>
+        jailbreak.env = "PROD";
+        jailbreak.api_host = "https://jbapi.net";
+        jailbreak.ga_id = "UA-58463386-1";
+        jailbreak.sentry.enabled = true;
+        jailbreak.sentry.dsn = "https://38f0e2b9531c4e788601adf26ca4320d@app.getsentry.com/38808";
+      </script>
+    <!--<!(endif)-->
+  </body>
+</html>
