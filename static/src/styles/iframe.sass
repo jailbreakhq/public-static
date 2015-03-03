@@ -1,0 +1,34 @@
+@import "mixins"
+
+@import "common/variables"
+@import "common/settings"
+@import "common/foundation"
+@import "common/topbar"
+
+@import "public/map"
+
+body, html
+  padding: 0
+  margin: 0
+
+#wrapper
+  height: 750px
+  overflow: hidden
+
+#map-canvas
+  width: 100%
+  height: 533px
+  line-height: 90%
+  border-width: 0 2px 0 2px
+  border-style: solid
+  border-color: #D7D7D7
+
+  img
+    max-width: inherit
+
+#leaders
+  height: 168px
+  background: #F7F7F7
+  overflow: hidden
+  padding-top: 25px
+  border: 2px solid #D7D7D7
