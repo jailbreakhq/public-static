@@ -1,10 +1,9 @@
 <!doctype html>
-<html lang="">
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>JailbreakHQ 2015 a global race in aid of Amnesty International and Society St. Vincent de Paul</title>
-    <meta name="description" content="Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise &euro;100,000 for Amnesty International and Society St. Vincent de Paul">
+  <meta charset="utf-8">
+    <title>JailbreakHQ 2015 a global charity race in aid of Amnesty International and Society St. Vincent de Paul</title>
+    <meta name="description" content="Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise &euro;100,000 for Amnesty International and SVP">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- favicon made using realfavicongenerator.net -->
@@ -51,21 +50,21 @@
 
     <!-- Bundled CSS -->
     <!--(if target dev)><!-->
-      <link rel="stylesheet" href="/build/styles/main.css">
+      <link rel="stylesheet" href="/build/styles/iframe.css">
     <!--<!(endif)-->
 
     <!--(if target qa || prod)><!-->
-      <link rel="stylesheet" href="//builds.jailbreakhq.org/{{build}}/dist/styles/main.css">
+      <link rel="stylesheet" href="//builds.jailbreakhq.org/{{build}}/dist/styles/iframe.css">
     <!--<!(endif)-->
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
+    
     <!-- Bundled Javasript -->
     <!--(if target dev)><!-->
       <script src="/components/requirejs/require.js"></script>
       <script>
           require(['/build/scripts/common.js'], function (common) {
-              require(['main']);
+              require(['iframe']);
           });
       </script>
     <!--<!(endif)-->
@@ -77,73 +76,30 @@
   </head>
   <body>
     <div id="wrapper">
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1 id="logo-title"><a href="https://jailbreakhq.org/">JailbreakHQ 2015: The Race is On!</a></h1>
+          </li>
+        </ul>
 
-      <div class="contain-to-grid fixed">
-        <nav class="top-bar" data-topbar role="navigation">
-          <ul class="title-area">
-            <li class="name">
-              <h1 id="logo-title"><a href="/">JailbreakHQ 2015: The Race is On!</a></h1>
-            </li>
+        <section class="top-bar-section">
+          <ul class="right">
+            <li class="active"><a href="https://jailbreakhq.org/donate">Donate</a></li>
           </ul>
+        </section>
+      </nav>
 
-          <section class="top-bar-section">
-            <!-- Right Nav Section
-            <ul class="right">
-              <li class="active"><a href="#">Apply Now</a></li>
-            </ul>-->
+      <div id="map-canvas"></div>
 
-            <!-- Left Nav Section -->
-            <ul class="left">
-              <li class="divider"></li>
-              <li><a href="/teams">Teams</a></li>
-              <li class="divider"></li>
-              <li><a href="https://about.jailbreakhq.org/">About</a></li>
-              <li class="divider"></li>
-              <li><a href="https://about.jailbreakhq.org/contact">Contact</a></li>
-            </ul>
-          </section>
-        </nav>
-      </div>
-
-      <div id="body-container">
-        <!-- Backbone App will inject the page contents in here -->
-      </div>
-
-      <footer class="main-footer">
-        <div class="row">
-          <div class="small-12 medium-6 columns">
-            <ul>
-              <li>
-                <a href="//twitter.com/jailbreakhq"><i class="fa fa-twitter"></i> @JailbreakHQ</a>
-              </li>
-              <li>
-                <a href="//facebook.com/JailbreakHQ/"><i class="fa fa-facebook"></i> JailbreakHQ</a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/user/Jailbreak14Videos"><i class="fa fa-youtube"></i> Channel</a>
-              </li>
-            </ul>
-          </div>
-          <div class="small-12 medium-6 columns">
-            <ul class="footer-right">
-              <li>
-                <a href="http://www.svp.ie/Home.aspx" class="hide-link">SVP: CHY 6892</a>
-              </li>
-              <li>
-                <a href="http://www.amnesty.ie/" class="hide-link">Amnesty: CHY 5890</a>
-              </li>
-              <li>
-                <span class="copy-statement">&copy; JailbreakHQ</span>
-              </li>
-          </div>
-        </div>
-      </footer>
+      <div id="leaders"></div>
     </div>
+
 
     <!-- Jailbreak JS App Settings  -->
     <script>
       var url = document.URL;
-      var jailbreak = {};
+      var jailbreak = {}; 
       jailbreak.sentry = {};
       jailbreak.sentry.enabled = false;
     </script>
@@ -173,20 +129,6 @@
         jailbreak.ga_id = "UA-58463386-1";
         jailbreak.sentry.enabled = true;
         jailbreak.sentry.dsn = "https://38f0e2b9531c4e788601adf26ca4320d@app.getsentry.com/38808";
-      </script>
-    <!--<!(endif)-->
-
-    <!-- Stripe Setup -->
-    <script src="https://js.stripe.com/v2/"></script>
-    <!--(if target dev || qa)><!-->
-      <script>
-        Stripe.setPublishableKey("pk_test_elhSJvoDh3lhrYOuOv1D5i23");
-      </script>
-    <!--<!(endif)-->
-
-    <!--(if target prod)><!-->
-      <script>
-        Stripe.setPublishableKey("pk_live_lu13pTg7V1dy0MctBEh5PBB3");
       </script>
     <!--<!(endif)-->
   </body>

@@ -5,4 +5,5 @@ routes:
   ".*/dist/": "http://localhost:8080/"
   ".*/favicons/": "http://localhost:8080/"
   ".*/images/": "http://localhost:8080/"
+  "iframe": "http://localhost:8080/iframe.html"
   ".*": "http://localhost:8080"

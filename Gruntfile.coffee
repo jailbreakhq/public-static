@@ -43,6 +43,7 @@ module.exports = (grunt) ->
 
         files:
           "<%= paths.build %>/styles/main.css": "<%= paths.src %>/styles/main.sass"
+          "<%= paths.build %>/styles/iframe.css": "<%= paths.src %>/styles/iframe.sass"
 
     # Compile Jade files
     jade:
@@ -76,29 +77,34 @@ module.exports = (grunt) ->
       deploy:
         files:
           "<%= paths.deploy %>/styles/main.css": "<%= paths.build %>/styles/main.css"
+          "<%= paths.deploy %>/styles/iframe.css": "<%= paths.build %>/styles/iframe.css"
 
     uglify:
       deploy:
         files:
           "<%= paths.deploy %>/scripts/require.js": ["<%= paths.components %>/requirejs/require.js"]
           "<%= paths.deploy %>/scripts/main.js": ["<%= paths.deploy %>/scripts/main.js"]
+          "<%= paths.deploy %>/scripts/iframe.js": ["<%= paths.deploy %>/scripts/iframe.js"]
     
     targethtml:
       dev:
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
       qa:
         options:
           curlyTags: 
             build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
       prod:
         options:
           curlyTags: 
             build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
         files:
           "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
 
     ##
     ## Watcher Configuation
@@ -118,7 +124,7 @@ module.exports = (grunt) ->
         tasks: ["jade"]
 
       html:
-        files: ["<%= paths.html %>/index.html"]
+        files: ["<%= paths.html %>/*.html"]
         tasks: ["targethtml:dev"]
 
     concurrent:
