@@ -3,7 +3,8 @@ define [
   "underscore"
   "backbone"
   "mixen"
-], ($, _, Backbone, Mixen) ->
+  "models/CheckinModel"
+], ($, _, Backbone, Mixen, Checkin) ->
   class Team extends Mixen(Backbone.Model)
     url: =>
       if @slug
@@ -17,3 +18,18 @@ define [
     initialize: (options) =>
       if options.slug
         @slug = options.slug
+
+
+    parse: (response) ->
+      lastCheckin = response.lastCheckin
+      if lastCheckin
+        response.lastCheckin = new Checkin lastCheckin
+
+      response
+
+    getRenderContext: =>
+      team = @.toJSON()
+      if @.has('lastCheckin')
+        team.lastCheckin = @.get('lastCheckin').toJSON()
+
+      team

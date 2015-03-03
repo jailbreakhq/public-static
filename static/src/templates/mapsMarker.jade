@@ -2,10 +2,7 @@
   .small-5.columns
     .profile
       a(href="https://jailbreakhq.org/teams/#{slug}").th
-        if locals.avatar
-          img(width="150", height="150", src="#{avatar}")
-        else
-          img(width="150", height="150", src="https://static.jailbreakhq.org/avatars/jb-default-avatar.jpg")
+        img(width="150", height="150", src="#{avatar}")
   .small-7.columns
     span.time
       = moment(lastCheckin.time*1000).fromNow()
