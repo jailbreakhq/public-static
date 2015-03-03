@@ -7,7 +7,8 @@ require [
   "collections/TeamsCollection"
   "models/JailbreakModel"
   "views/TeamsMapView"
-], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView) ->
+  "views/TopTeamsCardListView"
+], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView, TopTeamsCardListiew) ->
   
   $ ->
     # Config Sentry Raven Client
@@ -27,13 +28,15 @@ require [
 
   # Google Maps Handler
   window.initializeMaps = ->
-
     settings = new Jailbreak
     teams = new Teams
 
     teamsMapView = new TeamsMapView
       settings: settings
       teams: teams
+
+    topTeamsCardsView = new TopTeamsCardListiew
+      collection: teams
     
     settings.fetch
       success: ->
@@ -42,3 +45,4 @@ require [
         teams.fetch
           success: ->
             teamsMapView.renderTeamMarkers()
+            topTeamsCardsView.render()

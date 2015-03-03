@@ -1,0 +1,15 @@
+.small-12.medium-6.columns
+  .row.collapse.team-card
+    .small-5.columns
+      .profile
+        a(href="https://jailbreakhq.org/teams/#{slug}").th
+          img(width="125", height="125", src="#{avatar}")
+    .small-7.columns
+      h3 
+        a(href="https://jailbreakhq.org/teams/#{slug}") #{names}
+      h4 #{teamName}
+      if locals.lastCheckin
+        strong #{lastCheckin.location}
+
+      div
+        a.button.primary.radius.tiny Donate
