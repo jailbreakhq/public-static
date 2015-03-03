@@ -1,11 +1,5 @@
 module.exports = (grunt) ->
 
-  # Requirejs two files
-  # grunt.registerTask 'requirejsdeploy', 'RequireJS', (file) ->
-  #   console.log "Running requirejs compile for " + file + ".js"
-  #   grunt.config.set("requirejsFile", file);
-  #   grunt.task.run("requirejs")
-  
   # Project configuration
   grunt.initConfig
     pkg: grunt.file.readJSON "package.json"
