@@ -94,7 +94,6 @@ define [
           @infowindow.setContent marker.html
           @infowindow.open @map, marker
 
-        console.log marker.position
         @markerBounds.extend marker.position
 
       @map.fitBounds(@markerBounds)
