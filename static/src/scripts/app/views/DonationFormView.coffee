@@ -166,9 +166,11 @@ define [
           else
             @donationThankYou()
         .fail (err) =>
-          console.log err
           @submitted = false
-          @donateFormResponse("alert", ["Donation failed: "])
+          if err.status == 500
+            @donateFormResponse("alert", ["We're suffering some technical difficulties please try again later today"])
+          else
+            @donateFormResponse("alert", ["Donation failed: " + err.responseJSON.message])
 
     donationThankYou: =>
       $("#donate-content").slideUp 300, =>
