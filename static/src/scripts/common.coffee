@@ -25,6 +25,7 @@ requirejs.config
     "ladda": "../../../components/ladda/js/ladda"
     "spin": "../../../components/ladda/js/spin"
     "jade.templates": "../../templates/jade"
+    "google.analytics": "//www.google-analytics.com/analytics"
 
   shim:
     underscore:
