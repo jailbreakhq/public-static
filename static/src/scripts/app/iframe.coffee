@@ -8,7 +8,9 @@ require [
   "models/JailbreakModel"
   "views/TeamsMapView"
   "views/TopTeamsCardListView"
-], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView, TopTeamsCardListiew) ->
+  "jquery.countdown"
+  "moment"
+], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView, TopTeamsCardListiew, countdown, moment) ->
   
   $ ->
     # Config Sentry Raven Client
@@ -37,10 +39,14 @@ require [
 
     topTeamsCardsView = new TopTeamsCardListiew
       collection: teams
-    
+
     settings.fetch
       success: ->
         teamsMapView.renderMap()
+
+        if moment().utc().unix() < settings.get 'startTime'
+          $("#header-countdown").countdown "2015/03/07 09:00:00", (event) ->
+            $(this).html event.strftime "Race begins %-D day%!d %H hours %M minutes %S seconds"
 
         teams.fetch
           success: ->

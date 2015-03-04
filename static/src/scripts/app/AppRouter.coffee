@@ -6,7 +6,6 @@ define [
   "views/TeamListView"
   "views/TeamProfileView"
   "views/DonationFormView"
-  "//google-analytics.com/analytics.js"
 ], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView) ->
   class Router extends Backbone.Router
     routes:
@@ -17,7 +16,13 @@ define [
       'donate/:slug':     'donateTeam'
 
     initialize: ->
-      ga 'create', jailbreak.ga_id, 'auto'
+      try
+        require ['//www.google-analytics.com/analytics.js'], (data) ->
+        window.ga 'create', jailbreak.ga_id
+        return
+      catch
+        # do nothing - user might have blocked tracking scripts
+
       @bind 'route', @_trackPageview
 
     index: ->
@@ -59,5 +64,9 @@ define [
       (url.indexOf('iphone') != -1)
 
     _trackPageview: ->
-      url = Backbone.history.getFragment()
-      ga 'send', 'pageview', "/#{url}"
+      try
+        require ['//www.google-analytics.com/analytics.js'], (data) ->
+          url = Backbone.history.getFragment()
+          window.ga 'send', 'pageview', "/#{url}"
+      catch
+        # do nothing - user might have blocked tracking scripts

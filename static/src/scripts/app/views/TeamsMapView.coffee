@@ -5,7 +5,8 @@ define [
   "jade.templates"
   "collections/TeamsCollection"
   "models/JailbreakModel"
-], ($, _, Backbone, jade, Teams, Jailbreak) ->
+  "moment"
+], ($, _, Backbone, jade, Teams, Jailbreak, moment) ->
   class TeamsMapView extends Backbone.View
 
     initialize: (options) =>
@@ -19,8 +20,8 @@ define [
       finalLon = @settings.get 'finalLocationLon'
 
       mapOptions =
-        zoom: 5
-        center: new google.maps.LatLng ((startLat+finalLat)/2), ((startLon+finalLon)/2)
+        zoom: 14
+        center: new google.maps.LatLng startLat, startLon
         mapTypeId: google.maps.MapTypeId.ROADMAP
         streetViewControl: false
         mapTypeControl: false
@@ -41,28 +42,36 @@ define [
           scale: 6
           strokeColor: '#b21c26'
         title: "Start Point"
-        html: "<div class=\"info-window\"><h3>Collins Barracks, Dublin</h3><p>The start point of the Jailbreak 2015 race</p></div>"
-
-      @endMarker = new google.maps.Marker
-        position: new google.maps.LatLng(finalLat, finalLon)
-        map: @map
-        icon:
-          path: google.maps.SymbolPath.CIRCLE
-          scale: 6
-          strokeColor: '#b21c26'
-        title: "Location X"
-        html: "<div class=\"info-window\"><h3>Location X</h3><p>The mystery Location X is no longer a mystery!</p></div>"
+        html: """<div class="info-window"><h3>Collins Barracks, Dublin</h3><p>The start point of the Jailbreak 2015 race</p></div>"""
 
       google.maps.event.addListener @startMarker, 'click', (startMarker) =>
         @infowindow.setContent @startMarker.html
         @infowindow.open @map, @startMarker
 
-      google.maps.event.addListener @endMarker, 'click', (endMarker) =>
-        @infowindow.setContent @endMarker.html
-        @infowindow.open @map, @endMarker
-
       @markerBounds.extend @startMarker.position
-      @markerBounds.extend @endMarker.position
+
+      if @settings.get 'startTime' > moment.utc().unix()
+        # only add marker after the compeition has started
+        @endMarker = new google.maps.Marker
+          position: new google.maps.LatLng(finalLat, finalLon)
+          map: @map
+          icon:
+            path: google.maps.SymbolPath.CIRCLE
+            scale: 6
+            strokeColor: '#b21c26'
+          title: "Location X"
+          html: """<div class="info-window"><h3>Location X</h3><p>The mystery Location X is no longer a mystery!</p></div>"""
+
+        google.maps.event.addListener @endMarker, 'click', (endMarker) =>
+          @infowindow.setContent @endMarker.html
+          @infowindow.open @map, @endMarker
+
+        @markerBounds.extend @endMarker.position
+
+      # used to force minimum zoom if all competitors at the start position
+      @markerBounds.extend (new google.maps.LatLng(53.3471, -6.28789))
+
+      @map.fitBounds(@markerBounds)
 
       @
 
@@ -86,5 +95,7 @@ define [
           @infowindow.open @map, marker
 
         @markerBounds.extend marker.position
+
+      @map.fitBounds(@markerBounds)
 
       @
