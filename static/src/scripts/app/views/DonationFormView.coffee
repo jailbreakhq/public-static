@@ -19,7 +19,7 @@ define [
       @name = options?.name or "JailbreakHQ"
       @teamId = options?.teamId or 0
       @parentView = options?.parent
-      @iphoneRedirect = options?.iphoneRedirect or true
+      @iphoneRedirect = options?.iphoneRedirect or false
       @submitted = false
 
     render: =>
@@ -147,6 +147,7 @@ define [
           contentType: "application/json"
           data: JSON.stringify(attributes)
         ).done (data) =>
+          @l.setProgress 1.0
           if @iphoneRedirect
             window.location = "jailbreak://"
           else
@@ -156,11 +157,11 @@ define [
           @donateFormResponse("alert", "Donation failed: ")
 
     donationThankYou: =>
-      $("#donate-content").animo
-        animation: "fadeOut"
-        duration: 0.5
-        keep: true
-        , =>
-          $("section.content").append jade.donationThankYou()
-          $("#donate-close").click () =>
-            @parentView?.closeDonateVex()
+      $("#donate-content").slideUp 300, =>
+        $("section.content").append jade.donationThankYou()
+        $("#donate-thank-you").slideDown 300
+        $("#donate-close").click () =>
+          if @parentView
+            @parentView.closeDonateVex()
+          else
+            window.location = "https://jailbreakhq.org"
