@@ -8,7 +8,7 @@ ul#donations.donations-list
         |  from #{donation.name} 
         if donation.team
           | to 
-          a(href="/teams/#{donation.team.slug}") #{donation.team.names}
+          a(href="/teams/#{donation.team.slug}") #{donation.team.names} 
           
       span.time
         = moment(donation.time*1000).fromNow()
