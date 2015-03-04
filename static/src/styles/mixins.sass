@@ -2,6 +2,11 @@
 // Mixins
 //
 
+@mixin animation($value)
+  -webkit-animation: $value
+  -moz-animation: $value
+  animation: $value 
+  
 @mixin transition($value)
   -webkit-transition: $value
   -moz-transition: $value

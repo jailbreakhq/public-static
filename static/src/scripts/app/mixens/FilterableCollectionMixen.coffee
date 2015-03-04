@@ -2,7 +2,7 @@ define [
   "jquery"
   "underscore"
 ], ($, _) ->
-  class FilterableCollectionMixen
+  class FilterableCollection
     filters: null
 
     initialize: (data, options) ->

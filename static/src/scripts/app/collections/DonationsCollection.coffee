@@ -10,9 +10,6 @@ define [
   class Donations extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
     model: Donation
 
-    initialize: (data, options) ->
-      super
-
     url: =>
       if @filters
         encodedFilters = encodeURIComponent JSON.stringify @filters
