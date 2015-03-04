@@ -10,6 +10,7 @@ require [
   "views/TopTeamsCardListView"
   "jquery.countdown"
   "moment"
+  "signet"
 ], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView, TopTeamsCardListiew, countdown, moment) ->
   
   $ ->
