@@ -16,12 +16,12 @@ define [
       'donate/:slug':     'donateTeam'
 
     initialize: ->
-      require ['google.analytics'], ((data) ->
+      try
+        require ['//www.google-analytics.com/analytics.js'], (data) ->
         window.ga 'create', jailbreak.ga_id
         return
-      ), ->
-        window.ga = -> # empty function
-          return
+      catch
+        # do nothing - user might have blocked tracking scripts
 
       @bind 'route', @_trackPageview
 
@@ -65,7 +65,8 @@ define [
 
     _trackPageview: ->
       try
-        url = Backbone.history.getFragment()
-        window.ga 'send', 'pageview', "/#{url}"
+        require ['//www.google-analytics.com/analytics.js'], (data) ->
+          url = Backbone.history.getFragment()
+          window.ga 'send', 'pageview', "/#{url}"
       catch
-        # do nothing - track might be disable by user
+        # do nothing - user might have blocked tracking scripts
