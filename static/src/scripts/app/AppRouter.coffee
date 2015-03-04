@@ -6,14 +6,16 @@ define [
   "views/TeamListView"
   "views/TeamProfileView"
   "views/DonationFormView"
-], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView) ->
+  "views/ErrorView"
+], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
       '':                   'index'
       'teams(/)':           'teams'
       'teams/:slug':        'team'
       'donate(/)':          'donate'
-      'donate/:slug':     'donateTeam'
+      'donate/:slug':       'donateTeam'
+      '*notFound':          'notFound'
 
     initialize: ->
       try
@@ -58,6 +60,12 @@ define [
             name: team.get 'names'
             iphoneRedirect: @_isIphoneRedirect()
           $("#body-container").html donateView.render().$el
+
+    notFound: ->
+      errorView = new ErrorView
+        error: 404
+
+      $("#body-container").html errorView.render().$el
 
     _isIphoneRedirect: ->
       url = Backbone.history.getFragment()
