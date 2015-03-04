@@ -6,6 +6,7 @@ require [
   "foundation.topbar"
   "raven"
   "AppRouter"
+  "signet"
 ], ($, _, Backbone, foundation, topbar, Raven, Router) ->
   
   $ ->

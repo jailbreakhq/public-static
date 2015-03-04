@@ -24,6 +24,7 @@ requirejs.config
     "animo": "../../../components/animo.js/animo"
     "ladda": "../../../components/ladda/js/ladda"
     "spin": "../../../components/ladda/js/spin"
+    "signet": "../../../components/signet/signet"
     "jade.templates": "../../templates/jade"
 
   shim:

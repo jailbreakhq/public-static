@@ -16,6 +16,7 @@
     "ladda": "~0.9.7",
     "jquery.payment": "~1.2.2",
     "animo.js": "~1.0.2",
-    "raven-js": "~1.1.16"
+    "raven-js": "~1.1.16",
+    "signet": "https://github.com/HubSpot/signet.git#~0.4.7"
   }
 }
