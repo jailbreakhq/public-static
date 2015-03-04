@@ -19,7 +19,7 @@ define [
       @name = options?.name or "JailbreakHQ"
       @teamId = options?.teamId or 0
       @parentView = options?.parent
-      @iphoneRedirect = options?.iphoneRedirect or true
+      @iphoneRedirect = options?.iphoneRedirect or false
       @submitted = false
 
     render: =>
@@ -38,10 +38,13 @@ define [
 
       @
 
-    donateFormResponse: (type, message) =>
-      $("#stripe-responses").append jade.alert {type: type, message: message}
+    donateFormResponse: (type, messages) =>
+      $("#stripe-responses").html jade.alert {type: type, messages: messages}
       $(@$el).foundation("alert", "reflow")
       @l?.stop()
+
+    clearDonateFormResponse: =>
+      $("#stripe-responses").empty()
 
     validateEmail: (email) ->
       re = /\S+@\S+\.\S+/
@@ -65,44 +68,54 @@ define [
       exp_year = parseInt exp.split("/")[1]?.trim()
 
       # do some form validation
+      errors = []
+
       valid = true
       if not @validateEmail email
+        errors.push("Please provide an email address")
         $(".cc-email", @$el).addClass("error-field")
         valid = false
       else
         $(".cc-email", @$el).removeClass("error-field")
 
       if not $.payment.validateCardNumber(number)
+        errors.push("Check your card number")
         $(".cc-num", @$el).addClass("error-field")
         valid = false
       else
         $(".cc-num", @$el).removeClass("error-field")
 
       if not $.payment.validateCardExpiry(exp_month, exp_year)
+        errors.push("Check your card expiry")
         $(".cc-exp", @$el).addClass("error-field")
         valid = false
       else
         $(".cc-exp", @$el).removeClass("error-field")
 
       if not $.payment.validateCardCVC(cvc)
+        errors.push("Check the CVC number is on the back of your card")
         $(".cc-cvc", @$el).addClass("error-field")
         valid = false
       else
         $(".cc-cvc", @$el).removeClass("error-field")
 
       if not (amount >= 5)
-        @donateFormResponse("alert", "Minimum donation is 5 euro.")
+        errors.push("Minimum donation 5 euro")
         $(".cc-amount", @$el).addClass("error-field")
         valid = false
       else
         $(".cc-amount", @$el).removeClass("error-field")
 
+
       if not valid
+        @donateFormResponse("alert", errors)
         $("#donate-form .content").animo
           animation: "shake-subtle"
           duration: 0.5
         @l.stop()
         return false
+      else
+        @clearDonateFormResponse()
 
       @l.setProgress 0.4
 
@@ -130,7 +143,7 @@ define [
       @l.setProgress 0.7
 
       if response.error
-        @donateFormResponse("alert", response.error.message)
+        @donateFormResponse("alert", [response.error.message])
       else
         attributes =
           amount: @data.amount * 100
@@ -147,20 +160,22 @@ define [
           contentType: "application/json"
           data: JSON.stringify(attributes)
         ).done (data) =>
+          @l.setProgress 1.0
           if @iphoneRedirect
             window.location = "jailbreak://"
           else
             @donationThankYou()
         .fail (err) =>
+          console.log err
           @submitted = false
-          @donateFormResponse("alert", "Donation failed: ")
+          @donateFormResponse("alert", ["Donation failed: "])
 
     donationThankYou: =>
-      $("#donate-content").animo
-        animation: "fadeOut"
-        duration: 0.5
-        keep: true
-        , =>
-          $("section.content").append jade.donationThankYou()
-          $("#donate-close").click () =>
-            @parentView?.closeDonateVex()
+      $("#donate-content").slideUp 300, =>
+        $("section.content").append jade.donationThankYou()
+        $("#donate-thank-you").slideDown 300
+        $("#donate-close").click () =>
+          if @parentView
+            @parentView.closeDonateVex()
+          else
+            window.location = "https://jailbreakhq.org"
