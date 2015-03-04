@@ -5,7 +5,8 @@ define [
   "jade.templates"
   "collections/TeamsCollection"
   "models/JailbreakModel"
-], ($, _, Backbone, jade, Teams, Jailbreak) ->
+  "moment"
+], ($, _, Backbone, jade, Teams, Jailbreak, moment) ->
   class TeamsMapView extends Backbone.View
 
     initialize: (options) =>
@@ -43,23 +44,24 @@ define [
         title: "Start Point"
         html: """<div class="info-window"><h3>Collins Barracks, Dublin</h3><p>The start point of the Jailbreak 2015 race</p></div>"""
 
-      @endMarker = new google.maps.Marker
-        position: new google.maps.LatLng(finalLat, finalLon)
-        map: @map
-        icon:
-          path: google.maps.SymbolPath.CIRCLE
-          scale: 6
-          strokeColor: '#b21c26'
-        title: "Location X"
-        html: """<div class="info-window"><h3>Location X</h3><p>The mystery Location X is no longer a mystery!</p></div>"""
-
       google.maps.event.addListener @startMarker, 'click', (startMarker) =>
         @infowindow.setContent @startMarker.html
         @infowindow.open @map, @startMarker
 
-      google.maps.event.addListener @endMarker, 'click', (endMarker) =>
-        @infowindow.setContent @endMarker.html
-        @infowindow.open @map, @endMarker
+      if @settings.get 'startTime' > moment.utc().unix()
+        @endMarker = new google.maps.Marker
+          position: new google.maps.LatLng(finalLat, finalLon)
+          map: @map
+          icon:
+            path: google.maps.SymbolPath.CIRCLE
+            scale: 6
+            strokeColor: '#b21c26'
+          title: "Location X"
+          html: """<div class="info-window"><h3>Location X</h3><p>The mystery Location X is no longer a mystery!</p></div>"""
+
+        google.maps.event.addListener @endMarker, 'click', (endMarker) =>
+          @infowindow.setContent @endMarker.html
+          @infowindow.open @map, @endMarker
 
       @
 
