@@ -19,7 +19,6 @@ define [
       if options.slug
         @slug = options.slug
 
-
     parse: (response) ->
       lastCheckin = response.lastCheckin
       if lastCheckin
