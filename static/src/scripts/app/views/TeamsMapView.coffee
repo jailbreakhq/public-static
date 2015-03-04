@@ -20,7 +20,7 @@ define [
       finalLon = @settings.get 'finalLocationLon'
 
       mapOptions =
-        zoom: 12
+        zoom: 14
         center: new google.maps.LatLng startLat, startLon
         mapTypeId: google.maps.MapTypeId.ROADMAP
         streetViewControl: false
@@ -48,7 +48,10 @@ define [
         @infowindow.setContent @startMarker.html
         @infowindow.open @map, @startMarker
 
+      @markerBounds.extend @startMarker.position
+
       if @settings.get 'startTime' > moment.utc().unix()
+        # only add marker after the compeition has started
         @endMarker = new google.maps.Marker
           position: new google.maps.LatLng(finalLat, finalLon)
           map: @map
@@ -62,6 +65,13 @@ define [
         google.maps.event.addListener @endMarker, 'click', (endMarker) =>
           @infowindow.setContent @endMarker.html
           @infowindow.open @map, @endMarker
+
+        @markerBounds.extend @endMarker.position
+
+      # used to force minimum zoom if all competitors at the start position
+      @markerBounds.extend (new google.maps.LatLng(53.3471, -6.28789))
+
+      @map.fitBounds(@markerBounds)
 
       @
 
@@ -84,6 +94,9 @@ define [
           @infowindow.setContent marker.html
           @infowindow.open @map, marker
 
+        console.log marker.position
         @markerBounds.extend marker.position
+
+      @map.fitBounds(@markerBounds)
 
       @
