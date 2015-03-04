@@ -34,10 +34,9 @@ define [
 
     teams: ->
       teams = new Teams()
+      teams.fetch()
       teamsView = new TeamListView
         collection: teams
-      teams.fetch
-        success: teamsView.render
       $("#body-container").html teamsView.render().$el
 
     team: (slug) ->

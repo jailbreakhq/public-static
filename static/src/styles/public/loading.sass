@@ -1,0 +1,47 @@
+
+#body-container > .loading
+  margin-top: 118px
+
+.loading
+  width: 200px
+  margin: 20px auto
+  text-align: center
+
+  .ball
+    width: 20px
+    height: 20px
+    background-color: $jb-black
+    border-radius: 50%
+    display: inline-block
+    @include animation(loadingMotion 3s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite)
+   
+  p
+    color: $jb-black
+    margin-top: 5px
+    font-family: sans-serif
+    letter-spacing: 3px
+    font-size: 10px
+    
+@keyframes loadingMotion
+  0%
+    transform: translateX(0) scale(1)
+  25%
+    transform: translateX(-50px) scale(0.3)
+  50%
+    transform: translateX(0) scale(1)
+  75%
+    transform: translateX(50px) scale(0.3)
+  100%
+    transform: translateX(0) scale(1)
+
+@-webkit-keyframes loadingMotion
+  0%
+    transform: translateX(0) scale(1)
+  25%
+    transform: translateX(-50px) scale(0.3)
+  50%
+    transform: translateX(0) scale(1)
+  75%
+    transform: translateX(50px) scale(0.3)
+  100%
+    transform: translateX(0) scale(1)

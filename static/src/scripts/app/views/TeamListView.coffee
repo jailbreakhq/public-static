@@ -12,9 +12,13 @@ define [
       if not options.collection
         new Error("TeamList view needs a collection in it's options")
       @collection = options.collection
+      @.listenTo @collection, "sync", @render
 
     render: =>
-      @$el.html @template()
+      data =
+        loaded: @collection.loaded
+
+      @$el.html @template data
 
       _.each @collection.models, (team) ->
         teamView = new TeamItemView
