@@ -1,0 +1,20 @@
+h3.page-header.show-for-large-up Recent Donations
+ul#donations.donations-list
+  each donation in donations
+    li
+      span
+        em &euro;
+          = Humanize.intComma(donation.amount/100)
+        |  from #{donation.name} 
+        if donation.team
+          | to 
+          a(href="/teams/#{donation.team.slug}") #{donation.team.names} 
+          
+      span.time
+        = moment(donation.time*1000).fromNow()
+  else
+    span There are no donations yet! Why don't you help us out? 
+      a(href="#").donate-button Donate
+
+if totalCount > donations.length
+  p.and-more and #{totalCount-donations.length} other donations

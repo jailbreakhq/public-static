@@ -14,9 +14,12 @@ define [
         new Error("DonationsList view needs a collection in it's options")
       @collection = options.collection
 
+      if options.template
+        @template = options.template
+
     render: =>
       data =
-        donations: _.map @collection.models, (val) -> val.toJSON()
+        donations: _.map @collection.models, (val) -> val.getRenderContext()
         totalCount: @collection.totalCount
       @$el.html @template data
 

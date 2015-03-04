@@ -34,6 +34,7 @@ define [
         success: @renderDonationsList
       @donationsListView = new DonationsListView
         collection: donations
+        template: jade.donations
 
       @render()
 

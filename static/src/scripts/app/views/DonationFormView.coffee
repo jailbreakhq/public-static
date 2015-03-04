@@ -43,7 +43,7 @@ define [
       $(@$el).foundation("alert", "reflow")
       @l?.stop()
 
-    clearDonateFormResponse: =>
+    clearDonateFormResponse: ->
       $("#stripe-responses").empty()
 
     validateEmail: (email) ->

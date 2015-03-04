@@ -4,9 +4,17 @@ define [
   "backbone"
   "mixen"
 ], ($, _, backbone, Mixen) ->
-  class BaseCollectionMixen extends Mixen(Backbone.Collection)
+  class BaseCollection extends Mixen(Backbone.Collection)
     urlRoot: jailbreak.api_host
     totalCount: null
+    loaded: false
+
+    initialize: (data, options) =>
+      @.on "sync", =>
+        @loaded = true
+      , @
+
+      super
 
     url: ->
       super
