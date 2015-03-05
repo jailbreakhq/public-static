@@ -6,8 +6,9 @@ define [
   "views/TeamListView"
   "views/TeamProfileView"
   "views/DonationFormView"
+  "views/LoginView"
   "views/ErrorView"
-], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, ErrorView) ->
+], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
       '':                   'index'
@@ -15,6 +16,7 @@ define [
       'teams/:slug':        'team'
       'donate(/)':          'donate'
       'donate/:slug':       'donateTeam'
+      'login':              'login'
       '*notFound':          'notFound'
 
     initialize: ->
@@ -59,6 +61,10 @@ define [
             name: team.get 'names'
             iphoneRedirect: @_isIphoneRedirect()
           $("#body-container").html donateView.render().$el
+
+    login: =>
+      loginView = new LoginView
+      $("#body-container").html loginView.render().$el
 
     notFound: ->
       errorView = new ErrorView

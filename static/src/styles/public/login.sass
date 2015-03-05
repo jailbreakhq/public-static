@@ -1,0 +1,39 @@
+#login-background
+  min-height: 500px
+  position: relative
+  @include background-gradient(#3D7EAA, #FFE47A)
+
+#login-panel
+  position: absolute
+  top: 50%
+  max-width: 400px
+  @include translateY(-50%)
+  @include card
+  margin: 30px auto
+  left: 0
+  right: 0
+  padding: 30px
+
+#login-form
+  .postfix-round
+    input
+      @include border-radius-top-left(100px)
+      @include border-radius-bottom-left(100px)
+      padding-left: 1rem
+      padding-right: 1rem
+
+    a.postfix
+      @include border-radius-top-right(100px)
+      @include border-radius-bottom-right(100px)
+
+  .round
+    @include border-radius(100px)
+    padding-left: 1rem
+    padding-right: 1rem
+
+  #input-email
+    margin-bottom: 1.25rem
+    margin-top: 1rem
+
+#body-container.login
+  margin-bottom: -10px
