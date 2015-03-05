@@ -11,5 +11,4 @@ define [
 
     url: =>
       url = "/users"
-
       super + url
