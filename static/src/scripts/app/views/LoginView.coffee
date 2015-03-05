@@ -58,11 +58,11 @@ define [
         dataType: "json"
       ).done((data, status) ->
         localStorage.setItem "apiToken", JSON.stringify(data)
-      ).fail( =>
+        Backbone.history.navigate('admin', true)
+      ).fail( ->
         $("#login-form").animo
           animation: "shake-subtle"
           duration: 0.5
-        Backbone.history.navigate('admin', true)
       ).always( =>
         @l.stop()
       )

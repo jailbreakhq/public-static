@@ -14,6 +14,10 @@ define [
         @loaded = true
       , @
 
+      @.on "error", (collection, resp, options) ->
+        if resp.status == 401
+          Backbone.history.navigate "login", true
+
       super
 
     url: ->

@@ -7,8 +7,9 @@ define [
   "views/TeamProfileView"
   "views/DonationFormView"
   "views/LoginView"
+  "views/AdminView"
   "views/ErrorView"
-], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, ErrorView) ->
+], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, AdminView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
       '':                   'index'
@@ -17,6 +18,7 @@ define [
       'donate(/)':          'donate'
       'donate/:slug':       'donateTeam'
       'login':              'login'
+      'admin':              'admin'
       '*notFound':          'notFound'
 
     initialize: ->
@@ -65,6 +67,10 @@ define [
     login: ->
       loginView = new LoginView
       $("#body-container").html loginView.render().$el
+
+    admin: ->
+      adminView = new AdminView
+      $("#body-container").html adminView.render().$el
 
     notFound: ->
       errorView = new ErrorView
