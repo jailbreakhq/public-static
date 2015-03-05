@@ -3,11 +3,13 @@ define [
   "underscore"
   "backbone"
   "jade.templates"
-], ($, _, Backbone, jade) ->
-  class Error extends Backbone.View
+  "ladda"
+  "foundation.alert"
+  "animo"
+], ($, _, Backbone, jade, Ladda) ->
+  class LoginView extends Backbone.View
     template: jade.login
     events:
-      "submit #login-form": "login"
       "click #submit-login": "login"
 
     initialize: ->
@@ -18,5 +20,49 @@ define [
 
       @
 
-    login: (event) ->
-      console.log event
+    login: (event) =>
+      event.preventDefault()
+
+      @l = Ladda.create document.querySelector "#submit-login"
+      @l.start()
+
+      data =
+        email: $('#input-email').val()
+        password: $('#input-password').val()
+
+      valid = true
+      if not data.email
+        $('#input-email').addClass "error-field"
+        valid = false
+      else
+        $('#input-email').removeClass "error-field"
+
+      if not data.password
+        $('#input-password').addClass "error-field"
+        valid = false
+      else
+        $('#input-password').removeClass "error-field"
+
+      if not valid
+        $("#login-form").animo
+          animation: "shake-subtle"
+          duration: 0.5
+        @l.stop()
+        return false
+
+      $.ajax(
+        url: jailbreak.api_host + "/authenticate/login"
+        data: JSON.stringify(data)
+        type: "POST"
+        contentType: "application/json"
+        dataType: "json"
+      ).done((data, status) ->
+        localStorage.setItem "apiToken", JSON.stringify(data)
+      ).fail( =>
+        $("#login-form").animo
+          animation: "shake-subtle"
+          duration: 0.5
+        Backbone.history.navigate('admin', true)
+      ).always( =>
+        @l.stop()
+      )

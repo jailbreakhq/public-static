@@ -62,7 +62,7 @@ define [
             iphoneRedirect: @_isIphoneRedirect()
           $("#body-container").html donateView.render().$el
 
-    login: =>
+    login: ->
       loginView = new LoginView
       $("#body-container").html loginView.render().$el
 
