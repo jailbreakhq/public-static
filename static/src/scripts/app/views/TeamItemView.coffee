@@ -9,9 +9,15 @@ define [
     className: "team"
     template: jade.teamListItem
     
-    initialize: =>
+    initialize: (options) =>
+      if options.template
+        @template = options.template
+      if options.tagName
+        @tagName = options.tagName
       @model.bind "change", @render
 
+      super
+
     render: =>
-      @$el.html @template @model.toJSON()
+      @$el.html @template @model.getRenderContext()
       @

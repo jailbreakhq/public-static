@@ -7,7 +7,9 @@ define [
   class TeamCardView extends Backbone.View
     template: jade.teamCard
     
-    initialize: =>
+    initialize: (options) =>
+      if options.template
+        @template = options.template
       @model.bind "change", @render
 
     render: =>
