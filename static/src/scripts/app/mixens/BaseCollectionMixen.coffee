@@ -3,18 +3,15 @@ define [
   "underscore"
   "backbone"
   "mixen"
-], ($, _, backbone, Mixen) ->
-  class BaseCollection extends Mixen(Backbone.Collection)
+  "mixens/AuthMixen"
+  "mixens/LoadedMixen"
+], ($, _, backbone, Mixen, AuthMixen, LoadedMixen) ->
+  class BaseCollection extends Mixen(LoadedMixen, AuthMixen, Backbone.Collection)
     urlRoot: jailbreak.api_host
     totalCount: null
-    loaded: false
 
-    initialize: (data, options) =>
-      @.on "sync", =>
-        @loaded = true
-      , @
-
-      super
+    initialize: ->
+      super # necessary to not break chain
 
     url: ->
       super

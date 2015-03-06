@@ -2,6 +2,18 @@
 // Mixins
 //
 
+@mixin card
+  padding: 7px 10px;
+  border: 1px solid #E6E6E6;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px 0px
+  color: rgb(85, 85, 85)
+  border-width: 1px
+  border-style: solid
+  border-color: rgb(221, 221, 221)
+  border-bottom-color: rgb(187, 187, 187)
+  background: white
+
 @mixin animation($value)
   -webkit-animation: $value
   -moz-animation: $value
@@ -11,6 +23,11 @@
   -webkit-transition: $value
   -moz-transition: $value
   transition: $value
+
+@mixin translateY($value)
+  -webkit-transform: translateY($value);
+  -ms-transform: translateY($value);
+  transform: translateY($value);
 
 @mixin border-radius($radius)
   -webkit-border-radius:  $radius
@@ -66,3 +83,27 @@
   background: -ms-linear-gradient(left, $color1 $position, $color2 100%); /* IE10+ */
   background: linear-gradient(to right, $color1 $position, $color2 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color1', endColorstr='$color2', GradientType=1); /* IE6-9 */
+
+@mixin border-radius-top-left($radius)
+  -webkit-border-top-left-radius:  $radius
+  -moz-border-top-left-radius:     $radius
+  -ms-border-top-left-radius:      $radius
+  border-top-left-radius:          $radius
+
+@mixin border-radius-bottom-left($radius)
+  -webkit-border-bottom-left-radius:  $radius
+  -moz-border-bottom-left-radius:     $radius
+  -ms-border-bottom-left-radius:      $radius
+  border-bottom-left-radius:          $radius
+  
+@mixin border-radius-top-right($radius)
+  -webkit-border-top-right-radius:  $radius
+  -moz-border-top-right-radius:     $radius
+  -ms-border-top-right-radius:      $radius
+  border-top-right-radius:          $radius
+
+@mixin border-radius-bottom-right($radius)
+  -webkit-border-bottom-right-radius:  $radius
+  -moz-border-bottom-right-radius:     $radius
+  -ms-border-bottom-right-radius:      $radius
+  border-bottom-right-radius:          $radius
