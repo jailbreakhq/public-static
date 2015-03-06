@@ -19,8 +19,6 @@ define [
 
       @parent = options.parent
 
-      console.log @parent
-
       @position = new Position
       @listenTo @position, "change", @renderInputs
 
@@ -100,8 +98,6 @@ define [
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address)
         infowindow.open map, marker
 
-        console.log place
-
         location = place.name
         if place.address_components[3]
           location += ", " + place.address_components[3].long_name
@@ -152,7 +148,6 @@ define [
           l.stop()
           @parent.closeVex()
         error: (model, error) =>
-          console.log error
           l.stop()
           $("form", @$el).animo
             animation: "shake-subtle"
