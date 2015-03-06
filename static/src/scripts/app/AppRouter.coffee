@@ -17,8 +17,8 @@ define [
       'teams/:slug':        'team'
       'donate(/)':          'donate'
       'donate/:slug':       'donateTeam'
-      'login':              'login'
-      'admin':              'admin'
+      'login(/)':           'login'
+      'admin(/)':           'admin'
       '*notFound':          'notFound'
 
     initialize: ->

@@ -3,14 +3,15 @@ define [
   "underscore"
   "backbone"
   "jade.templates"
-], ($, _, Backbone, jade) ->
-  class LoginView extends Backbone.View
+  "mixen"
+  "mixens/RequiresLoginMixen"
+], ($, _, Backbone, jade, Mixen, RequiresLoginMixen) ->
+  class LoginView extends Mixen(RequiresLoginMixen, Backbone.View)
     template: jade.admin
 
-    initialize: (options) ->
-      #
-
     render: =>
+      super
+      
       @$el.html @template()
 
       @
