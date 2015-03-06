@@ -10,6 +10,8 @@
     <meta name="signet:authors" content="Kevin Baker, Shayan Yousefizadeh">
     <meta name="signet:links" content="https://twitter.com/__kbaker__, https://github.com/Specialkbyte, https://twitter.com/Shayanzadeh, https://github.com/Shayanzadeh, https://github.com/jailbreakhq">
 
+    <meta name="apple-itunes-app" content="app-id=971420182">
+
     <!-- favicon made using realfavicongenerator.net -->
     <!--(if target dev)><!-->
       <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
@@ -92,7 +94,8 @@
           <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
-              <li id="spin-topbar-logo" class="topbar-logo">Spin 1038</li>
+              <li id="spin-topbar-logo" class="topbar-logo"><a href="http://www.spin1038.com/">Spin 1038</a></li>
+              <li id="law-soc-topbar-logo" class="topbar-logo"><a href="http://tcdlawsoc.com/">TCD Law Soc</a></li>
               <li id="amnsety-topbar-logo" class="topbar-logo"><a href="http://www.amnesty.ie/" target="_blank">Amnesty</a></li>
               <li id="svp-topbar-logo" class="topbar-logo"><a href="http://www.svp.ie/Home.aspx" target="_blank">SVP</a></li>
               <li class="active"><a href="/donate">Donate Now</a></li>
@@ -124,10 +127,10 @@
           <div class="small-12 medium-6 columns">
             <ul>
               <li>
-                <a href="//twitter.com/jailbreakhq"><i class="fa fa-twitter"></i> @JailbreakHQ</a>
+                <a href="https://twitter.com/jailbreakhq"><i class="fa fa-twitter"></i> @JailbreakHQ</a>
               </li>
               <li>
-                <a href="//facebook.com/JailbreakHQ/"><i class="fa fa-facebook"></i> JailbreakHQ</a>
+                <a href="https://facebook.com/JailbreakHQ/"><i class="fa fa-facebook"></i> JailbreakHQ</a>
               </li>
               <li>
                 <a href="https://www.youtube.com/user/Jailbreak14Videos"><i class="fa fa-youtube"></i> Channel</a>
@@ -164,6 +167,7 @@
     <!--(if target dev)><!-->
       <script>
         jailbreak.env = "LOCAL";
+        jailbreak.url = "local.jailbreakhq.org"
         jailbreak.api_host = "http://localhost:8090";
         jailbreak.ga_id = "UA-58463386-2";
       </script>
@@ -172,6 +176,7 @@
     <!--(if target qa)><!-->
       <script>
         jailbreak.env = "QA";
+        jailbreak.url = "qa.jailbreakhq.org"
         jailbreak.api_host = "https://qa.jbapi.net";
         jailbreak.ga_id = "UA-58463386-2";
         jailbreak.sentry.enabled = true;
@@ -182,6 +187,7 @@
     <!--(if target prod)><!-->
       <script>
         jailbreak.env = "PROD";
+        jailbreak.url = "jailbreakhq.org"
         jailbreak.api_host = "https://jbapi.net";
         jailbreak.ga_id = "UA-58463386-1";
         jailbreak.sentry.enabled = true;
