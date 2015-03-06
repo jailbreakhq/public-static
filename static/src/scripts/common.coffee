@@ -25,6 +25,7 @@ requirejs.config
     "ladda": "../../../components/ladda/js/ladda"
     "spin": "../../../components/ladda/js/spin"
     "signet": "../../../components/signet/signet"
+    "async": "../../../components/requirejs-plugins/src/async"
     "jade.templates": "../../templates/jade"
 
   shim:

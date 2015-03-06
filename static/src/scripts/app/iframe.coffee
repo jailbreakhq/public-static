@@ -24,32 +24,26 @@ require [
     $(document).foundation()
 
     # Load google map by inserting new script into the page
-    script = document.createElement 'script'
-    script.type = 'text/javascript'
-    script.src = 'http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initializeMaps'
-    document.body.appendChild script
+    require ["async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"], (data) ->
+      settings = new Jailbreak
+      teams = new Teams
 
-  # Google Maps Handler
-  window.initializeMaps = ->
-    settings = new Jailbreak
-    teams = new Teams
+      teamsMapView = new TeamsMapView
+        settings: settings
+        teams: teams
 
-    teamsMapView = new TeamsMapView
-      settings: settings
-      teams: teams
+      topTeamsCardsView = new TopTeamsCardListiew
+        collection: teams
 
-    topTeamsCardsView = new TopTeamsCardListiew
-      collection: teams
+      settings.fetch
+        success: ->
+          teamsMapView.renderMap()
 
-    settings.fetch
-      success: ->
-        teamsMapView.renderMap()
+          if moment().utc().unix() < settings.get 'startTime'
+            $("#header-countdown").countdown "2015/03/07 09:00:00", (event) ->
+              $(this).html event.strftime "Race begins %-D day%!d %H hours %M minutes %S seconds"
 
-        if moment().utc().unix() < settings.get 'startTime'
-          $("#header-countdown").countdown "2015/03/07 09:00:00", (event) ->
-            $(this).html event.strftime "Race begins %-D day%!d %H hours %M minutes %S seconds"
-
-        teams.fetch
-          success: ->
-            teamsMapView.renderTeamMarkers()
-            topTeamsCardsView.render()
+          teams.fetch
+            success: ->
+              teamsMapView.renderTeamMarkers()
+              topTeamsCardsView.render()

@@ -16,6 +16,8 @@ define [
         @tagName = options.tagName
       @model.bind "change", @render
 
+      super
+
     render: =>
       @$el.html @template @model.getRenderContext()
       @

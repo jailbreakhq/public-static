@@ -25,8 +25,8 @@ define [
     initialize: ->
       try
         require ['//www.google-analytics.com/analytics.js'], (data) ->
-        window.ga 'create', jailbreak.ga_id
-        return
+          window.ga 'create', jailbreak.ga_id
+          return
       catch
         # do nothing - user might have blocked tracking scripts
 

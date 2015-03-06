@@ -1,0 +1,17 @@
+.row
+  .small-2.columns
+    label(for="input-lat").right.inline Latitude
+  .small-4.columns
+    input(type="text", value="#{lat}").radius#input-lat
+
+  .small-2.columns
+    label(for="input-lon").right.inline Longitude
+  .small-4.columns
+    input(type="text", value="#{lon}").radius#input-lon
+
+label(for="input-location") Location
+  input(type="text", placeholder="Paris, France", value="#{location}").radius#input-location
+
+label(for="input-location") Status
+  input(type="text", placeholder="What are they up to now?").radius#input-status
+
