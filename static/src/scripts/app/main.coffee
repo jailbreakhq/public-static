@@ -7,6 +7,7 @@ require [
   "raven"
   "AppRouter"
   "signet"
+  "async"
 ], ($, _, Backbone, foundation, topbar, Raven, Router) ->
   
   $ ->
