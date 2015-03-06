@@ -11,6 +11,7 @@ require [
   "jquery.countdown"
   "moment"
   "signet"
+  "async"
 ], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView, TopTeamsCardListiew, countdown, moment) ->
   
   $ ->
