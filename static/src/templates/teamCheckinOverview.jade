@@ -1,0 +1,34 @@
+td
+  if locals.lastCheckin
+    if moment().utc().unix() > (lastCheckin.time+21600)
+      .label.round.alert
+        i.fa.fa-times-circle
+    else if moment().utc().unix() > (lastCheckin.time+10800)
+      .label.round.warning
+        i.fa.fa-exclamation-circle
+    else
+      .label.round.success
+        i.fa.fa-check-circle
+  else
+    .label.round.info
+      i.fa.fa-circle
+td
+  strong
+    = teamNumber
+td
+  strong
+    = names 
+td
+  .label(class="#{university.toLowerCase()}")
+    = university
+td
+  = teamName
+td
+  if locals.lastCheckin
+    | #{lastCheckin.location}
+td
+  if locals.lastCheckin
+    = moment(lastCheckin.time*1000).fromNow()
+td
+  if locals.lastCheckin
+    = lastCheckin.status

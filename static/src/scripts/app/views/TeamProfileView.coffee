@@ -35,7 +35,7 @@ define [
             success: @renderDonationsList
 
     render: =>
-      @$el.html @template @model.toJSON()
+      @$el.html @template @model.getRenderContext()
 
       $(document).foundation() # tabs
 

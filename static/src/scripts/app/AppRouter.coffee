@@ -1,6 +1,7 @@
 define [
   "backbone",
   "collections/TeamsCollection"
+  "collections/TeamsByCheckinCollection"
   "models/TeamModel"
   "views/IndexView"
   "views/TeamListView"
@@ -9,7 +10,7 @@ define [
   "views/LoginView"
   "views/AdminView"
   "views/ErrorView"
-], (Backbone, Teams, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, AdminView, ErrorView) ->
+], (Backbone, Teams, TeamsByCheckin, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, AdminView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
       '':                   'index'
@@ -69,7 +70,10 @@ define [
       $("#body-container").html loginView.render().$el
 
     admin: ->
+      teamsByCheckin = new TeamsByCheckin
+      teamsByCheckin.fetch()
       adminView = new AdminView
+        teams: teamsByCheckin
       $("#body-container").html adminView.render().$el
 
     notFound: ->

@@ -8,6 +8,8 @@ define [
     template: jade.teamCard
     
     initialize: =>
+      if options.template
+        @template = options.template
       @model.bind "change", @render
 
     render: =>
