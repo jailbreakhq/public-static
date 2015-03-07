@@ -1,4 +1,4 @@
-.feed-item
+.feed-item.donate
   header
     span.icon
       i.fa.fa-heart
@@ -7,6 +7,13 @@
         = moment(time*1000).fromNow()
       else
         = moment().fromNow()
+  if locals.team
+    .team-info
+      img(src="#{team.avatar}", width="50", height="50").radius
+      h4
+        a(href="/teams/#{team.slug}")
+          | #{team.names}
+          span.label.round(class="#{team.university.toLowerCase()}") #{team.university}
   if locals.description
     p.description 
       = description
@@ -15,4 +22,4 @@
       if locals.linkText
         = linkText
       else
-        | Go
+        | Donate

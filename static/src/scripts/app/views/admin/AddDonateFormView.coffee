@@ -3,19 +3,19 @@ define [
   "underscore"
   "backbone"
   "jade.templates"
+  "models/TeamModel"
   "models/feed/DonateEventModel"
   "views/feed/DonateView"
   "ladda"
   "messenger"
   "select2"
-], ($, _, Backbone, jade, DonateEvent, DonateView, Ladda, Messenger, Select2) ->
+], ($, _, Backbone, jade, Team, DonateEvent, DonateView, Ladda, Messenger, Select2) ->
   class AddSocialForm extends Backbone.View
     template: jade.adminAddDonate
     events:
       "click #submit-add-donate": "addDonate"
       "input #input-donate-text": "updateDonateText"
       "input #input-donate-description": "updateDonateDescription"
-      "input #input-donate-team-id": "updateDonateTeamId"
     
     initialize: (options) =>
       @teams = options.teams
@@ -31,10 +31,9 @@ define [
 
       context =
         teams: teamsContext
-      #console.log context.teams
       @$el.html @template context
 
-      $("select", @$el).select2()
+      $("select", @$el).select2().on("change", @updateDonateTeamId)
 
       @
 
@@ -49,8 +48,14 @@ define [
     updateDonateDescription: (event) ->
       @model.set 'description', $("#input-donate-description", @$el).val()
 
-    updateDonateTeamId: (event) ->
-      @model.set 'temId', $("#input-donate-team-id", @$el).val()
+    updateDonateTeamId: (event) =>
+      team = new Team
+        id: event.val
+      team.fetch
+        success: (model, response) =>
+          @model.set 'team', model
+
+      @model.set 'teamId', event.val
 
     addDonate: (event) ->
       event.preventDefault()

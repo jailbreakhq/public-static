@@ -6,6 +6,8 @@ define [
   "mixens/BaseModelMixen"
 ], ($, _, Backbone, Mixen, BaseModelMixen) ->
   class DonateEvent extends Mixen(BaseModelMixen)
+    defaults:
+      linkText: "Donate"
 
     initialize: (options) ->
       super
@@ -14,4 +16,8 @@ define [
       jailbreak.api_host + "/events/donates"
 
     getRenderContext: ->
-      @.toJSON()
+      donate = @.toJSON()
+      if @.has('team')
+        donate.team = @.get('team').toJSON()
+
+      donate
