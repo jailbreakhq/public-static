@@ -8,9 +8,10 @@ define [
   "views/TeamProfileView"
   "views/DonationFormView"
   "views/LoginView"
-  "views/AdminView"
+  "views/admin/MainView"
+  "views/admin/AddFeedView"
   "views/ErrorView"
-], (Backbone, Teams, TeamsByCheckin, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, AdminView, ErrorView) ->
+], (Backbone, Teams, TeamsByCheckin, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, AdminView, AdminFeedView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
       '':                   'index'
@@ -20,6 +21,7 @@ define [
       'donate/:slug':       'donateTeam'
       'login(/)':           'login'
       'admin(/)':           'admin'
+      'admin/feed(/)':      'adminFeed'
       '*notFound':          'notFound'
 
     initialize: ->
@@ -75,6 +77,10 @@ define [
       adminView = new AdminView
         teams: teamsByCheckin
       $("#body-container").html adminView.render().$el
+
+    adminFeed: ->
+      feedView = new AdminFeedView
+      $("#body-container").html feedView.render().$el
 
     notFound: ->
       errorView = new ErrorView

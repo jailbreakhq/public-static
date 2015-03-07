@@ -25,6 +25,8 @@ requirejs.config
     "ladda": "../../../components/ladda/js/ladda"
     "spin": "../../../components/ladda/js/spin"
     "signet": "../../../components/signet/signet"
+    "messenger": "../../../components/messenger/build/js/messenger"
+    "select2": "../../../components/select2/select2"
     "async": "../../../components/requirejs-plugins/src/async"
     "jade.templates": "../../templates/jade"
 
@@ -49,6 +51,18 @@ requirejs.config
 
     humanize:
       exports: "Humanize"
+
+    messenger:
+      deps: [
+        "jquery"
+      ]
+      exports: "Messenger"
+
+    select2:
+      deps: [
+        "jquery"
+      ]
+      exports: "Select2"
 
     foundation:
       deps: [

@@ -4,9 +4,13 @@ define [
   "backbone"
   "mixen"
   "models/TeamModel"
-], ($, _, Backbone, Mixen, Team) ->
-  class Donation extends Mixen(Backbone.Model)
+  "mixens/BaseModelMixen"
+], ($, _, Backbone, Mixen, Team, BaseModelMixen) ->
+  class Checkin extends Mixen(BaseModelMixen)
     
+    initialize: (options) ->
+      super
+
     parse: (response) ->
       team = response.team
       if team

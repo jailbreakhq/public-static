@@ -25,7 +25,8 @@ define [
 
     initialize: (data, options) ->
       @.on "error", (collection, resp, options) ->
-        if resp.status == 401
+        if resp.status == 401 or resp.status == 419
+          # unauthorized or authentication token expired
           Backbone.history.navigate "login", true
           localStorage.removeItem("apiToken")
 

@@ -6,9 +6,10 @@ require [
   "foundation.topbar"
   "raven"
   "AppRouter"
+  "messenger"
   "signet"
   "async"
-], ($, _, Backbone, foundation, topbar, Raven, Router) ->
+], ($, _, Backbone, foundation, topbar, Raven, Router, Messenger) ->
   
   $ ->
     # Config Sentry Raven Client
@@ -24,11 +25,14 @@ require [
     AppRouter = new Router()
 
     # Clean up after any previous runs
-    window.location.hash = ''
+    window.location.hash = ""
     Backbone.history.stop()
 
     Backbone.history.start
       pushState: true
+
+    Messenger.options =
+      theme: "flat"
 
     # hook all links on the page
     $(document).on "click", "a[href^='/']", (event) ->

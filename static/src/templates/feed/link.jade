@@ -1,0 +1,21 @@
+.feed-item
+  header
+    span.icon
+      i.fa.fa-link
+    span.time
+      if locals.time
+        = moment(time*1000).fromNow()
+      else
+        = moment().fromNow()
+  if locals.photoUrl
+    .media
+      img(src="#{photoUrl}").photo
+  if locals.description
+    p.description 
+      = description
+  .footer.clearfix
+    a(href="#{url}").button.round.right
+      if locals.linkText
+        = linkText
+      else
+        | Go

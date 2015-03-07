@@ -5,12 +5,13 @@ define [
   "mixen"
   "mixens/BaseModelMixen"
 ], ($, _, Backbone, Mixen, BaseModelMixen) ->
-  class Checkin extends Mixen(BaseModelMixen)
+  class Link extends Mixen(BaseModelMixen)
 
     initialize: (options) ->
-      @teamId = options.teamId
-
       super
 
     url: ->
-      jailbreak.api_host + "/teams/" + @teamId + "/checkins"
+      jailbreak.api_host + "/events/links"
+
+    getRenderContext: ->
+      @.toJSON()
