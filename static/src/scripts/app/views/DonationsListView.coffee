@@ -21,7 +21,6 @@ define [
       data =
         donations: _.map @collection.models, (val) -> val.getRenderContext()
         totalCount: @collection.totalCount
-      console.log data
       @$el.html @template data
 
       @
