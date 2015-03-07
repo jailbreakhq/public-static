@@ -20,7 +20,7 @@ define [
       if options.tagName
         @tagName = options.tagName
 
-      @model.bind "change", @render
+      @model.bind "change sync", @render
 
       super
 

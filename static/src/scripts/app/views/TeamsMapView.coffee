@@ -10,10 +10,27 @@ define [
   class TeamsMapView extends Backbone.View
 
     initialize: (options) =>
+      @loadedMaps = false
       @settings = options.settings
       @teams = options.teams
 
+      @listenTo @settings, "sync", @renderMap
+      @listenTo @teams, "sync", @renderTeamMarkers
+
+      @mapElement = options.mapElement or "map-canvas"
+
+    googleMapsLoaded: =>
+      @loadedMaps = true
+      if @settingsLoaded
+        @renderMap()
+      if @teamsLoaded
+        @renderTeamMarkers()
+
     renderMap: =>
+      if not @loadedMaps
+        @settingsLoaded = true
+        return
+
       startLat = @settings.get 'startLocationLat'
       startLon = @settings.get 'startLocationLon'
       finalLat = @settings.get 'finalLocationLat'
@@ -28,7 +45,7 @@ define [
         panControl: false
         zoomControl: true
       
-      @map = new google.maps.Map document.getElementById('map-canvas'), mapOptions
+      @map = new google.maps.Map document.getElementById(@mapElement), mapOptions
       @markerBounds = new google.maps.LatLngBounds()
       @infowindow = new google.maps.InfoWindow
         content: "Loading..."
@@ -50,23 +67,22 @@ define [
 
       @markerBounds.extend @startMarker.position
 
-      if @settings.get 'startTime' > moment.utc().unix()
-        # only add marker after the compeition has started
-        @endMarker = new google.maps.Marker
-          position: new google.maps.LatLng(finalLat, finalLon)
-          map: @map
-          icon:
-            path: google.maps.SymbolPath.CIRCLE
-            scale: 6
-            strokeColor: '#b21c26'
-          title: "Location X"
-          html: """<div class="info-window"><h3>Location X</h3><p>The mystery Location X is no longer a mystery!</p></div>"""
+      # only add marker after the compeition has started
+      @endMarker = new google.maps.Marker
+        position: new google.maps.LatLng(finalLat, finalLon)
+        map: @map
+        icon:
+          path: google.maps.SymbolPath.CIRCLE
+          scale: 6
+          strokeColor: '#b21c26'
+        title: "Location X"
+        html: """<div class="info-window"><h3>Location X</h3><p>The mystery Location X is somewhere in the Balkans!</p></div>"""
 
-        google.maps.event.addListener @endMarker, 'click', (endMarker) =>
-          @infowindow.setContent @endMarker.html
-          @infowindow.open @map, @endMarker
+      google.maps.event.addListener @endMarker, 'click', (endMarker) =>
+        @infowindow.setContent @endMarker.html
+        @infowindow.open @map, @endMarker
 
-        @markerBounds.extend @endMarker.position
+      @markerBounds.extend @endMarker.position
 
       # used to force minimum zoom if all competitors at the start position
       @markerBounds.extend (new google.maps.LatLng(53.3471, -6.28789))
@@ -76,6 +92,10 @@ define [
       @
 
     renderTeamMarkers: =>
+      if not @loadedMaps
+        @teamsLoaded = true
+        return false
+
       markers = []
 
       _.each @teams.models, (team) =>

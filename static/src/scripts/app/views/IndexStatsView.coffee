@@ -6,13 +6,13 @@ define [
   "views/DonationFormView"
   "vex"
 ], ($, _, Backbone, jade, DonationFormView, vex) ->
-  class TeamItem extends Backbone.View
+  class IndexStats extends Backbone.View
     template: jade.indexStats
     events:
       "click .donate-button": "donate"
     
     initialize: =>
-      @model.bind "change", @render
+      @listenTo @model, "sync change", @render
 
     render: =>
       percent = (((@model.get('amountRaised') / 100) / 100000) * 100) or 0

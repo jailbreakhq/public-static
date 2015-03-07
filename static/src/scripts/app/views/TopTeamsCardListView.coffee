@@ -12,6 +12,8 @@ define [
         new Error("TopTeamsCardListView needs a collection in it's options")
       @collection = options.collection
 
+      @listenTo @collection, "sync", @render
+
     render: =>
       top = _.first @collection.models, 2
       _.each top, (team) ->

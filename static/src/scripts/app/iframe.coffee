@@ -8,11 +8,10 @@ require [
   "models/JailbreakModel"
   "views/TeamsMapView"
   "views/TopTeamsCardListView"
-  "jquery.countdown"
   "moment"
   "signet"
   "async"
-], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView, TopTeamsCardListiew, countdown, moment) ->
+], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView, TopTeamsCardListiew, moment) ->
   
   $ ->
     # Config Sentry Raven Client
@@ -25,26 +24,18 @@ require [
     $(document).foundation()
 
     # Load google map by inserting new script into the page
-    require ["async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"], (data) ->
-      settings = new Jailbreak
-      teams = new Teams
+    @settings = new Jailbreak
+    @settings.fetch()
 
-      teamsMapView = new TeamsMapView
-        settings: settings
-        teams: teams
+    @teams = new Teams
+    @teams.fetch()
 
-      topTeamsCardsView = new TopTeamsCardListiew
-        collection: teams
+    @teamsMapView = new TeamsMapView
+      settings: @settings
+      teams: @teams
 
-      settings.fetch
-        success: ->
-          teamsMapView.renderMap()
+    topTeamsCardsView = new TopTeamsCardListiew
+      collection: @teams
 
-          if moment().utc().unix() < settings.get 'startTime'
-            $("#header-countdown").countdown "2015/03/07 09:00:00", (event) ->
-              $(this).html event.strftime "Race begins %-D day%!d %H hours %M minutes %S seconds"
-
-          teams.fetch
-            success: ->
-              teamsMapView.renderTeamMarkers()
-              topTeamsCardsView.render()
+    require ["async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"], (data) =>
+      @teamsMapView.googleMapsLoaded()

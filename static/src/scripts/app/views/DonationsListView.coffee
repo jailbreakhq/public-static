@@ -14,6 +14,8 @@ define [
         new Error("DonationsList view needs a collection in it's options")
       @collection = options.collection
 
+      @listenTo @collection, "sync", @render
+
       if options.template
         @template = options.template
 
