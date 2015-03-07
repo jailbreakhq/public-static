@@ -3,11 +3,11 @@ define [
   "underscore"
   "backbone"
   "jade.templates"
-  "models/feed/LinkModel"
+  "models/feed/LinkEventModel"
   "views/feed/LinkView"
   "ladda"
   "messenger"
-], ($, _, Backbone, jade, Link, LinkView, Ladda, Messenger) ->
+], ($, _, Backbone, jade, LinkEvent, LinkView, Ladda, Messenger) ->
   class AddLinkForm extends Backbone.View
     template: jade.adminAddLink
     events:
@@ -18,7 +18,7 @@ define [
       "input #input-link-photo-url": "updateLinkPhotoUrl"
     
     initialize: (options) =>
-      @link = new Link
+      @link = new LinkEvent
 
       @.listenTo @link, "change", @renderPreview
 
@@ -76,7 +76,7 @@ define [
         return false
 
       @link.save {},
-        success: (model, response) =>
+        success: (model, response) ->
           Messenger().post "Link posted to news feed"
           l.stop()
         error: (model, error) =>

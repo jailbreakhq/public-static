@@ -4,8 +4,8 @@ define [
   "backbone"
   "jade.templates"
 ], ($, _, Backbone, jade) ->
-  class LinkView extends Backbone.View
-    template: jade.feedLink
+  class DonateView extends Backbone.View
+    template: jade.feedDonate
     
     initialize: (options) =>
       @model.bind "change", @render

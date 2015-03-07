@@ -1,0 +1,28 @@
+.row
+  .small-12.columns
+    h3.page-header Add Donate Button
+    p.page-header-desc Inserts a donate button into the news feed. It can be for a specific team or the general JailbreakHQ pot
+
+.row
+  .small-12.medium-6.columns
+    form#add-donate-form
+
+      label(for="input-donate-text") Button Text
+        input(type="text", maxlength="100").radius#input-donate-text
+
+      label(for="input-donate-description") Description
+        textarea.radius#input-donate-description
+
+      label(for="input-donate-team-id") Team
+        select.radius
+          option(value="0") JailbreakHQ Central Fund
+          //-each team in teams
+            option(value="#{team.id}") #{team.teamNumber} #{team.names}
+
+      .clearfix
+        button(data-style="slide-right").small.round.right.ladda-button#submit-add-donate
+          | Add Donate Button
+
+  .small-12.medium-6.columns
+    #donate-preview
+      .preview-placeholder Preview

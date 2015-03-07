@@ -52,6 +52,9 @@ requirejs.config
       exports: "Humanize"
 
     messenger:
+      deps: [
+        "jquery"
+      ]
       exports: "Messenger"
 
     foundation:

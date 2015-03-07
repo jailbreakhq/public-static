@@ -19,8 +19,10 @@
       label(for="input-link-photo-url") Photo URL
         input(type="url").radius#input-link-photo-url
 
-       button(data-style="slide-right").small.round.ladda-button#submit-add-link
-        | Add Link
+      .clearfix
+        button(data-style="slide-right").small.round.right.ladda-button#submit-add-link
+          | Add Link
 
   .small-12.medium-6.columns
     #link-preview
+      .preview-placeholder Preview
