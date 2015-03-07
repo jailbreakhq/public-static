@@ -54,7 +54,7 @@ define [
       data =
         linkText: $("#input-donate-text", @$el).val()
         description: $("#input-donate-description", @$el).val()
-        teamId: $("#input-donate-team-id", @$el).val()
+        teamId: $("#input-donate-team-id", @$el).val() or null
 
       l = Ladda.create document.getElementById "submit-add-donate"
       l.start()
