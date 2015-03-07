@@ -7,8 +7,8 @@ define [
   "models/CheckinModel"
   "ladda"
 ], ($, _, Backbone, jade, Position, Checkin, Ladda) ->
-  class AddCheckin extends Backbone.View
-    template: jade.addCheckin
+  class AddCheckinForm extends Backbone.View
+    template: jade.adminAddCheckin
     events:
       "click #submit-add-checkin": "addCheckin"
     
@@ -36,7 +36,7 @@ define [
       @
 
     renderInputs: =>
-      $("#position-inputs", @$el).html jade.addCheckinInputs @position.toJSON()
+      $("#position-inputs", @$el).html jade.adminAddCheckinInputs @position.toJSON()
 
     renderMap: =>
       if @team.has 'lastCheckin'
@@ -154,7 +154,6 @@ define [
         success: (model, response) =>
           checkin.set 'distanceToX', response.distanceToX
           checkin.set 'id', response.id
-          console.log checkin.toJSON()
           @team.set 'lastCheckin', checkin
           l.stop()
           @parent.closeVex()

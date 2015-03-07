@@ -18,6 +18,7 @@
     "animo.js": "~1.0.2",
     "raven-js": "~1.1.16",
     "signet": "https://github.com/HubSpot/signet.git#~0.4.7",
-    "requirejs-plugins": "~1.0.3"
+    "requirejs-plugins": "~1.0.3",
+    "messenger": "~1.4.1"
   }
 }

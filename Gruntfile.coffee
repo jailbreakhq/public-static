@@ -55,8 +55,12 @@ module.exports = (grunt) ->
           processName: (filename) ->
             name = filename.replace ".jade", ""
             name = name.replace "static/src/templates/", ""
-            name = name.replace "/", "."
-            return name
+            parts = name.split "/"
+            if parts.length > 1
+              finalName = parts[0] + parts[1].charAt(0).toUpperCase() + parts[1].substr(1)
+            else
+              finalName = name
+            return finalName
           data:
             debug: false
         files:

@@ -7,9 +7,7 @@ define [
   "vex"
 ], ($, _, Backbone, jade, AddCheckinView, vex) ->
   class TeamItem extends Backbone.View
-    tagName: "li"
-    className: "team"
-    template: jade.teamListItem
+    template: jade.feedLink
     events:
       "click .add-checkin": "addCheckin"
     

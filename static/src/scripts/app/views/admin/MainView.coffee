@@ -8,7 +8,7 @@ define [
   "views/TeamItemView"
 ], ($, _, Backbone, jade, Mixen, RequiresLoginMixen, TeamItemView) ->
   class AdminView extends Mixen(RequiresLoginMixen, Backbone.View)
-    template: jade.admin
+    template: jade.adminMain
 
     initialize: (options) ->
       @teams = options.teams

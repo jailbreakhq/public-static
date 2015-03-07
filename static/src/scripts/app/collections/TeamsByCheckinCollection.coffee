@@ -16,5 +16,4 @@ define [
       super + url
 
     comparator: (item) ->
-      console.log item
       return item.get('lastCheckin')?.get('time')
