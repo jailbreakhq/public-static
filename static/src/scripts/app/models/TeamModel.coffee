@@ -4,20 +4,23 @@ define [
   "backbone"
   "mixen"
   "models/CheckinModel"
-], ($, _, Backbone, Mixen, Checkin) ->
-  class Team extends Mixen(Backbone.Model)
-    url: =>
-      if @slug
-        jailbreak.api_host + "/teams/slug/" + @slug
-      else
-        jailbreak.api_host + "/teams/" + @.get("id")
-
+  "mixens/BaseModelMixen"
+], ($, _, Backbone, Mixen, Checkin, BaseModelMixen) ->
+  class Team extends Mixen(BaseModelMixen)
     defaults:
       avatar: "https://static.jailbreakhq.org/avatars/jb-default-avatar.jpg"
 
     initialize: (options) =>
       if options.slug
         @slug = options.slug
+
+      super
+
+    url: =>
+      if @slug
+        jailbreak.api_host + "/teams/slug/" + @slug
+      else
+        jailbreak.api_host + "/teams/" + @.get("id")
 
     parse: (response) ->
       lastCheckin = response.lastCheckin

@@ -10,7 +10,11 @@ define [
   class TeamsByCheckin extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
     model: Team
 
-    url: =>
+    url: ->
       url = "/teams/lastcheckin"
 
       super + url
+
+    comparator: (item) ->
+      console.log item
+      return item.get('lastCheckin')?.get('time')

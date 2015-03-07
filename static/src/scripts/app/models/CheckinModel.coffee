@@ -3,11 +3,14 @@ define [
   "underscore"
   "backbone"
   "mixen"
-], ($, _, Backbone, Mixen) ->
-  class Checkin extends Mixen(Backbone.Model)
+  "mixens/BaseModelMixen"
+], ($, _, Backbone, Mixen, BaseModelMixen) ->
+  class Checkin extends Mixen(BaseModelMixen)
 
     initialize: (options) ->
       @teamId = options.teamId
+
+      super
 
     url: ->
       jailbreak.api_host + "/teams/" + @teamId + "/checkins"

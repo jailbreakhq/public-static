@@ -3,6 +3,10 @@ define [
   "underscore"
   "backbone"
   "mixen"
-], ($, _, Backbone, Mixen) ->
-  class User extends Mixen(Backbone.Model)
+  "mixens/BaseModelMixen"
+], ($, _, Backbone, Mixen, BaseModelMixen) ->
+  class User extends Mixen(BaseModelMixen)
     # spooky
+
+    initialize: (options) ->
+      super

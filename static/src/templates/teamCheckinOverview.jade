@@ -24,13 +24,17 @@ td
 td
   = teamName
 td
+  = position
+td
+  if locals.lastCheckin
+    strong
+      = Humanize.formatNumber(lastCheckin.distanceToX, 0)
+      |  km
+td
   if locals.lastCheckin
     | #{lastCheckin.location}
 td
   if locals.lastCheckin
     = moment(lastCheckin.time*1000).fromNow()
-td
-  if locals.lastCheckin
-    = lastCheckin.status
 td
   button(data-team-id="#{id}").tiny.radius.add-checkin Add

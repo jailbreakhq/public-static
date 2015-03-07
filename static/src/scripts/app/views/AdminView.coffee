@@ -6,17 +6,14 @@ define [
   "mixen"
   "mixens/RequiresLoginMixen"
   "views/TeamItemView"
-  "views/AddCheckinView"
-  "vex"
-], ($, _, Backbone, jade, Mixen, RequiresLoginMixen, TeamItemView, AddCheckinView, vex) ->
+], ($, _, Backbone, jade, Mixen, RequiresLoginMixen, TeamItemView) ->
   class AdminView extends Mixen(RequiresLoginMixen, Backbone.View)
     template: jade.admin
-    events:
-      "click .add-checkin": "addCheckin"
 
     initialize: (options) ->
       @teams = options.teams
       @.listenTo @teams, "sync", @renderTeams
+      @.listenTo @teams, "change", @renderTeams
 
       super
 
@@ -28,7 +25,9 @@ define [
       @
 
     renderTeams: =>
-      list = $("#teams")
+      list = $("#teams").empty()
+
+      @teams.sort()
 
       _.each @teams.models, (team) ->
         teamView = new TeamItemView
@@ -36,19 +35,3 @@ define [
           template: jade.teamCheckinOverview
           tagName: "tr"
         list.append teamView.render().$el
-
-    addCheckin: (event) ->
-      addCheckinView = new AddCheckinView
-        teamId: $(event.target).data "team-id"
-        parent: @
-
-      vex.defaultOptions.className = 'vex-theme-default'
-      $vexContent = vex.open
-        content: addCheckinView.render().$el
-        afterOpen: ($vexContent) ->
-          $vexContent.append.$el
-
-      @vexId = $vexContent.data().vex.id
-
-    closeVex: =>
-      vex.close @vexId

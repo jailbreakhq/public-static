@@ -18,3 +18,6 @@ define [
         url = "/teams"
 
       super + url
+
+    comparator: (item) ->
+      item.get 'position'

@@ -13,9 +13,9 @@ define [
       "click #submit-add-checkin": "addCheckin"
     
     initialize: (options) =>
-      if not options.teamId
+      if not options.team
         throw new Error("AddCheckinView requires a team id")
-      @teamId = options.teamId
+      @team = options.team
 
       @parent = options.parent
 
@@ -39,9 +39,16 @@ define [
       $("#position-inputs", @$el).html jade.addCheckinInputs @position.toJSON()
 
     renderMap: =>
+      if @team.has 'lastCheckin'
+        centerLat = @team.get('lastCheckin').get('lat')
+        centerLon = @team.get('lastCheckin').get('lon')
+      else
+        centerLat = 53.348857
+        centerLon = -6.285844
+
       mapOptions =
-        zoom: 14
-        center: new google.maps.LatLng 53.348857, -6.285844
+        zoom: 10
+        center: new google.maps.LatLng centerLat, centerLon
         mapTypeId: google.maps.MapTypeId.ROADMAP
         streetViewControl: false
         mapTypeControl: false
@@ -117,7 +124,7 @@ define [
         lon: parseFloat $("#input-lon", @$el).val()
         location: $("#input-location", @$el).val()
         status: $("#input-status", @$el).val()
-        teamId: @teamId
+        teamId: @team.get 'id'
 
       l = Ladda.create document.getElementById "submit-add-checkin"
       l.start()
@@ -145,6 +152,10 @@ define [
       checkin = new Checkin data
       checkin.save {},
         success: (model, response) =>
+          checkin.set 'distanceToX', response.distanceToX
+          checkin.set 'id', response.id
+          console.log checkin.toJSON()
+          @team.set 'lastCheckin', checkin
           l.stop()
           @parent.closeVex()
         error: (model, error) =>
