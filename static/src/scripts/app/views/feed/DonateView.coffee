@@ -8,8 +8,6 @@ define [
     template: jade.feedDonate
     
     initialize: (options) =>
-      console.log @model
-      
       @listenTo @model, "change", @render
 
       super

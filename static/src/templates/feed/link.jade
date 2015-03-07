@@ -8,7 +8,7 @@
       else
         = moment().fromNow()
   if locals.photoUrl
-    .media
+    a(href="#{url}").media
       img(src="#{photoUrl}").photo
   if locals.description
     p.description 

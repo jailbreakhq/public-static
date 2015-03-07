@@ -13,5 +13,5 @@ define [
       super
 
     url: =>
-      url = "/events"
+      url = "/events?limit=40"
       super + url
