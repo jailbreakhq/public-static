@@ -6,46 +6,45 @@ define [
   "collections/TeamsCollection"
   "collections/DonationsCollection"
   "models/JailbreakModel"
+  "views/TeamsMapView"
   "views/TeamItemView"
   "views/DonationsListView"
   "views/IndexStatsView"
-  "jquery.countdown"
   "slick"
   "vex"
-], ($, _, Backbone, jade, Teams, Donations, Jailbreak, TeamItemView, DonationsListView, IndexStatsView, countdown, slick, vex) ->
+  "async"
+], ($, _, Backbone, jade, Teams, Donations, Jailbreak, TeamsMapView, TeamItemView, DonationsListView, IndexStatsView, slick, vex) ->
   class Index extends Backbone.View
     template: jade.index
 
     initialize: =>
-      jailbreakModel = new Jailbreak()
-      @indexStatsView = new IndexStatsView
-        model: jailbreakModel
-      jailbreakModel.fetch
-        success: @renderIndexStatsView
+      @jailbreakModel = new Jailbreak()
+      @jailbreakModel.fetch()
 
-      @teams = new Teams [],
-        filters:
-          featured: true
-      @teams.fetch
-        success: @renderTeamsList
+      @teams = new Teams
+      @teams.fetch()
 
-      donations = new Donations
-      donations.fetch
-        success: @renderDonationsList
-      @donationsListView = new DonationsListView
-        collection: donations
-        template: jade.donations
+      @donations = new Donations
+      @donations.fetch()
 
-      @render()
+      @teamsMapView = new TeamsMapView
+        settings: @jailbreakModel
+        teams: @teams
+        mapElement: "index-map-canvas"
+
+      require ["async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"], (data) =>
+        @teamsMapView.googleMapsLoaded()
 
     render: =>
       @$el.html @template()
 
+      @renderDonationsList()
+
+      @renderIndexStatsView()
+
       @
 
     afterRender: =>
-      @countdownTimer()
-
       @slick()
 
     countdownTimer: ->
@@ -79,16 +78,13 @@ define [
           }
         ]
 
-    renderTeamsList: =>
-      list = $("#featured-teams")
-
-      _.each @teams.models, (team) ->
-        teamView = new TeamItemView
-          model: team
-        list.append teamView.render().$el
-
     renderDonationsList: =>
-      $("#all-donations").append @donationsListView.render().$el
+      donationsListView = new DonationsListView
+        collection: @donations
+        template: jade.donations
+      $("#all-donations", @$el).append donationsListView.render().$el
 
     renderIndexStatsView: =>
-      $("#index-stats").append @indexStatsView.render().$el
+      indexStatsView = new IndexStatsView
+        model: @jailbreakModel
+      $("#index-stats", @$el).append indexStatsView.render().$el
