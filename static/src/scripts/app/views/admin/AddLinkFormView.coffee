@@ -80,10 +80,8 @@ define [
           Messenger().post "Link posted to news feed"
           l.stop()
         error: (model, error) =>
-          console.log error
-          console.log Messenger
           Messenger().post
-            message: "There was a problem. Talk to Kevin"
+            message: "There was a problem. Talk to Kevin. " + error.message
             type: "error"
             showCloseButton: true
           l.stop()
