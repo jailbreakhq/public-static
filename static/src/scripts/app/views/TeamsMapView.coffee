@@ -6,6 +6,7 @@ define [
   "collections/TeamsCollection"
   "models/JailbreakModel"
   "moment"
+  "humanize"
 ], ($, _, Backbone, jade, Teams, Jailbreak, moment) ->
   class TeamsMapView extends Backbone.View
 
