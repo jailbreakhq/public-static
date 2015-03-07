@@ -14,10 +14,10 @@
         textarea.radius#input-donate-description
 
       label(for="input-donate-team-id") Team
-        select.radius
-          option(value="") JailbreakHQ Central Fund
-          //-each team in teams
-            option(value="#{team.id}") #{team.teamNumber} #{team.names}
+      select
+        option(value="") JailbreakHQ Central Fund
+        each team in teams
+          option(value="#{team.id}") Team #{team.teamNumber}: #{team.names}
 
       .clearfix
         button(data-style="slide-right").small.round.right.ladda-button#submit-add-donate

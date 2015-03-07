@@ -7,7 +7,8 @@ define [
   "views/feed/DonateView"
   "ladda"
   "messenger"
-], ($, _, Backbone, jade, DonateEvent, DonateView, Ladda, Messenger) ->
+  "select2"
+], ($, _, Backbone, jade, DonateEvent, DonateView, Ladda, Messenger, Select2) ->
   class AddSocialForm extends Backbone.View
     template: jade.adminAddDonate
     events:
@@ -30,7 +31,10 @@ define [
 
       context =
         teams: teamsContext
+      #console.log context.teams
       @$el.html @template context
+
+      $("select", @$el).select2()
 
       @
 
