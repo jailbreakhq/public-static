@@ -9,6 +9,9 @@ define [
   class Users extends Mixen(BaseCollectionMixen)
     model: User
 
+    initialize: (options) ->
+      super
+
     url: =>
       url = "/users"
       super + url

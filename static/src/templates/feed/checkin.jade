@@ -1,0 +1,16 @@
+.feed-item.checkin
+  p
+    i.fa.fa-globe
+    if team.avatar
+      img(src="#{team.avatar}", width="30", height="30").radius
+    h4
+      a(href="/teams/#{team.slug}")
+        | #{team.names}
+        span.label.round(class="#{team.university.toLowerCase()}") #{team.university}
+        span.label.round
+            = Humanize.ordinal(team.position)
+    span.time
+      if locals.time
+        = moment(time*1000).fromNow()
+      else
+        = moment().fromNow()

@@ -3,8 +3,8 @@ define [
   "underscore"
   "backbone"
   "mixen"
-  "models/CheckinModel"
   "mixens/BaseModelMixen"
+  "models/CheckinModel"
 ], ($, _, Backbone, Mixen, Checkin, BaseModelMixen) ->
   class Team extends Mixen(BaseModelMixen)
     defaults:

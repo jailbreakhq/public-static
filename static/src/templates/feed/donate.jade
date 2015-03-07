@@ -14,12 +14,21 @@
         a(href="/teams/#{team.slug}")
           | #{team.names}
           span.label.round(class="#{team.university.toLowerCase()}") #{team.university}
+          span.label.round
+            = Humanize.ordinal(team.position)
   if locals.description
     p.description 
       = description
   .footer.clearfix
-    a(href="#{url}").button.round.right
-      if locals.linkText
-        = linkText
-      else
-        | Donate
+    if locals.team
+      a(href="/donate/#{team.slug}").button.round.right
+        if locals.linkText
+          = linkText
+        else
+          | Donate
+    else
+      a(href="/donate").button.round.right
+        if locals.linkText
+          = linkText
+        else
+          | Donate

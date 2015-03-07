@@ -5,15 +5,16 @@ define [
   "jade.templates"
   "collections/TeamsCollection"
   "collections/DonationsCollection"
+  "collections/EventsCollection"
   "models/JailbreakModel"
   "views/TeamsMapView"
   "views/TeamItemView"
   "views/DonationsListView"
   "views/IndexStatsView"
+  "views/feed/EventsListView"
   "slick"
-  "vex"
   "async"
-], ($, _, Backbone, jade, Teams, Donations, Jailbreak, TeamsMapView, TeamItemView, DonationsListView, IndexStatsView, slick, vex) ->
+], ($, _, Backbone, jade, Teams, Donations, FeedEvents, Jailbreak, TeamsMapView, TeamItemView, DonationsListView, IndexStatsView, EventsListView, slick) ->
   class Index extends Backbone.View
     template: jade.index
 
@@ -26,6 +27,9 @@ define [
 
       @donations = new Donations
       @donations.fetch()
+
+      @eventItems = new FeedEvents
+      @eventItems.fetch()
 
       @teamsMapView = new TeamsMapView
         settings: @jailbreakModel
@@ -42,22 +46,15 @@ define [
 
       @renderIndexStatsView()
 
+      @renderEventsStream()
+
       @
 
-    afterRender: =>
+    afterRender: ->
       @slick()
 
-    countdownTimer: ->
-      $("#countdown-timer").countdown "2015/03/07 09:00:00", (event) ->
-        $(this).html event.strftime """<ul>
-            <li><span>%-D</span> day%!d</li>
-            <li><span>%H</span> hours</li>
-            <li><span>%M</span> minutes</li>
-            <li><span>%S</span> seconds</li>
-          </ul>"""
-
     slick: ->
-      $(".video-slick").slick
+      $(".video-slick", @$el).slick
         centerMode: true
         variableWidth: true
         infinite: true
@@ -77,6 +74,11 @@ define [
             settings: "unslick"
           }
         ]
+
+    renderEventsStream: =>
+      eventsListView = new EventsListView
+        collection: @eventItems
+      $("#events-stream", @$el).append eventsListView.render().$el
 
     renderDonationsList: =>
       donationsListView = new DonationsListView

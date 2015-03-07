@@ -4,7 +4,8 @@ define [
   "backbone"
   "mixen"
   "mixens/BaseModelMixen"
-], ($, _, Backbone, Mixen, BaseModelMixen) ->
+  "models/TeamModel"
+], ($, _, Backbone, Mixen, BaseModelMixen, Team) ->
   class DonateEvent extends Mixen(BaseModelMixen)
     defaults:
       linkText: "Donate"
@@ -21,3 +22,10 @@ define [
         donate.team = @.get('team').toJSON()
 
       donate
+
+    parse: (response) ->
+      team = response.team
+      if team
+        response.team = new Team team
+
+      response

@@ -8,6 +8,9 @@
       = moment(lastCheckin.time*1000).fromNow()
     h3 
       a(href="https://jailbreakhq.org/teams/#{slug}") #{names}
+      span.label.round(class="#{university.toLowerCase()}") #{university}
+      span.label.round
+        = Humanize.ordinal(position)
     h4 #{teamName}
     p
       strong #{lastCheckin.location}: 

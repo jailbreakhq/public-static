@@ -4,7 +4,8 @@ define [
   "backbone"
   "mixen"
   "mixens/BaseModelMixen"
-], ($, _, Backbone, Mixen, BaseModelMixen) ->
+  "models/TeamModel"
+], ($, _, Backbone, Mixen, BaseModelMixen, Team) ->
   class Link extends Mixen(BaseModelMixen)
 
     initialize: (options) ->
