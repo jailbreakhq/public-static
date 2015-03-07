@@ -3,8 +3,7 @@ a.th.radius(href="/teams/#{slug}")
 h3
   a(href="/teams/#{slug}")
     | #{names}
-    if featured
-      span.featured &sstarf;
+    span.label.round.position
+      = Humanize.ordinal(position)
 div
-  span.university #{university}
   span.amount-raised &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}
