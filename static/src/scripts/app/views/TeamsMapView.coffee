@@ -82,7 +82,7 @@ define [
               <h3>Location X</h3>
               <p>The Bled Castle overlooking Lake Bled, Slovenia!</p>
               <br/>
-              <img src="http://static.jailbreakhq.org/bled-castle.jpg" height="300" />
+              <img src="https://static.jailbreakhq.org/bled-castle.jpg" height="300" />
             </div>
           """
 
