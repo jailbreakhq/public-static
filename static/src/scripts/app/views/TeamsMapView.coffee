@@ -77,7 +77,7 @@ define [
           scale: 6
           strokeColor: '#b21c26'
         title: "Location X"
-        html: """<div class="info-window"><h3>Location X</h3><p>The mystery Location X is somewhere in the Balkans!</p></div>"""
+        html: """<div class="info-window"><h3>Location X</h3><p>The mystery Location X is either Croatia or Slovenia!</p></div>"""
 
       google.maps.event.addListener @endMarker, 'click', (endMarker) =>
         @infowindow.setContent @endMarker.html
