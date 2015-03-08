@@ -3,7 +3,9 @@ a.th.radius(href="/teams/#{slug}")
 h3
   a(href="/teams/#{slug}")
     | #{names}
+    br
     span.label.round.position
       = Humanize.ordinal(position)
+    span.label.round.position(class="#{university.toLowerCase()}") #{university}
 div
   span.amount-raised &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}
