@@ -62,7 +62,7 @@ define [
     renderStoryEvents: =>
       eventsListView = new EventsListView
         collection: @storyEvents
-        header: "Our Jailbreak Story"
+        header: false
       $("#team-story", @$el).append eventsListView.render().$el
 
     renderTeamMap: =>

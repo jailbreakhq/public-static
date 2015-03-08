@@ -15,7 +15,6 @@ define [
       @listenTo @checkins, "sync", @renderTeamCheckins
 
     renderMap: =>
-      console.log "render map"
       mapOptions =
         zoom: 14
         center: new google.maps.LatLng 53.3498, -6.2603
@@ -36,7 +35,6 @@ define [
       route = []
 
       _.each @checkins.models, (checkin) =>
-        console.log checkin
         marker = new google.maps.Marker
           position: new google.maps.LatLng(checkin.get('lat'), checkin.get('lon'))
           map: @map
