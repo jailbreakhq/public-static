@@ -12,13 +12,16 @@ define [
 
     initialize: (options) =>
       @collection = options.collection
+      @header = options?.header
 
       @listenTo @collection, "sync", @renderEvents
 
       super
 
     render: =>
-      @$el.html @template()
+      context =
+        header: @header
+      @$el.html @template context
       @
 
     renderEvents: =>

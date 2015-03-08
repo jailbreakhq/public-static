@@ -6,12 +6,16 @@ define [
   "foundation.tabs"
   "jade.templates"
   "collections/DonationsCollection"
+  "collections/EventsCollection"
+  "collections/CheckinsCollection"
   "models/TeamModel"
   "views/DonationsListView"
   "views/DonationFormView"
+  "views/TeamMapView"
+  "views/feed/EventsListView"
   "vex"
   "autolink"
-], ($, _, Backbone, foundation, tabs, jade, Donations, Team, DonationsListView, DonationFormView, vex, autolink) ->
+], ($, _, Backbone, foundation, tabs, jade, Donations, FeedEvents, Checkins, Team, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
   class TeamProfile extends Backbone.View
     template: jade.team
     events:
@@ -34,6 +38,17 @@ define [
           donations.fetch
             success: @renderDonationsList
 
+          @storyEvents = new FeedEvents [],
+            filters:
+              teamId: @model.get "id"
+          @storyEvents.fetch()
+          @renderStoryEvents()
+
+          @checkins = new Checkins [],
+            teamId: @model.get "id"
+          @checkins.fetch()
+          @listenTo @checkins, "sync", @renderTeamMap
+
     render: =>
       @$el.html @template @model.getRenderContext()
 
@@ -43,6 +58,20 @@ define [
 
     renderDonationsList: =>
       $("#donations-panel").append @donationsListView.render().$el
+
+    renderStoryEvents: =>
+      eventsListView = new EventsListView
+        collection: @storyEvents
+        header: "Our Jailbreak Story"
+      $("#team-story", @$el).append eventsListView.render().$el
+
+    renderTeamMap: =>
+      require ["async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"], (data) =>
+        checkinsMapView = new TeamMapView
+          checkins: @checkins
+          mapElement: "team-map"
+        checkinsMapView.renderMap()
+        checkinsMapView.renderTeamMarkers()
 
     openLargeAvatar: (event) =>
       displayVex = =>

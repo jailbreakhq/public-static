@@ -49,11 +49,19 @@
     .small-12.columns.no-padding
       ul.tabs(data-tab).hide-for-large-up
         li.tab-title.active
+          a(href="#story-panel") Story
+        li.tab-title
           a(href="#about-panel") About
         li.tab-title
           a(href="#donations-panel") Donations
       .tabs-content
-        .content.active#about-panel
+        .content.active#story-panel
+          .row
+            .small-12.large-7.columns
+              #team-map
+            .small-12.large-5.columns
+              #team-story
+        .content#about-panel
           h3.page-header.show-for-large-up About #{names}
           if locals.description
             != _.escape(description).autoLink().split("\n").join("<br />")
