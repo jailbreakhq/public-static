@@ -77,7 +77,14 @@ define [
           scale: 6
           strokeColor: '#b21c26'
         title: "Location X"
-        html: """<div class="info-window"><h3>Location X</h3><p>The Bled Castle overlooking Lake Bled, Slovenia!</p></div>"""
+        html: """
+            <div class="info-window">
+              <h3>Location X</h3>
+              <p>The Bled Castle overlooking Lake Bled, Slovenia!</p>
+              <br/>
+              <img src="http://static.jailbreakhq.org/bled-castle.jpg" height="300" />
+            </div>
+          """
 
       google.maps.event.addListener @endMarker, 'click', (endMarker) =>
         @infowindow.setContent @endMarker.html
