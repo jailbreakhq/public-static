@@ -1,10 +1,10 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "mixen"
-  "mixens/BaseCollectionMixen"
-  "models/CheckinModel"
+  'jquery'
+  'underscore'
+  'backbone'
+  'mixen'
+  'mixens/BaseCollectionMixen'
+  'models/CheckinModel'
 ], ($, _, Backbone, Mixen, BaseCollectionMixen, Checkin) ->
   class Checkins extends Mixen(BaseCollectionMixen)
     model: Checkin
@@ -13,4 +13,4 @@ define [
       @teamId = options.teamId
 
     url: =>
-      super + "/teams/" + @teamId + "/checkins?limit=20"
+      super + "/teams/#{@teamId}/checkins?limit=20"

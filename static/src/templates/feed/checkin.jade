@@ -1,6 +1,6 @@
 .feed-item.checkin
-  p
-    i.fa.fa-globe
+  i.fa.fa-globe
+  span.team-header
     if team.avatar
       img(src="#{team.avatar}", width="30", height="30").radius
     h4
@@ -9,11 +9,11 @@
         span.label.round(class="#{team.university.toLowerCase()}") #{team.university}
         span.label.round
             = Humanize.ordinal(team.position)
-    span.time
-      if locals.time
-        = moment(time*1000).fromNow()
-      else
-        = moment().fromNow()
-    p 
-      strong #{location}: 
-      | #{status}
+  span.time
+    if locals.time
+      = moment(time*1000).fromNow()
+    else
+      = moment().fromNow()
+  p 
+    strong #{location}: 
+    | #{status}

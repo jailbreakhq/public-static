@@ -1,21 +1,20 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "foundation"
-  "foundation.tabs"
-  "jade.templates"
-  "collections/DonationsCollection"
-  "collections/EventsCollection"
-  "collections/CheckinsCollection"
-  "models/TeamModel"
-  "views/DonationsListView"
-  "views/DonationFormView"
-  "views/TeamMapView"
-  "views/feed/EventsListView"
-  "vex"
-  "autolink"
-], ($, _, Backbone, foundation, tabs, jade, Donations, FeedEvents, Checkins, Team, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
+  'jquery'
+  'underscore'
+  'backbone'
+  'foundation'
+  'foundation.tabs'
+  'jade.templates'
+  'collections/DonationsCollection'
+  'collections/EventsCollection'
+  'collections/CheckinsCollection'
+  'views/DonationsListView'
+  'views/DonationFormView'
+  'views/TeamMapView'
+  'views/feed/EventsListView'
+  'vex'
+  'autolink'
+], ($, _, Backbone, foundation, tabs, jade, Donations, FeedEvents, Checkins, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
   class TeamProfile extends Backbone.View
     template: jade.team
     events:
@@ -23,31 +22,31 @@ define [
       'click .donate-button': 'donate'
 
     initialize: (options) =>
-      @model = new Team
-        slug: options.teamSlug
-      @model.bind "change", @render
-      @model.fetch
-        success: =>
-          @render
+      @listenTo @model, 'loaded', @loadChildData
+      @listenTo @model, 'change error', @render
 
-          donations = new Donations [],
-            filters:
-              teamId: @model.get("id")
-          @donationsListView = new DonationsListView
-            collection: donations
-          donations.fetch
-            success: @renderDonationsList
+      super
 
-          @storyEvents = new FeedEvents [],
-            filters:
-              teamId: @model.get "id"
-          @storyEvents.fetch()
-          @renderStoryEvents()
+    loadChildData: =>
+      @render()
 
-          @checkins = new Checkins [],
-            teamId: @model.get "id"
-          @checkins.fetch()
-          @listenTo @checkins, "sync", @renderTeamMap
+      # can only be loaded after we determine the id for the team slug
+      @storyEvents = new FeedEvents [],
+        filters:
+          teamId: @model.get 'id'
+      @storyEvents.fetch()
+      @renderStoryEvents()
+
+      @donations = new Donations [],
+        filters:
+          teamId: @model.get 'id'
+      @donations.fetch()
+      @listenTo @donations, 'sync', @renderDonationsList
+
+      @checkins = new Checkins [],
+        teamId: @model.get 'id'
+      @checkins.fetch()
+      @listenTo @checkins, 'sync', @renderTeamMap
 
     render: =>
       @$el.html @template @model.getRenderContext()
@@ -57,19 +56,20 @@ define [
       @
 
     renderDonationsList: =>
-      $("#donations-panel").append @donationsListView.render().$el
+      donationsListView = new DonationsListView
+        collection: @donations
+      $('#donations-panel', @$el).html donationsListView.render().$el
 
     renderStoryEvents: =>
       eventsListView = new EventsListView
         collection: @storyEvents
-        header: false
-      $("#team-story", @$el).append eventsListView.render().$el
+      $('#team-story', @$el).append eventsListView.render().$el
 
     renderTeamMap: =>
-      require ["async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"], (data) =>
+      require ['async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'], (data) =>
         checkinsMapView = new TeamMapView
           checkins: @checkins
-          mapElement: "team-map"
+          mapElement: 'team-map'
         checkinsMapView.renderMap()
         checkinsMapView.renderTeamMarkers()
 
@@ -89,13 +89,13 @@ define [
             $vexContent.append.$el
 
       avatar = new Image
-      avatar.addEventListener("load", displayVex)
+      avatar.addEventListener 'load', displayVex
       avatar.src = @model.get 'avatarLarge'
 
     donate: (event) =>
       donationView = new DonationFormView
-        teamId: @model.get("id")
-        name: @model.get("names")
+        teamId: @model.get('id')
+        name: @model.get('names')
         parent: @
 
       vex.defaultOptions.className = 'vex-theme-default'

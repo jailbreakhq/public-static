@@ -1,9 +1,9 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "mixen"
-  "mixens/BaseModelMixen"
+  'jquery'
+  'underscore'
+  'backbone'
+  'mixen'
+  'mixens/BaseModelMixen'
 ], ($, _, Backbone, Mixen, BaseModelMixen) ->
   class User extends Mixen(BaseModelMixen)
     # spooky

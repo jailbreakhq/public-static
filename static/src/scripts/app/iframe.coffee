@@ -1,16 +1,16 @@
 require [
-  "jquery"
-  "underscore"
-  "foundation"
-  "foundation.topbar"
-  "raven"
-  "collections/TeamsCollection"
-  "models/JailbreakModel"
-  "views/TeamsMapView"
-  "views/TopTeamsCardListView"
-  "moment"
-  "signet"
-  "async"
+  'jquery'
+  'underscore'
+  'foundation'
+  'foundation.topbar'
+  'raven'
+  'collections/TeamsCollection'
+  'models/JailbreakModel'
+  'views/TeamsMapView'
+  'views/TopTeamsCardListView'
+  'moment'
+  'signet'
+  'async'
 ], ($, _, foundation, topbar, Raven, Teams, Jailbreak, TeamsMapView, TopTeamsCardListiew, moment) ->
   
   $ ->
@@ -37,5 +37,5 @@ require [
     topTeamsCardsView = new TopTeamsCardListiew
       collection: @teams
 
-    require ["async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"], (data) =>
+    require ['async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'], (data) =>
       @teamsMapView.googleMapsLoaded()

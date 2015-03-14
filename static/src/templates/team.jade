@@ -1,18 +1,47 @@
-#team
-  #header.row.collapse-small
-    .blurred(style="background-image: url(#{avatar})")
-    .header-content
-      if avatarLarge
-        a.th.radius.team-avatar.avatar-large
-          img(src="#{avatar}", width=200, height=200)
-      else
-         .th.radius.team-avatar
-          img(src="#{avatar}", width=200, height=200)
-      .text
-        h2 #{names}
-        h4 #{teamName}
-        p.show-for-medium-up #{tagLine}
-        ul.show-for-medium-up
+include mixins.jade
+
+if error
+  +errorContainer
+    h2.page-header Team Not Found
+    +alert("team", errorMessage, errorStatus)
+    #broken-glass
+else if !loaded
+  include loading.jade
+else
+  #team
+    #header.row.collapse-small
+      .blurred(style="background-image: url(#{avatar})")
+      .header-content
+        if avatarLarge
+          a.th.radius.team-avatar.avatar-large
+            img(src="#{avatar}", width=200, height=200)
+        else
+           .th.radius.team-avatar
+            img(src="#{avatar}", width=200, height=200)
+        .text
+          h2 #{names}
+          h4 #{teamName}
+          p.show-for-medium-up #{tagLine}
+          ul.show-for-medium-up
+            li 
+              h6 Team No.
+              span.value #{teamNumber}
+            li 
+              h6 University
+              span.value #{university}
+            li
+              h6 Raised
+              span.value &euro;
+                = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
+          a.button.round.donate-button.show-for-medium-up Donate Now
+      .hide-blur
+
+    .row.bar.hide-for-medium-up
+      .small-12.medium-4.columns
+        h6.bio  Bio
+        p.tag-line #{tagLine}
+      .small-12.medium-8.columns
+        ul.small-block-grid-3.medium-block-grid-4
           li 
             h6 Team No.
             span.value #{teamNumber}
@@ -22,61 +51,42 @@
           li
             h6 Raised
             span.value &euro;
-              = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
-        a.button.round.donate-button.show-for-medium-up Donate Now
-    .hide-blur
+            = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
+      .small-12.columns
+        a.button.round.expand.donate-button.show-for-small-only Donate Now
 
-  .row.bar.hide-for-medium-up
-    .small-12.medium-4.columns
-      h6.bio  Bio
-      p.tag-line #{tagLine}
-    .small-12.medium-8.columns
-      ul.small-block-grid-3.medium-block-grid-4
-        li 
-          h6 Team No.
-          span.value #{teamNumber}
-        li 
-          h6 University
-          span.value #{university}
-        li
-          h6 Raised
-          span.value &euro;
-          = Humanize.intComma((amountRaisedOnline+amountRaisedOffline)/100)
-    .small-12.columns
-      a.button.round.expand.donate-button.show-for-small-only Donate Now
+    .row
+      .small-12.columns.no-padding
+        ul.tabs(data-tab).hide-for-large-up
+          li.tab-title.active
+            a(href="#story-panel") Story
+          li.tab-title
+            a(href="#about-panel") About
+          li.tab-title
+            a(href="#donations-panel") Donations
+        .tabs-content
+          .content.active#story-panel
+            .row
+              .small-12.columns
+                h3.page-header Our Jailbreak Story
+            .row
+              .small-12.large-7.columns
+                #team-map
+              .small-12.large-5.columns
+                #team-story
+          .content#about-panel
+            h3.page-header.show-for-large-up About #{names}
+            if locals.description
+              != _.escape(description).autoLink().split("\n").join("<br />")
+            else
+              | This team has not written about themselves yet. 
 
-  .row
-    .small-12.columns.no-padding
-      ul.tabs(data-tab).hide-for-large-up
-        li.tab-title.active
-          a(href="#story-panel") Story
-        li.tab-title
-          a(href="#about-panel") About
-        li.tab-title
-          a(href="#donations-panel") Donations
-      .tabs-content
-        .content.active#story-panel
-          .row
-            .small-12.columns
-              h3.page-header Our Jailbreak Story
-          .row
-            .small-12.large-7.columns
-              #team-map
-            .small-12.large-5.columns
-              #team-story
-        .content#about-panel
-          h3.page-header.show-for-large-up About #{names}
-          if locals.description
-            != _.escape(description).autoLink().split("\n").join("<br />")
-          else
-            | This team has not written about themselves yet. 
-
-          if locals.video
-            h3.video Video
-            .about-video
-              if video.indexOf('facebook') != -1
-                != video
-              else
-                .flex-video
+            if locals.video
+              h3.video Video
+              .about-video
+                if video.indexOf('facebook') != -1
                   != video
-        .content#donations-panel
+                else
+                  .flex-video
+                    != video
+          .content#donations-panel

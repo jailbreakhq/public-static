@@ -1,28 +1,25 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "jade.templates"
-  "views/TeamItemView"
-], ($, _, Backbone, jade, TeamItemView) ->
-  class TeamList extends Backbone.View
+  'jquery'
+  'underscore'
+  'backbone'
+  'jade.templates'
+  'mixen'
+  'mixens/CollectionViewMixen'
+  'views/TeamItemView'
+], ($, _, Backbone, jade, Mixen, CollectionViewMixen, TeamItemView) ->
+  class TeamList extends Mixen(CollectionViewMixen, Backbone.View)
     template: jade.teams
 
-    initialize: (options) =>
-      if not options.collection
-        new Error("TeamList view needs a collection in it's options")
-      @collection = options.collection
-      @.listenTo @collection, "sync", @render
+    initialize: (options) ->
+      super
 
     render: =>
-      data =
-        loaded: @collection.loaded
-
-      @$el.html @template data
+      context = @getRenderContext()
+      @$el.html @template context
 
       _.each @collection.models, (team) ->
         teamView = new TeamItemView
           model: team
-        $("#teams").append teamView.render().$el
+        $('#teams').append teamView.render().$el
 
       @

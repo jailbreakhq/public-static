@@ -1,12 +1,12 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "jade.templates"
-  "collections/TeamsCollection"
-  "models/JailbreakModel"
-  "moment"
-  "humanize"
+  'jquery'
+  'underscore'
+  'backbone'
+  'jade.templates'
+  'collections/TeamsCollection'
+  'models/JailbreakModel'
+  'moment'
+  'humanize'
 ], ($, _, Backbone, jade, Teams, Jailbreak, moment) ->
   class TeamsMapView extends Backbone.View
 
@@ -15,10 +15,10 @@ define [
       @settings = options.settings
       @teams = options.teams
 
-      @listenTo @settings, "sync", @renderMap
-      @listenTo @teams, "sync", @renderTeamMarkers
+      @listenTo @settings, 'sync', @renderMap
+      @listenTo @teams, 'sync', @renderTeamMarkers
 
-      @mapElement = options.mapElement or "map-canvas"
+      @mapElement = options.mapElement or 'map-canvas'
 
     googleMapsLoaded: =>
       @loadedMaps = true
@@ -49,7 +49,7 @@ define [
       @map = new google.maps.Map document.getElementById(@mapElement), mapOptions
       @markerBounds = new google.maps.LatLngBounds()
       @infowindow = new google.maps.InfoWindow
-        content: "Loading..."
+        content: 'Loading...'
 
       # start and end markers
       @startMarker = new google.maps.Marker
@@ -59,8 +59,8 @@ define [
           path: google.maps.SymbolPath.CIRCLE
           scale: 6
           strokeColor: '#b21c26'
-        title: "Start Point"
-        html: """<div class="info-window"><h3>Collins Barracks, Dublin</h3><p>The start point of the Jailbreak 2015 race</p></div>"""
+        title: 'Start Point'
+        html: '''<div class='info-window'><h3>Collins Barracks, Dublin</h3><p>The start point of the Jailbreak 2015 race</p></div>'''
 
       google.maps.event.addListener @startMarker, 'click', (startMarker) =>
         @infowindow.setContent @startMarker.html
@@ -76,15 +76,15 @@ define [
           path: google.maps.SymbolPath.CIRCLE
           scale: 6
           strokeColor: '#b21c26'
-        title: "Location X"
-        html: """
-            <div class="info-window">
+        title: 'Location X'
+        html: '''
+            <div class='info-window'>
               <h3>Location X</h3>
               <p>The Bled Castle overlooking Lake Bled, Slovenia!</p>
               <br/>
-              <img src="https://static.jailbreakhq.org/bled-castle.jpg" height="300" />
+              <img src='https://static.jailbreakhq.org/bled-castle.jpg' height='300' />
             </div>
-          """
+          '''
 
       google.maps.event.addListener @endMarker, 'click', (endMarker) =>
         @infowindow.setContent @endMarker.html
@@ -111,7 +111,7 @@ define [
           marker = new google.maps.Marker
             position: new google.maps.LatLng(team.get('lastCheckin').get('lat'), team.get('lastCheckin').get('lon'))
             map: @map
-            title: team.teamNumber + " " + team.names
+            title: team.teamNumber + ' ' + team.names
             html: jade.mapsMarker team.getRenderContext()
             animation: google.maps.Animation.DROP
   

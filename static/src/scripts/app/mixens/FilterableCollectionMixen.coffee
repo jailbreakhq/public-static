@@ -1,7 +1,6 @@
 define [
-  "jquery"
-  "underscore"
-], ($, _) ->
+  'underscore'
+], (_) ->
   class FilterableCollection
     filters: null
 

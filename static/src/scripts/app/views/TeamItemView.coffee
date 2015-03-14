@@ -1,17 +1,17 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "jade.templates"
-  "views/admin/AddCheckinFormView"
-  "vex"
+  'jquery'
+  'underscore'
+  'backbone'
+  'jade.templates'
+  'views/admin/AddCheckinFormView'
+  'vex'
 ], ($, _, Backbone, jade, AddCheckinView, vex) ->
   class TeamItem extends Backbone.View
-    tagName: "li"
-    className: "team"
+    tagName: 'li'
+    className: 'team'
     template: jade.teamListItem
     events:
-      "click .add-checkin": "addCheckin"
+      'click .add-checkin': 'addCheckin'
     
     initialize: (options) =>
       if options.template
@@ -20,7 +20,7 @@ define [
       if options.tagName
         @tagName = options.tagName
 
-      @model.bind "change sync", @render
+      @model.bind 'change sync', @render
 
       super
 

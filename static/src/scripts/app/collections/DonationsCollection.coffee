@@ -1,11 +1,11 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "mixen"
-  "mixens/FilterableCollectionMixen"
-  "mixens/BaseCollectionMixen"
-  "models/DonationModel"
+  'jquery'
+  'underscore'
+  'backbone'
+  'mixen'
+  'mixens/FilterableCollectionMixen'
+  'mixens/BaseCollectionMixen'
+  'models/DonationModel'
 ], ($, _, Backbone, Mixen, FilterableCollectionMixen, BaseCollectionMixen, Donation) ->
   class Donations extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
     model: Donation
@@ -13,8 +13,8 @@ define [
     url: =>
       if @filters
         encodedFilters = encodeURIComponent JSON.stringify @filters
-        url = "/donations?filters=" + encodedFilters
+        url = "/donations?filters=#{encodedFilters}"
       else
-        url = "/donations"
+        url = '/donations'
 
       super + url

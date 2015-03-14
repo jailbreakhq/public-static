@@ -1,18 +1,18 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "jade.templates"
-  "views/DonationFormView"
-  "vex"
+  'jquery'
+  'underscore'
+  'backbone'
+  'jade.templates'
+  'views/DonationFormView'
+  'vex'
 ], ($, _, Backbone, jade, DonationFormView, vex) ->
   class IndexStats extends Backbone.View
     template: jade.indexStats
     events:
-      "click .donate-button": "donate"
+      'click .donate-button': 'donate'
     
     initialize: =>
-      @listenTo @model, "sync change", @render
+      @listenTo @model, 'sync change', @render
 
     render: =>
       percent = (((@model.get('amountRaised') / 100) / 100000) * 100) or 0

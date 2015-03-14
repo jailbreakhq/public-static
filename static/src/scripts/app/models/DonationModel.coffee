@@ -1,12 +1,12 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "mixen"
-  "models/TeamModel"
-  "mixens/BaseModelMixen"
+  'jquery'
+  'underscore'
+  'backbone'
+  'mixen'
+  'models/TeamModel'
+  'mixens/BaseModelMixen'
 ], ($, _, Backbone, Mixen, Team, BaseModelMixen) ->
-  class Checkin extends Mixen(BaseModelMixen)
+  class Donation extends Mixen(BaseModelMixen)
     
     initialize: (options) ->
       super
@@ -19,8 +19,8 @@ define [
       response
 
     getRenderContext: =>
-      donation = @.toJSON()
-      if @.has('team')
-        donation.team = @.get('team').toJSON()
+      context = @toJSON()
+      if @.has 'team'
+        context.team = @.get('team').toJSON()
 
-      donation
+      context

@@ -1,16 +1,16 @@
 define [
-  "backbone",
-  "collections/TeamsCollection"
-  "collections/TeamsByCheckinCollection"
-  "models/TeamModel"
-  "views/IndexView"
-  "views/TeamListView"
-  "views/TeamProfileView"
-  "views/DonationFormView"
-  "views/LoginView"
-  "views/admin/MainView"
-  "views/admin/AddFeedView"
-  "views/ErrorView"
+  'backbone',
+  'collections/TeamsCollection'
+  'collections/TeamsByCheckinCollection'
+  'models/TeamModel'
+  'views/IndexView'
+  'views/TeamListView'
+  'views/TeamProfileView'
+  'views/DonationFormView'
+  'views/LoginView'
+  'views/admin/MainView'
+  'views/admin/AddFeedView'
+  'views/ErrorView'
 ], (Backbone, Teams, TeamsByCheckin, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, AdminView, AdminFeedView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
@@ -32,11 +32,12 @@ define [
       catch
         # do nothing - user might have blocked tracking scripts
 
+      @bodyContainer = $('#body-container')
       @bind 'route', @_trackPageview
 
     index: ->
       indexView = new IndexView()
-      $("#body-container").html indexView.render().$el
+      @bodyContainer.html indexView.render().$el
       indexView.afterRender()
 
     teams: ->
@@ -44,17 +45,20 @@ define [
       teams.fetch()
       teamsView = new TeamListView
         collection: teams
-      $("#body-container").html teamsView.render().$el
+      @bodyContainer.html teamsView.render().$el
 
     team: (slug) ->
+      team = new Team
+        slug: slug
+      team.fetch()
       teamProfileView = new TeamProfileView
-        teamSlug: slug
-      $("#body-container").html teamProfileView.render().$el
+        model: team
+      @bodyContainer.html teamProfileView.render().$el
 
     donate: ->
       donateView = new DonationFormView
         iphoneRedirect: @_isIphoneRedirect()
-      $("#body-container").html donateView.render().$el
+      @bodyContainer.html donateView.render().$el
 
     donateTeam: (slug) ->
       team = new Team
@@ -65,28 +69,28 @@ define [
             teamId: team.get 'id'
             name: team.get 'names'
             iphoneRedirect: @_isIphoneRedirect()
-          $("#body-container").html donateView.render().$el
+          @bodyContainer.html donateView.render().$el
 
     login: ->
       loginView = new LoginView
-      $("#body-container").html loginView.render().$el
+      @bodyContainer.html loginView.render().$el
 
     admin: ->
       teamsByCheckin = new TeamsByCheckin
       teamsByCheckin.fetch()
       adminView = new AdminView
         teams: teamsByCheckin
-      $("#body-container").html adminView.render().$el
+      @bodyContainer.html adminView.render().$el
 
     adminFeed: ->
       feedView = new AdminFeedView
-      $("#body-container").html feedView.render().$el
+      @bodyContainer.html feedView.render().$el
 
     notFound: ->
       errorView = new ErrorView
         error: 404
 
-      $("#body-container").html errorView.render().$el
+      @bodyContainer.html errorView.render().$el
 
     _isIphoneRedirect: ->
       url = Backbone.history.getFragment()
@@ -96,6 +100,6 @@ define [
       try
         require ['//www.google-analytics.com/analytics.js'], (data) ->
           url = Backbone.history.getFragment()
-          window.ga 'send', 'pageview', "/#{url}"
+          window.ga 'send', 'pageview', '/#{url}'
       catch
         # do nothing - user might have blocked tracking scripts

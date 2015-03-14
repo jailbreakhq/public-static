@@ -1,7 +1,11 @@
+include mixins.jade
+
 .row
   .small-12.columns
     h2.page-header Teams
-    if loaded
-      ul#teams.teams-list.small-block-grid-1.medium-block-grid-3.large-block-grid-4
-    else
+    if error
+      +alert("teams list", errorMessage, errorStatus)
+    else if !loaded
       include loading.jade
+    else
+      ul#teams.teams-list.small-block-grid-1.medium-block-grid-3.large-block-grid-4

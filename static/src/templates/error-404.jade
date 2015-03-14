@@ -1,10 +1,10 @@
-.row
-  .small-12.columns
-    .error-container
-      h2.page-header Page Not Found
-      p The page you were looking for does not exist. Do you want to go 
-        a(href="/")
-          | back to the home page
-        | ?
+include mixins.jade
 
-      #broken-glass
++errorContainer
+  h2.page-header Page Not Found
+  p The page you were looking for does not exist. Do you want to go 
+    a(href="/")
+      | back to the home page
+    | ?
+
+  #broken-glass
