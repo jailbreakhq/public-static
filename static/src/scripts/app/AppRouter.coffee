@@ -27,7 +27,7 @@ define [
     initialize: ->
       try
         require ['//www.google-analytics.com/analytics.js'], (data) ->
-          window.ga 'create', jailbreak.ga_id
+          window?.ga 'create', jailbreak.ga_id
           return
       catch
         # do nothing - user might have blocked tracking scripts
@@ -100,6 +100,6 @@ define [
       try
         require ['//www.google-analytics.com/analytics.js'], (data) ->
           url = Backbone.history.getFragment()
-          window.ga 'send', 'pageview', '/#{url}'
+          window?.ga 'send', 'pageview', '/#{url}'
       catch
         # do nothing - user might have blocked tracking scripts
