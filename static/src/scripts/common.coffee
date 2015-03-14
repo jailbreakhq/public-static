@@ -1,4 +1,5 @@
 requirejs.config
+  waitSeconds: 15
   baseUrl: '/build/scripts/app'
   paths:
     'jquery': '../../../components/jquery/dist/jquery',
