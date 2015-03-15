@@ -7,9 +7,12 @@ define [
       @views.push view
       view
 
-    undelegateEvents: ->
+    close: ->
       @stopListening()
 
       if @views?
         for view in @views
           view.stopListening()
+          view.remove()
+
+      @remove()

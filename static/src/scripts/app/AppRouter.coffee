@@ -93,8 +93,8 @@ define [
       @_showView errorView
 
     _showView: (view) ->
-      if @currentView
-        @currentView?.close()
+      if @currentView?.close
+        @currentView.close()
 
       @currentView = view
 
