@@ -4,10 +4,11 @@ define [
   'backbone'
   'mixen'
   'mixens/FilterableCollectionMixen'
+  'mixens/TotalCountCollectionMixen'
   'mixens/BaseCollectionMixen'
   'models/DonationModel'
-], ($, _, Backbone, Mixen, FilterableCollectionMixen, BaseCollectionMixen, Donation) ->
-  class Donations extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
+], ($, _, Backbone, Mixen, FilterableCollection, TotalCountCollection, BaseCollection, Donation) ->
+  class Donations extends Mixen(FilterableCollection, TotalCountCollection, BaseCollection)
     model: Donation
 
     url: =>

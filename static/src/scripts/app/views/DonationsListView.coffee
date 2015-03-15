@@ -4,11 +4,12 @@ define [
   'backbone'
   'jade.templates'
   'mixen'
+  'mixens/BaseViewMixen'
   'mixens/CollectionViewMixen'
   'humanize'
   'collections/DonationsCollection'
-], ($, _, Backbone, jade, Mixen, CollectionViewMixen, Humanize, Donations) ->
-  class DonationsList extends Mixen(CollectionViewMixen, Backbone.View)
+], ($, _, Backbone, jade, Mixen, BaseView, CollectionView, Humanize, Donations) ->
+  class DonationsList extends Mixen(CollectionView, BaseView)
     template: jade.teamDonations
 
     initialize: (options) ->

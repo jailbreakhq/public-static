@@ -4,14 +4,14 @@ define [
   'collections/TeamsByCheckinCollection'
   'models/TeamModel'
   'views/IndexView'
-  'views/TeamListView'
+  'views/TeamsListView'
   'views/TeamProfileView'
   'views/DonationFormView'
   'views/LoginView'
   'views/admin/MainView'
   'views/admin/AddFeedView'
   'views/ErrorView'
-], (Backbone, Teams, TeamsByCheckin, Team, IndexView, TeamListView, TeamProfileView, DonationFormView, LoginView, AdminView, AdminFeedView, ErrorView) ->
+], (Backbone, Teams, TeamsByCheckin, Team, IndexView, TeamsListView, TeamProfileView, DonationFormView, LoginView, AdminView, AdminFeedView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
       '':                   'index'
@@ -37,13 +37,12 @@ define [
 
     index: ->
       indexView = new IndexView
-      @bodyContainer.html indexView.render().$el
       @_showView indexView
 
     teams: ->
       teams = new Teams
       teams.fetch()
-      teamsView = new TeamListView
+      teamsView = new TeamsListView
         collection: teams
       @_showView teamsView
 

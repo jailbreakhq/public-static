@@ -23,11 +23,9 @@ define [
   class Auth
     loaded: false
 
-    initialize: (data, options) ->
+    constructor: ->
       @.on 'error', (collection, resp, options) ->
         if resp.status == 401 or resp.status == 419
           # unauthorized or authentication token expired
           Backbone.history.navigate 'login', true
           localStorage.removeItem 'apiToken'
-
-      super

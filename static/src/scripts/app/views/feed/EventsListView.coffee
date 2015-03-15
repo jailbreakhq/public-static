@@ -9,22 +9,17 @@ define [
   'views/feed/DonateView'
   'views/feed/LinkView'
   'views/feed/CheckinView'
-], ($, _, Backbone, jade, Mixen, BaseView, CollectionView, DonateView, LinkView, CheckinView) ->
-  class EventsListView extends Mixen(CollectionView, BaseView)
+], ($, _, Backbone, jade, Mixen, BaseViewMixen, CollectionViewMixen, DonateView, LinkView, CheckinView) ->
+  class EventsListView extends Mixen(CollectionViewMixen, BaseViewMixen)
     template: jade.feedList
-
-    initialize: (options) ->
-      super
 
     render: =>
       context = @getRenderContext()
       @$el.html @template context
 
-      @renderEvents()
-
       @
 
-    renderEvents: =>
+    renderCollection: =>
       htmlList = $('#events-stream-list', @$el)
       for feedEvent in @collection.models
         switch feedEvent.get 'type'

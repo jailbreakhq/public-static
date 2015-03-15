@@ -6,7 +6,7 @@ define [
     loaded: false
     error: false
 
-    initialize: (data, options) ->
+    constructor: (data, options) ->
       @.on 'sync', =>
         @loaded = true
         @trigger 'loaded'
@@ -14,8 +14,6 @@ define [
 
       @.on 'error', (model, error) =>
         @error = true
-        @errorMessage = error.responseJSON.message
+        @errorMessage = error.responseJSON?.message
         @errorStatus = error.status
       , @
-
-      super

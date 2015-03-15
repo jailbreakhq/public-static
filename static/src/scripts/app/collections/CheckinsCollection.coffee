@@ -12,5 +12,7 @@ define [
     initialize: (data, options) =>
       @teamId = options.teamId
 
+      super
+
     url: =>
       super + "/teams/#{@teamId}/checkins?limit=20"

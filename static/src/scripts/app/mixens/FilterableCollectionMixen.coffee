@@ -4,8 +4,6 @@ define [
   class FilterableCollection
     filters: null
 
-    initialize: (data, options) ->
+    constructor: (data, options) ->
       if options
         @filters = options.filters
-
-      super

@@ -14,8 +14,5 @@ define [
         for view in @views
           if view?.close
             view.close()
-          else
-            view.stopListening()
-            view.remove()
 
       @remove()
