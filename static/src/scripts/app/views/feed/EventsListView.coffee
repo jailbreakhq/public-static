@@ -4,15 +4,16 @@ define [
   'backbone'
   'jade.templates'
   'mixen'
+  'mixens/BaseViewMixen'
   'mixens/CollectionViewMixen'
   'views/feed/DonateView'
   'views/feed/LinkView'
   'views/feed/CheckinView'
-], ($, _, Backbone, jade, Mixen, CollectionViewMixen, DonateView, LinkView, CheckinView) ->
-  class EventsListView extends Mixen(CollectionViewMixen, Backbone.View)
+], ($, _, Backbone, jade, Mixen, BaseView, CollectionView, DonateView, LinkView, CheckinView) ->
+  class EventsListView extends Mixen(CollectionView, BaseView)
     template: jade.feedList
 
-    initialize: (options) =>
+    initialize: (options) ->
       super
 
     render: =>
@@ -33,14 +34,17 @@ define [
             donateView = new DonateView
               model: donate
             htmlList.append donateView.render().$el
+            @rememberView donateView
           when 'LINK'
             link = feedEvent.get 'link'
             link.set 'time', feedEvent.get 'time'
             linkView = new LinkView
               model: link
             htmlList.append linkView.render().$el
+            @rememberView linkView
           when 'CHECKIN'
             checkin = feedEvent.get 'checkin'
             checkinView = new CheckinView
               model: checkin
             htmlList.append checkinView.render().$el
+            @rememberView checkinView

@@ -12,7 +12,10 @@ define [
 
       if @views?
         for view in @views
-          view.stopListening()
-          view.remove()
+          if view?.close
+            view.close()
+          else
+            view.stopListening()
+            view.remove()
 
       @remove()
