@@ -7,8 +7,8 @@ define [
   'mixens/BaseViewMixen'
   'mixens/CollectionViewMixen'
   'views/TeamItemView'
-], ($, _, Backbone, jade, Mixen, BaseViewMixen, CollectionViewMixen, TeamItemView) ->
-  class TeamsList extends Mixen(CollectionViewMixen, BaseViewMixen)
+], ($, _, Backbone, jade, Mixen, BaseView, CollectionView, TeamItemView) ->
+  class TeamsList extends Mixen(CollectionView, BaseView)
     template: jade.teams
 
     initialize: (options) ->

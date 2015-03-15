@@ -5,6 +5,8 @@ define [
   'foundation'
   'foundation.tabs'
   'jade.templates'
+  'mixen'
+  'mixens/BaseViewMixen'
   'collections/DonationsCollection'
   'collections/EventsCollection'
   'collections/CheckinsCollection'
@@ -14,8 +16,8 @@ define [
   'views/feed/EventsListView'
   'vex'
   'autolink'
-], ($, _, Backbone, foundation, tabs, jade, Donations, FeedEvents, Checkins, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
-  class TeamProfile extends Backbone.View
+], ($, _, Backbone, foundation, tabs, jade, Mixen, BaseView, Donations, FeedEvents, Checkins, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
+  class TeamProfile extends Mixen(BaseView)
     template: jade.team
     events:
       'click .team-avatar.avatar-large': 'openLargeAvatar'
@@ -58,11 +60,13 @@ define [
     renderDonationsList: =>
       donationsListView = new DonationsListView
         collection: @donations
+      @rememberView donationsListView
       $('#donations-panel', @$el).html donationsListView.render().$el
 
     renderStoryEvents: =>
       eventsListView = new EventsListView
         collection: @storyEvents
+      @rememberView eventsListView
       $('#team-story', @$el).append eventsListView.render().$el
 
     renderTeamMap: =>
@@ -72,6 +76,7 @@ define [
           mapElement: 'team-map'
         checkinsMapView.renderMap()
         checkinsMapView.renderTeamMarkers()
+        @rememberView checkinsMapView
 
     openLargeAvatar: (event) =>
       displayVex = =>
