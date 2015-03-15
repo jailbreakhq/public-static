@@ -68,14 +68,14 @@ else
           .content.active#story-panel
             .row
               .small-12.columns
-                h3.page-header Our Jailbreak Story
+                h3.section-header Our Jailbreak Story
             .row
               .small-12.large-7.columns
                 #team-map
               .small-12.large-5.columns
                 #team-story
           .content#about-panel
-            h3.page-header.show-for-large-up About #{names}
+            h3.section-header.show-for-large-up About #{names}
             if locals.description
               != _.escape(description).autoLink().split("\n").join("<br />")
             else

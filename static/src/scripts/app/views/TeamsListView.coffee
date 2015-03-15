@@ -10,10 +10,7 @@ define [
 ], ($, _, Backbone, jade, Mixen, BaseView, CollectionView, TeamItemView) ->
   class TeamsList extends Mixen(CollectionView, BaseView)
     template: jade.teams
-
-    initialize: (options) ->
-      super
-
+    
     render: =>
       context = @getRenderContext()
       @$el.html @template context
