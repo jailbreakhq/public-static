@@ -13,8 +13,6 @@ define [
     template: jade.feedList
 
     initialize: (options) =>
-      @collection = options.collection
-
       super
 
     render: =>

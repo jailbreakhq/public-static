@@ -48,10 +48,9 @@ define [
 
       @renderEventsStream()
 
-      @
-
-    afterRender: ->
       @slick()
+
+      @
 
     slick: ->
       $('.video-slick', @$el).slick

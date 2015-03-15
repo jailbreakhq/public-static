@@ -36,16 +36,16 @@ define [
       @bind 'route', @_trackPageview
 
     index: ->
-      indexView = new IndexView()
+      indexView = new IndexView
       @bodyContainer.html indexView.render().$el
-      indexView.afterRender()
+      @_showView indexView
 
     teams: ->
-      teams = new Teams()
+      teams = new Teams
       teams.fetch()
       teamsView = new TeamListView
         collection: teams
-      @bodyContainer.html teamsView.render().$el
+      @_showView teamsView
 
     team: (slug) ->
       team = new Team
@@ -53,12 +53,12 @@ define [
       team.fetch()
       teamProfileView = new TeamProfileView
         model: team
-      @bodyContainer.html teamProfileView.render().$el
+      @_showView teamProfileView
 
     donate: ->
       donateView = new DonationFormView
         iphoneRedirect: @_isIphoneRedirect()
-      @bodyContainer.html donateView.render().$el
+      @_showView donateView
 
     donateTeam: (slug) ->
       team = new Team
@@ -69,28 +69,36 @@ define [
             teamId: team.get 'id'
             name: team.get 'names'
             iphoneRedirect: @_isIphoneRedirect()
-          @bodyContainer.html donateView.render().$el
+          @_showView DonationFormView
 
     login: ->
       loginView = new LoginView
-      @bodyContainer.html loginView.render().$el
+      @_showView loginView
 
     admin: ->
       teamsByCheckin = new TeamsByCheckin
       teamsByCheckin.fetch()
       adminView = new AdminView
         teams: teamsByCheckin
-      @bodyContainer.html adminView.render().$el
+      @_showView adminView
 
     adminFeed: ->
       feedView = new AdminFeedView
-      @bodyContainer.html feedView.render().$el
+      @_showView feedView
 
     notFound: ->
       errorView = new ErrorView
         error: 404
 
-      @bodyContainer.html errorView.render().$el
+      @_showView errorView
+
+    _showView: (view) ->
+      if @currentView
+        @currentView?.close()
+
+      @currentView = view
+
+      @bodyContainer.html view.render().$el
 
     _isIphoneRedirect: ->
       url = Backbone.history.getFragment()

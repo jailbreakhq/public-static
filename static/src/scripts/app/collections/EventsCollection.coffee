@@ -16,7 +16,7 @@ define [
     url: =>
       if @filters
         filtersJSON = encodeURIComponent JSON.stringify @filters
-        url = "/events?limit=40&filters=#{filtersJSON}"
+        url = "/events?limit=20&filters=#{filtersJSON}"
       else
-        url = '/events?limit=40'
+        url = '/events?limit=20'
       super + url

@@ -10,9 +10,6 @@ define [
     urlRoot: jailbreak.api_host
     totalCount: null
 
-    initialize: (data, options) ->
-      super # necessary to not break chain
-
     url: ->
       super
       jailbreak.api_host
