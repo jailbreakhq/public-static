@@ -3,22 +3,23 @@ define [
   'underscore'
   'backbone'
   'jade.templates'
+  'mixen'
+  'mixens/BaseViewMixen'
+  'mixens/CollectionViewMixen'
   'views/TeamsCardView'
-], ($, _, Backbone, jade, TeamsCardView) ->
-  class TopTeamsCardListView extends Backbone.View
-
-    initialize: (options) =>
-      if not options.collection
-        new Error('TopTeamsCardListView needs a collection in it\'s options')
-      @collection = options.collection
-
-      @listenTo @collection, 'sync', @render
+  'humanize'
+], ($, _, Backbone, jade, Mixen, BaseView, CollectionView, TeamsCardView, Humanize) ->
+  class TopTeamsCardListView extends Mixen(CollectionView, BaseView)
+    template: jade.iframeLeaders
 
     render: =>
+      context = @getRenderContext()
+      $('#leaders').html @template context
+
       top = _.first @collection.models, 2
       _.each top, (team) ->
         teamCardView = new TeamsCardView
           model: team
-        $('#leaders').append teamCardView.render().$el
+        $('#leaders-list').append teamCardView.render().$el
 
       @
