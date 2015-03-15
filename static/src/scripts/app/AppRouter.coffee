@@ -68,7 +68,7 @@ define [
             teamId: team.get 'id'
             name: team.get 'names'
             iphoneRedirect: @_isIphoneRedirect()
-          @_showView DonationFormView
+          @_showView donateView
 
     login: ->
       loginView = new LoginView
