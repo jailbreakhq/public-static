@@ -73,14 +73,12 @@
 
     <!--(if target dev)><!-->
       <script>
-        jailbreak.env = "LOCAL";
         jailbreak.api_host = "http://localhost:8090";
       </script>
     <!--<!(endif)-->
 
     <!--(if target qa)><!-->
       <script>
-        jailbreak.env = "QA";
         jailbreak.api_host = "https://qa.jbapi.net";
         jailbreak.sentry.enabled = true;
         jailbreak.sentry.dsn = "https://8bc0d346130249dc9952b52c1311e57b@app.getsentry.com/38797";
@@ -99,7 +97,6 @@
 
     <!--(if target prod)><!-->
       <script>
-        jailbreak.env = "PROD";
         jailbreak.api_host = "https://jbapi.net";
         jailbreak.sentry.enabled = true;
         jailbreak.sentry.dsn = "https://38f0e2b9531c4e788601adf26ca4320d@app.getsentry.com/38808";
