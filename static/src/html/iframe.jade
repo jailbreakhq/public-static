@@ -1,0 +1,74 @@
+include helpers/mixins.jade
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    
+    title JailbreakHQ 2015 a global race in aid of Amnesty International and Society St. Vincent de Paul
+    
+    meta(name='description', content='Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise €100,000 for Amnesty International and Society St. Vincent de Paul')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='signet:authors', content='Kevin Baker, Shayan Yousefizadeh')
+    meta(name='signet:links', content='https://twitter.com/__kbaker__, https://github.com/Specialkbyte, https://twitter.com/Shayanzadeh, https://github.com/Shayanzadeh, https://github.com/jailbreakhq')
+    
+    //- favicon made using realfavicongenerator.net
+    +targethtml('dev')
+      +favicons('/')
+
+    +targethtml('qa || prod')
+      +favicons('//builds.jailbreakhq.org/{{build}}/')
+
+    // CSS
+    +targethtml('dev')
+      link(rel='stylesheet', href='/build/styles/iframe.css')
+
+    +targethtml('qa || prod')
+      link(rel='stylesheet', href='//builds.jailbreakhq.org/{{build}}/dist/styles/iframe.css')
+
+    // JS
+    include helpers/iframe-jsconfig.jade
+
+    +targethtml('dev')
+      script(src='/components/requirejs/require.js')  
+      script.
+        require(['/build/scripts/common.js'], function (common) {
+          require(['iframe']);
+        });
+
+    +targethtml('qa || prod')
+      script(src='//builds.jailbreakhq.org/{{build}}/dist/scripts/require.js')
+      script(src='//builds.jailbreakhq.org/{{build}}/dist/scripts/iframe.js')
+
+  body
+    #wrapper
+      include helpers/header.jade
+
+      #body-container
+        //- Backbone App will inject the page contents in here
+        .loading
+          .ball
+          p LOADING
+
+      include helpers/footer.jade
+
+    +targethtml('dev || qa')
+      script.
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-58463386-4', 'auto');
+        ga('send', 'pageview');
+
+    +targethtml('prod')
+      script.
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-58463386-3', 'auto');
+        ga('send', 'pageview');

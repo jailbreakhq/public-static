@@ -1,0 +1,56 @@
+include helpers/mixins.jade
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    
+    title JailbreakHQ 2015 a global race in aid of Amnesty International and Society St. Vincent de Paul
+    
+    meta(name='description', content='Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise €100,000 for Amnesty International and Society St. Vincent de Paul')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='signet:authors', content='Kevin Baker, Shayan Yousefizadeh')
+    meta(name='signet:links', content='https://twitter.com/__kbaker__, https://github.com/Specialkbyte, https://twitter.com/Shayanzadeh, https://github.com/Shayanzadeh, https://github.com/jailbreakhq')
+    
+    meta(name='apple-itunes-app', content='app-id=971420182')
+
+    //- favicon made using realfavicongenerator.net
+    +targethtml('dev')
+      +favicons('/')
+
+    +targethtml('qa || prod')
+      +favicons('//builds.jailbreakhq.org/{{build}}/')
+
+    // CSS
+    +targethtml('dev')
+      link(rel='stylesheet', href='/build/styles/main.css')
+
+    +targethtml('qa || prod')
+      link(rel='stylesheet', href='//builds.jailbreakhq.org/{{build}}/dist/styles/main.css')
+
+    // JS
+    include helpers/jsconfig.jade
+
+    +targethtml('dev')
+      script(src='/components/requirejs/require.js')  
+      script.
+        require(['/build/scripts/common.js'], function (common) {
+          require(['main']);
+        });
+
+    +targethtml('qa || prod')
+      script(src='//builds.jailbreakhq.org/{{build}}/dist/scripts/require.js')
+      script(src='//builds.jailbreakhq.org/{{build}}/dist/scripts/main.js')
+
+  body
+    #wrapper
+      include helpers/header.jade
+
+      #body-container
+        //- Backbone App will inject the page contents in here
+        .loading
+          .ball
+          p LOADING
+
+      include helpers/footer.jade

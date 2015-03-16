@@ -8,7 +8,6 @@ module.exports = (grunt) ->
       static: "static"
       build: "static/build"
       src: "static/src"
-      html: "static/src/html"
       deploy: "static/dist"
       components: "static/components"
     
@@ -65,6 +64,14 @@ module.exports = (grunt) ->
             debug: false
         files:
           "<%= paths.build %>/templates/jade.js": ["<%= paths.src %>/templates/**/*.jade"]
+      html:
+        options:
+          pretty: true
+          data:
+            debug: true
+        files:
+          "static/build/html/index.html": "static/src/html/index.jade"
+          "static/build/html/iframe.html": "static/src/html/iframe.jade"
 
     ##
     ## Deployment Configuration
@@ -99,22 +106,22 @@ module.exports = (grunt) ->
     targethtml:
       dev:
         files:
-          "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
-          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
+          "<%= paths.static %>/index.html": "<%= paths.build %>/html/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.build %>/html/iframe.html"
       qa:
         options:
           curlyTags: 
             build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
         files:
-          "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
-          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
+          "<%= paths.static %>/index.html": "<%= paths.build %>/html/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.build %>/html/iframe.html"
       prod:
         options:
           curlyTags: 
             build: "static-" + (process.env.TRAVIS_BUILD_NUMBER or "local")
         files:
-          "<%= paths.static %>/index.html": "<%= paths.html %>/index.html"
-          "<%= paths.static %>/iframe.html": "<%= paths.html %>/iframe.html"
+          "<%= paths.static %>/index.html": "<%= paths.build %>/html/index.html"
+          "<%= paths.static %>/iframe.html": "<%= paths.build %>/html/iframe.html"
 
     ##
     ## Watcher Configuation
@@ -131,14 +138,14 @@ module.exports = (grunt) ->
 
       jade:
         files: ["<%= paths.src %>/templates/**/*.jade"]
-        tasks: ["jade"]
+        tasks: ["jade:compile"]
 
       html:
-        files: ["<%= paths.html %>/*.html"]
-        tasks: ["targethtml:dev"]
+        files: ["<%= paths.src %>/html/*.jade"]
+        tasks: ["jade:html", "targethtml:dev"]
 
     concurrent:
-      build: ["coffee", "sass:build", "jade", "targethtml:dev"]
+      build: ["coffee", "sass:build", "basehtml:dev"]
 
 
   # Load the plug-ins
@@ -146,5 +153,10 @@ module.exports = (grunt) ->
   
   # Default tasks
   grunt.registerTask "default", ["concurrent:build"]
-  grunt.registerTask "deploy", ["concurrent:build", "requirejs:main", "requirejs:iframe", "cssmin:deploy", "uglify:deploy", "targethtml:qa"]
-  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs:main", "requirejs:iframe", "cssmin:deploy", "uglify:deploy", "targethtml:prod"]
+
+  grunt.registerTask "basehtml:dev", ["jade", "targethtml:dev"]
+  grunt.registerTask "basehtml:qa", ["jade", "targethtml:qa"]
+  grunt.registerTask "basehtml:prod", ["jade", "targethtml:prod"]
+
+  grunt.registerTask "deploy", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "basehtml:qa"]
+  grunt.registerTask "deploy:prod", ["concurrent:build", "requirejs", "cssmin:deploy", "uglify:deploy", "basehtml:prod"]
