@@ -1,15 +1,12 @@
 .page-header
+  margin: 20px 0 30px
+  border-bottom: 1px solid $seperator-border-color
+
+.section-header
   margin: 0 0 12px
   border-bottom: 1px solid $seperator-border-color
 
-  button,
-  a.button
-    float: right 
-    padding: 0.5rem 0.8rem
-    margin: 0
-    @include border-radius(20px)
-
-.page-header-desc
+.section-header-desc
   margin-top: -10px
   color: $secondary-text-color
   margin-bottom: 20px
@@ -32,3 +29,9 @@
 .error-field
   border-color: #ff7076 !important
   @include box-shadow((inset 0 1px 2px rgba(0, 0, 0, 0), 0 1px 0 rgba(255, 255, 255, 0), 0 0 2px 0 rgba(255, 0, 0, 0.5) !important))
+
+ul.items
+  margin-left: 0
+
+.contains-table
+  overflow: scroll

@@ -2,11 +2,15 @@
   .row.collapse.team-card
     .small-5.columns
       .profile
-        a(href="https://jailbreakhq.org/teams/#{slug}").th
+        a(href="https://jailbreakhq.org/teams/#{slug}").th.radius
           img(width="125", height="125", src="#{avatar}")
     .small-7.columns
       h3 
-        a(href="https://jailbreakhq.org/teams/#{slug}") #{names}
+        a(href="https://jailbreakhq.org/teams/#{slug}")
+          | #{names}
+          span.label.round.position
+            = Humanize.ordinal(position)
+          span.label.round.position(class="#{university.toLowerCase()}") #{university}
       h4 #{teamName}
       if locals.lastCheckin
         strong #{lastCheckin.location}

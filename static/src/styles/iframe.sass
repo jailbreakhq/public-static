@@ -5,7 +5,9 @@
 @import "common/foundation"
 @import "common/topbar"
 
+@import "public/loading"
 @import "public/map"
+@import "public/universities"
 
 body, html
   padding: 0
@@ -16,15 +18,10 @@ body, html
   overflow: hidden
 
 #map-canvas
-  width: 100%
   height: 533px
-  line-height: 90%
   border-width: 0 2px 0 2px
   border-style: solid
   border-color: #D7D7D7
-
-  img
-    max-width: inherit
 
 #leaders
   height: 168px
@@ -38,3 +35,6 @@ body, html
   line-height: 45px
   vertical-align: middle
   font-size: 0.9rem
+
+.position
+  top: -5px

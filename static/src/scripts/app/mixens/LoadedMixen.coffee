@@ -1,12 +1,19 @@
 define [
-  "jquery"
-], ($) ->
+  'jquery'
+  'underscore'
+], ($, _) ->
   class Loaded
     loaded: false
+    error: false
 
-    initialize: (data, options) ->
-      @.on "sync", =>
+    constructor: (data, options) ->
+      @.on 'sync', =>
         @loaded = true
+        @trigger 'loaded'
       , @
 
-      super
+      @.on 'error', (model, error) =>
+        @error = true
+        @errorMessage = error.responseJSON?.message
+        @errorStatus = error.status
+      , @

@@ -1,18 +1,18 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "jade.templates"
-  "moment"
-  "humanize"
+  'jquery'
+  'underscore'
+  'backbone'
+  'jade.templates'
+  'moment'
+  'humanize'
 ], ($, _, Backbone, jade, moment) ->
   class TeamMapView extends Backbone.View
 
     initialize: (options) =>
       @checkins = options.checkins
-      @mapElement = options.mapElement or "map-canvas"
+      @mapElement = options.mapElement or 'map-canvas'
 
-      @listenTo @checkins, "sync", @renderTeamCheckins
+      @listenTo @checkins, 'sync', @renderTeamCheckins
 
     renderMap: =>
       mapOptions =
@@ -29,7 +29,7 @@ define [
     renderTeamMarkers: =>
       markerBounds = new google.maps.LatLngBounds()
       infowindow = new google.maps.InfoWindow
-        content: "Loading..."
+        content: 'Loading...'
 
       markers = []
       route = []

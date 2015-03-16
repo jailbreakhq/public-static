@@ -1,93 +1,94 @@
 requirejs.config
-  baseUrl: "/build/scripts/app"
+  waitSeconds: 15
+  baseUrl: '/build/scripts/app'
   paths:
-    "jquery": "../../../components/jquery/dist/jquery",
-    "underscore": "../../../components/underscore/underscore"
-    "backbone": "../../../components/backbone/backbone"
-    "moment": "../../../components/moment/moment"
-    "humanize": "../../../components/humanize-plus/public/dist/humanize.min"
-    "jade": "../../../components/jade/runtime"
-    "raven": "../../../components/raven-js/dist/raven"
-    "mixen": "../../../components/mixen/mixen.min"
-    "vex": "../../../components/vex/js/vex"
-    "vex.dialog": "../../../components/vex/js/vex.dialog"
-    "modernizr": "../../../components/modernizr/modernizr"
-    "foundation": "../../../components/bower-foundation/js/foundation/foundation"
-    "foundation.tabs": "../../../components/bower-foundation/js/foundation/foundation.tab"
-    "foundation.topbar": "../../../components/bower-foundation/js/foundation/foundation.topbar"
-    "foundation.tooltip": "../../../components/bower-foundation/js/foundation/foundation.tooltip"
-    "foundation.alert": "../../../components/bower-foundation/js/foundation/foundation.alert"
-    "autolink": "../../../components/autolink/autolink-min"
-    "jquery.countdown": "../../../components/jquery.countdown/dist/jquery.countdown.min"
-    "jquery.payment": "../../../components/jquery.payment/lib/jquery.payment"
-    "slick": "../../../components/slick.js/slick/slick"
-    "animo": "../../../components/animo.js/animo"
-    "ladda": "../../../components/ladda/js/ladda"
-    "spin": "../../../components/ladda/js/spin"
-    "signet": "../../../components/signet/signet"
-    "messenger": "../../../components/messenger/build/js/messenger"
-    "select2": "../../../components/select2/select2"
-    "async": "../../../components/requirejs-plugins/src/async"
-    "jade.templates": "../../templates/jade"
+    'jquery': '../../../components/jquery/dist/jquery',
+    'underscore': '../../../components/underscore/underscore'
+    'backbone': '../../../components/backbone/backbone'
+    'moment': '../../../components/moment/moment'
+    'humanize': '../../../components/humanize-plus/public/dist/humanize.min'
+    'jade': '../../../components/jade/runtime'
+    'raven': '../../../components/raven-js/dist/raven'
+    'mixen': '../../../components/mixen/mixen.min'
+    'vex': '../../../components/vex/js/vex'
+    'vex.dialog': '../../../components/vex/js/vex.dialog'
+    'modernizr': '../../../components/modernizr/modernizr'
+    'foundation': '../../../components/bower-foundation/js/foundation/foundation'
+    'foundation.tabs': '../../../components/bower-foundation/js/foundation/foundation.tab'
+    'foundation.topbar': '../../../components/bower-foundation/js/foundation/foundation.topbar'
+    'foundation.tooltip': '../../../components/bower-foundation/js/foundation/foundation.tooltip'
+    'foundation.alert': '../../../components/bower-foundation/js/foundation/foundation.alert'
+    'autolink': '../../../components/autolink/autolink-min'
+    'jquery.countdown': '../../../components/jquery.countdown/dist/jquery.countdown.min'
+    'jquery.payment': '../../../components/jquery.payment/lib/jquery.payment'
+    'slick': '../../../components/slick.js/slick/slick'
+    'animo': '../../../components/animo.js/animo'
+    'ladda': '../../../components/ladda/js/ladda'
+    'spin': '../../../components/ladda/js/spin'
+    'signet': '../../../components/signet/signet'
+    'messenger': '../../../components/messenger/build/js/messenger'
+    'select2': '../../../components/select2/select2'
+    'async': '../../../components/requirejs-plugins/src/async'
+    'jade.templates': '../../templates/jade'
 
   shim:
     underscore:
-      exports: "_"
+      exports: '_'
 
     backbone:
       deps: [
-        "jquery"
-        "underscore"
+        'jquery'
+        'underscore'
       ]
-      exports: "Backbone"
+      exports: 'Backbone'
 
     jade:
       deps: [
-        "moment"
+        'moment'
       ]
 
     raven:
-      exports: "Raven"
+      exports: 'Raven'
 
     humanize:
-      exports: "Humanize"
+      exports: 'Humanize'
 
     messenger:
       deps: [
-        "jquery"
+        'jquery'
       ]
-      exports: "Messenger"
+      exports: 'Messenger'
 
     select2:
       deps: [
-        "jquery"
+        'jquery'
       ]
-      exports: "Select2"
+      exports: 'Select2'
 
     foundation:
       deps: [
-        "jquery"
+        'jquery'
       ]
-      exports: "Foundation"
+      exports: 'Foundation'
 
-    "foundation.alert":
-      deps: ["foundation", "modernizr"]
+    'foundation.alert':
+      deps: ['foundation', 'modernizr']
 
-    "foundation.topbar":
-      deps: ["foundation"]
+    'foundation.topbar':
+      deps: ['foundation']
 
-    "foundation.tabs":
-      deps: ["foundation"]
+    'foundation.tabs':
+      deps: ['foundation']
 
-    "foundation.tooltip":
-      deps: ["foundation"]
+    'foundation.tooltip':
+      deps: ['foundation']
 
-    "jquery.payment":
-      deps: ["jquery"]
+    'jquery.payment':
+      deps: ['jquery']
 
     animo:
-      deps: ["jquery"]
-      exports: "animo"
+      deps: ['jquery']
+      exports: 'animo'
 
     ladda:
-      exports: "Ladda"
+      exports: 'Ladda'

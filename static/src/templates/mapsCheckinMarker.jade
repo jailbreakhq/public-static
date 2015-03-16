@@ -1,4 +1,6 @@
 .info-window
   span.time
     = moment(time*1000).fromNow()
-  p #{status}
+  p 
+    strong #{location}: 
+    | #{status}

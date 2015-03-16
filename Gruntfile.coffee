@@ -8,9 +8,9 @@ module.exports = (grunt) ->
       static: "static"
       build: "static/build"
       src: "static/src"
+      html: "static/src/html"
       deploy: "static/dist"
       components: "static/components"
-      html: "static/html"
     
     # Coffeescript Linter
     coffeelint:

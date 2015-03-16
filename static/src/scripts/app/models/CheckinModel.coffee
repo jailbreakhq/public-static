@@ -1,9 +1,9 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "mixen"
-  "mixens/BaseModelMixen"
+  'jquery'
+  'underscore'
+  'backbone'
+  'mixen'
+  'mixens/BaseModelMixen'
 ], ($, _, Backbone, Mixen, BaseModelMixen) ->
   class Checkin extends Mixen(BaseModelMixen)
 
@@ -13,7 +13,7 @@ define [
       super
 
     url: ->
-      jailbreak.api_host + "/teams/" + @teamId + "/checkins"
+      jailbreak.api_host + '/teams/' + @teamId + '/checkins'
 
     getRenderContext: ->
       @.toJSON()

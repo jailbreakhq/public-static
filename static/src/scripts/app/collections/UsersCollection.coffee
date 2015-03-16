@@ -1,17 +1,14 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "mixen"
-  "mixens/BaseCollectionMixen"
-  "models/UserModel"
+  'jquery'
+  'underscore'
+  'backbone'
+  'mixen'
+  'mixens/BaseCollectionMixen'
+  'models/UserModel'
 ], ($, _, Backbone, Mixen, BaseCollectionMixen, User) ->
   class Users extends Mixen(BaseCollectionMixen)
     model: User
 
-    initialize: (options) ->
-      super
-
     url: =>
-      url = "/users"
+      url = '/users'
       super + url

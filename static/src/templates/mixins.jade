@@ -1,0 +1,17 @@
+
+mixin errorContainer
+  .row
+    .small-12.columns
+      .error-container
+        block
+
+mixin alert(resource, message, status)
+  .alert-box.alert.round
+    if status == 503
+      | The #{resource} is temporarily unavilable please try again soon
+    else if status == 404
+      | The #{resource} you were looking for was not found. Bummer. 
+      a(href="/") Go to home page
+    else
+      | There was a problem loading the #{resource}: #{message} 
+      small (#{status})

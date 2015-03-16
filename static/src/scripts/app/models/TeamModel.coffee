@@ -1,26 +1,23 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "mixen"
-  "mixens/BaseModelMixen"
-  "models/CheckinModel"
-], ($, _, Backbone, Mixen, Checkin, BaseModelMixen) ->
+  'jquery'
+  'underscore'
+  'backbone'
+  'mixen'
+  'mixens/BaseModelMixen'
+  'models/CheckinModel'
+], ($, _, Backbone, Mixen, BaseModelMixen, Checkin) ->
   class Team extends Mixen(BaseModelMixen)
     defaults:
-      avatar: "https://static.jailbreakhq.org/avatars/jb-default-avatar.jpg"
+      avatar: 'https://static.jailbreakhq.org/avatars/jb-default-avatar.jpg'
 
-    initialize: (options) =>
-      if options.slug
-        @slug = options.slug
-
+    initialize: (options) ->
       super
 
     url: =>
-      if @slug
-        jailbreak.api_host + "/teams/slug/" + @slug
+      if @get 'slug'
+        jailbreak.api_host + '/teams/slug/' + @get 'slug'
       else
-        jailbreak.api_host + "/teams/" + @.get("id")
+        jailbreak.api_host + '/teams/' + @get 'id'
 
     parse: (response) ->
       lastCheckin = response.lastCheckin
@@ -29,9 +26,11 @@ define [
 
       response
 
-    getRenderContext: =>
-      team = @.toJSON()
-      if @.has('lastCheckin')
-        team.lastCheckin = @.get('lastCheckin').toJSON()
+    getRenderContext: ->
+      context = super ? {}
 
-      team
+      context = _.extend context, @.toJSON()
+      if @.has 'lastCheckin'
+        context.lastCheckin = @.get('lastCheckin').toJSON()
+
+      context
