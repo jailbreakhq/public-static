@@ -9,15 +9,18 @@ script.
 +targethtml('dev')
   script.
     jailbreak.api_host = "http://localhost:8090";
+    jailbreak.release = 'local';
 
 +targethtml('qa')
   script.
     jailbreak.api_host = "https://qa.jbapi.net";
+    jailbreak.release = '{{build}}';
     jailbreak.sentry.enabled = true;
     jailbreak.sentry.dsn = "https://d82f576ef52b4883be7c4e7b5c7bc93f@app.getsentry.com/39750";
 
 +targethtml('prod')
   script.
     jailbreak.api_host = "https://jbapi.net";
+    jailbreak.release = '{{build}}';
     jailbreak.sentry.enabled = true;
     jailbreak.sentry.dsn = "https://b2787c1324734ff0862ec4705bfe60f7@app.getsentry.com/39751";

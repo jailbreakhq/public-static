@@ -16,6 +16,7 @@ require [
     if jailbreak.sentry.enabled
       Raven.config(jailbreak.sentry.dsn, {
         whitelistUrls: ['local.jailbreakhq.org', 'builds.jailbreakhq.org']
+        release: jailbreak.release
       }).install();
 
     # Sentry Foundation javascript events/handlers

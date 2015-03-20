@@ -8,32 +8,35 @@ script.
 
 +targethtml('dev')
   script.
-    jailbreak.url = "local.jailbreakhq.org"
-    jailbreak.api_host = "http://localhost:8090";
-    jailbreak.ga_id = "UA-58463386-2";
+    jailbreak.url = 'local.jailbreakhq.org';
+    jailbreak.api_host = 'http://localhost:8090';
+    jailbreak.ga_id = 'UA-58463386-2';
+    jailbreak.release = 'local';
 
 +targethtml('qa')
   script.
-    jailbreak.url = "qa.jailbreakhq.org"
-    jailbreak.api_host = "https://qa.jbapi.net";
-    jailbreak.ga_id = "UA-58463386-2";
+    jailbreak.url = 'qa.jailbreakhq.org';
+    jailbreak.api_host = 'https://qa.jbapi.net';
+    jailbreak.release = '{{build}}';
+    jailbreak.ga_id = 'UA-58463386-2';
     jailbreak.sentry.enabled = true;
-    jailbreak.sentry.dsn = "https://8bc0d346130249dc9952b52c1311e57b@app.getsentry.com/38797";
+    jailbreak.sentry.dsn = 'https://8bc0d346130249dc9952b52c1311e57b@app.getsentry.com/38797';
 
 +targethtml('prod')
   script.
-    jailbreak.url = "jailbreakhq.org"
-    jailbreak.api_host = "https://jbapi.net";
-    jailbreak.ga_id = "UA-58463386-1";
+    jailbreak.url = 'jailbreakhq.org';
+    jailbreak.api_host = 'https://jbapi.net';
+    jailbreak.ga_id = 'UA-58463386-1';
+    jailbreak.release = '{{build}}';
     jailbreak.sentry.enabled = true;
-    jailbreak.sentry.dsn = "https://38f0e2b9531c4e788601adf26ca4320d@app.getsentry.com/38808";
+    jailbreak.sentry.dsn = 'https://38f0e2b9531c4e788601adf26ca4320d@app.getsentry.com/38808';
 
 // Stripe Setup
 script(src='https://js.stripe.com/v2/')
 +targethtml('dev || qa')
   script.
-    Stripe.setPublishableKey("pk_test_elhSJvoDh3lhrYOuOv1D5i23");
+    Stripe.setPublishableKey('pk_test_elhSJvoDh3lhrYOuOv1D5i23');
 
 +targethtml('prod')
   script.
-    Stripe.setPublishableKey("pk_live_lu13pTg7V1dy0MctBEh5PBB3");
+    Stripe.setPublishableKey('pk_live_lu13pTg7V1dy0MctBEh5PBB3');

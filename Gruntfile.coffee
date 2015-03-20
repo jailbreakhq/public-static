@@ -141,7 +141,7 @@ module.exports = (grunt) ->
         tasks: ["jade:compile"]
 
       html:
-        files: ["<%= paths.src %>/html/*.jade"]
+        files: ["<%= paths.src %>/html/**/*.jade"]
         tasks: ["jade:html", "targethtml:dev"]
 
     concurrent:
