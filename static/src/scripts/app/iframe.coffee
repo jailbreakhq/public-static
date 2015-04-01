@@ -24,19 +24,19 @@ require [
     $(document).foundation()
 
     # Load google map by inserting new script into the page
-    @settings = new Jailbreak
-    @settings.fetch()
+    settings = new Jailbreak
+    settings.fetch()
 
-    @teams = new Teams
-    @teams.fetch()
+    teams = new Teams
+    teams.fetch()
 
-    @teamsMapView = new TeamsMapView
-      settings: @settings
-      teams: @teams
+    teamsMapView = new TeamsMapView
+      settings: settings
+      teams: teams
 
     topTeamsCardsView = new TopTeamsCardListiew
-      collection: @teams
+      collection: teams
     topTeamsCardsView.render()
 
-    require ['async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'], (data) =>
-      @teamsMapView.googleMapsLoaded()
+    require ['async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'], (data) ->
+      teamsMapView.googleMapsLoaded()

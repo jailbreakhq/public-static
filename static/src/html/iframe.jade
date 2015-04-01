@@ -45,15 +45,11 @@ html
 
   body
     #wrapper
-      include helpers/header.jade
+      include helpers/iframe-header.jade
 
       #body-container
-        //- Backbone App will inject the page contents in here
-        .loading
-          .ball
-          p LOADING
-
-      include helpers/footer.jade
+        #map-canvas.map
+        #leaders
 
     +targethtml('dev || qa')
       script.
