@@ -15,4 +15,4 @@ define [
       super
 
     url: =>
-      super + "/teams/#{@teamId}/checkins?limit=20"
+      jailbreak.api_host + "/teams/#{@teamId}/checkins?limit=20"

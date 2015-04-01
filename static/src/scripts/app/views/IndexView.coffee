@@ -28,7 +28,8 @@ define [
       @teams = new Teams
       @teams.fetch()
 
-      @eventItems = new FeedEvents
+      @eventItems = new FeedEvents [],
+        limit: 15
       @eventItems.fetch()
 
       @donations = new Donations

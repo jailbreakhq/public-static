@@ -31,6 +31,7 @@ requirejs.config
     'tether': '../../../components/tether/js/tether.min'
     'select2': '../../../components/select2/select2'
     'async': '../../../components/requirejs-plugins/src/async'
+    'jsUri': '../../../components/jsUri/Uri'
     'jade.templates': '../../templates/jade'
 
   shim:

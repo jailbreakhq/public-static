@@ -8,7 +8,4 @@ define [
 ], ($, _, Backbone, Mixen, BaseCollectionMixen, User) ->
   class Users extends Mixen(BaseCollectionMixen)
     model: User
-
-    url: =>
-      url = '/users'
-      super + url
+    urlPath: '/users'

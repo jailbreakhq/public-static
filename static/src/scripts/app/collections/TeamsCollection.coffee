@@ -9,12 +9,4 @@ define [
 ], ($, _, Backbone, Mixen, FilterableCollectionMixen, BaseCollectionMixen, Team) ->
   class Teams extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
     model: Team
-
-    url: =>
-      if @filters
-        encodedFilters = encodeURIComponent JSON.stringify @filters
-        url = '/teams?filters=' + encodedFilters
-      else
-        url = '/teams'
-
-      super + url
+    urlPath: '/teams'

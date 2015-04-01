@@ -10,13 +10,14 @@ define [
   'collections/DonationsCollection'
   'collections/EventsCollection'
   'collections/CheckinsCollection'
+  'models/FiltersModel'
   'views/DonationsListView'
   'views/DonationFormView'
   'views/TeamMapView'
   'views/feed/EventsListView'
   'vex'
   'autolink'
-], ($, _, Backbone, foundation, tabs, jade, Mixen, BaseView, Donations, FeedEvents, Checkins, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
+], ($, _, Backbone, foundation, tabs, jade, Mixen, BaseView, Donations, FeedEvents, Checkins, Filters, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
   class TeamProfile extends Mixen(BaseView)
     template: jade.team
     events:
@@ -33,15 +34,17 @@ define [
       @render()
 
       # can only be loaded after we determine the id for the team slug
+      feedFilters = new Filters
+        teamId: @model.get 'id'
       @storyEvents = new FeedEvents [],
-        filters:
-          teamId: @model.get 'id'
+        filters: feedFilters
       @storyEvents.fetch()
       @renderStoryEvents()
 
+      donationFilters = new Filters
+        teamId: @model.get 'id'
       @donations = new Donations [],
-        filters:
-          teamId: @model.get 'id'
+        filters: donationFilters
       @donations.fetch()
       @listenTo @donations, 'sync', @renderDonationsList
 

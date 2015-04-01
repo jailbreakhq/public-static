@@ -1,14 +1,27 @@
 define [
-  'jquery'
   'underscore'
   'backbone'
   'mixen'
   'mixens/AuthMixen'
   'mixens/LoadedMixen'
-], ($, _, backbone, Mixen, AuthMixen, LoadedMixen) ->
+  'jsUri'
+], (_, backbone, Mixen, AuthMixen, LoadedMixen, Uri) ->
   class BaseCollection extends Mixen(LoadedMixen, AuthMixen, Backbone.Collection)
     urlRoot: jailbreak.api_host
 
+    initialize: (models, options) ->
+      @urlParams = {}
+      if options?.limit
+        @urlParams['limit'] = options.limit
+
+      super
+
     url: ->
       super
-      jailbreak.api_host
+      uri = new Uri(jailbreak.api_host + @urlPath)
+      keys = _.keys @urlParams
+      _.each keys, (key) =>
+        uri.addQueryParam(key, @urlParams[key])
+
+      console.log uri.toString()
+      uri.toString()
