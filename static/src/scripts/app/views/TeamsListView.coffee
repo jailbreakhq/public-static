@@ -6,11 +6,17 @@ define [
   'mixen'
   'mixens/BaseViewMixen'
   'mixens/CollectionViewMixen'
+  'models/FiltersModel'
   'views/TeamItemView'
-], ($, _, Backbone, jade, Mixen, BaseView, CollectionView, TeamItemView) ->
+  'views/FiltersView'
+], ($, _, Backbone, jade, Mixen, BaseView, CollectionView, Filters, TeamItemView, FiltersView) ->
   class TeamsList extends Mixen(CollectionView, BaseView)
     template: jade.teams
-    
+
+    initialize: (options) ->
+      super
+      @filters = options.filters
+
     render: =>
       context = @getRenderContext()
       @$el.html @template context
@@ -21,4 +27,14 @@ define [
         @rememberView teamView
         $('#teams').append teamView.render().$el
 
+      @renderFilterbar()
+
       @
+
+    renderFilterbar: ->
+      filterbarView = new FiltersView
+        collection: @collection
+        filters: @filters
+      @rememberView filterbarView
+      $('#filterbar').append filterbarView.render().$el
+    

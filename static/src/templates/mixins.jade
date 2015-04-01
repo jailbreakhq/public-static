@@ -15,3 +15,9 @@ mixin alert(resource, message, status)
     else
       | There was a problem loading the #{resource}: #{message} 
       small (#{status})
+
+mixin option(value, activeValue, text)
+  if value == activeValue
+    option(value="#{value}", selected) #{text}
+  else
+    option(value="#{value}") #{text}
