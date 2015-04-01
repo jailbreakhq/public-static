@@ -7,7 +7,7 @@ define [
   backboneSync = Backbone.sync
 
   Backbone.sync = (method, model, options) ->
-    if localStorage.getItem 'apiToken' != null
+    if localStorage.getItem('apiToken') != null
       apiToken = JSON.parse localStorage.getItem 'apiToken'
       token = "#{apiToken.userId}:#{apiToken.apiToken}"
       tokenB64 = btoa(token)
