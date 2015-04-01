@@ -27,6 +27,8 @@ requirejs.config
     'spin': '../../../components/ladda/js/spin'
     'signet': '../../../components/signet/signet'
     'messenger': '../../../components/messenger/build/js/messenger'
+    'drop': '../../../components/drop/drop.min'
+    'tether': '../../../components/tether/js/tether.min'
     'select2': '../../../components/select2/select2'
     'async': '../../../components/requirejs-plugins/src/async'
     'jade.templates': '../../templates/jade'
@@ -58,6 +60,15 @@ requirejs.config
         'jquery'
       ]
       exports: 'Messenger'
+
+    drop:
+      deps: [
+        'tether'
+      ]
+      exports: 'Drop'
+
+    tether:
+      exports: '_Tether'
 
     select2:
       deps: [

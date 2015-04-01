@@ -20,6 +20,7 @@
     "signet": "https://github.com/HubSpot/signet.git#~0.4.7",
     "requirejs-plugins": "~1.0.3",
     "messenger": "~1.4.1",
-    "select2": "~3.5.2"
+    "select2": "~3.5.2",
+    "drop": "~0.5.5"
   }
 }

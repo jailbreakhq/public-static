@@ -34,6 +34,20 @@ define [
       @donations = new Donations
       @donations.fetch()
 
+      # create views
+      @indexStatsView = new IndexStatsView
+        model: @jailbreakModel
+      @rememberView @indexStatsView
+
+      @eventsListView = new EventsListView
+        collection: @eventItems
+      @rememberView @eventsListView
+
+      @donationsListView = new DonationsListView
+        collection: @donations
+        template: jade.donations
+      @rememberView @donationsListView
+
     render: =>
       @$el.html @template()
 
@@ -58,23 +72,13 @@ define [
         teamsMapView.googleMapsLoaded()
 
     renderIndexStatsView: =>
-      indexStatsView = new IndexStatsView
-        model: @jailbreakModel
-      @rememberView @indexStatsView
-      $('#index-stats', @$el).append indexStatsView.render().$el
+      $('#index-stats', @$el).append @indexStatsView.render().$el
 
     renderEventsStream: =>
-      eventsListView = new EventsListView
-        collection: @eventItems
-      @rememberView eventsListView
-      $('#events-stream', @$el).append eventsListView.render().$el
+      $('#events-stream', @$el).append @eventsListView.render().$el
 
     renderDonationsList: =>
-      donationsListView = new DonationsListView
-        collection: @donations
-        template: jade.donations
-      @rememberView @donationsListView
-      $('#all-donations', @$el).append donationsListView.render().$el
+      $('#all-donations', @$el).append @donationsListView.render().$el
 
     slick: ->
       $('.video-slick', @$el).slick

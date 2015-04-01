@@ -2,7 +2,10 @@ include mixins.jade
 
 .row
   .small-12.columns
-    h2.page-header Teams
+    h2.page-header 
+      | Teams
+      if loaded
+        a.drop-target#filters-button Filters
     if error
       +alert("teams list", errorMessage, errorStatus)
     else if !loaded
