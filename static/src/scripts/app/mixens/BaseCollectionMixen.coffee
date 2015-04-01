@@ -23,5 +23,4 @@ define [
       _.each keys, (key) =>
         uri.addQueryParam(key, @urlParams[key])
 
-      console.log uri.toString()
       uri.toString()
