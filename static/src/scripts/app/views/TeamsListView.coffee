@@ -14,13 +14,8 @@ define [
     template: jade.teams
 
     initialize: (options) ->
-      @filters = new Filters
-      @filterbarView = new FiltersView
-        collection: @collection
-        filters: @filters
-      @rememberView @filterbarView
-
       super
+      @filters = options.filters
 
     render: =>
       context = @getRenderContext()
@@ -37,5 +32,9 @@ define [
       @
 
     renderFilterbar: ->
-      $('#filterbar').append @filterbarView.render().$el
+      filterbarView = new FiltersView
+        collection: @collection
+        filters: @filters
+      @rememberView filterbarView
+      $('#filterbar').append filterbarView.render().$el
     

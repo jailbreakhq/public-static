@@ -3,22 +3,28 @@ define [
   'underscore'
   'backbone'
   'jade.templates'
-  'drop'
-], ($, _, Backbone, jade, Drop) ->
+], ($, _, Backbone, jade) ->
   class FiltersView extends Backbone.View
+    template: jade.filters
+    events:
+      'change #university': 'changeUniversity'
+      'change #order-by': 'changeOrderBy'
 
     initialize: (options) =>
       @collection = options.collection
       @filters = options.filters
 
     render: =>
+      @$el.html @template @filters.toJSON()
+
       @
 
-    open: (event) ->
-      console.log event
-      drop = new Drop
-        element: event.target
-        target: document.querySelector '.drop-target'
-        content: 'Something awesome cool!' #jade.filters()
-        position: 'bottom center'
-        openOn: 'click'
+    changeUniversity: (event) ->
+      value = $(event.target).val()
+      if value == 'ALL'
+        @filters.unset 'university'
+      else
+        @filters.set 'university', value
+
+    changeOrderBy: (event) ->
+      @filters.set 'orderBy', $(event.target).val()
