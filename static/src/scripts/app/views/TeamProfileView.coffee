@@ -72,7 +72,6 @@ define [
       $('#team-story', @$el).append @eventsListView?.render().$el
 
       @
-      
 
     renderTeamMap: =>
       require ['async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'], (data) =>
@@ -104,8 +103,8 @@ define [
 
     donate: (event) =>
       donationView = new DonationFormView
-        teamId: @model.get('id')
-        name: @model.get('names')
+        teamId: @model.get 'id'
+        name: @model.get 'names'
         parent: @
 
       vex.defaultOptions.className = 'vex-theme-default'
@@ -119,4 +118,4 @@ define [
       @donateVexId = $vexContent.data().vex.id
 
     closeDonateVex: =>
-      vex.close(@donateVexId)
+      vex.close @donateVexId
