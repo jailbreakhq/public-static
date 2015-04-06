@@ -12,7 +12,7 @@ define [
 
     url: =>
       if @get 'slug'
-        jailbreak.api_host + '/teams/slug/' + @get 'slug'
+        jailbreak.api_host + '/teams/' + @get 'slug'
       else
         jailbreak.api_host + '/teams/' + @get 'id'
 

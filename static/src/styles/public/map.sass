@@ -1,6 +1,7 @@
 .map
   line-height: 90%
   background-color: #eee
+  overflow: hidden
 
   img
     max-width: inherit
@@ -42,3 +43,21 @@
 
   a.button
     margin-top: 3px
+
+.maps-error
+  height: 100%
+  background: url(../../images/world-map-outline.png) no-repeat
+
+  .text-container
+    top: 190px
+    left: 320px
+    position: absolute
+    color: white
+    text-align: center
+    background: rgba(0, 0, 0, 0.3)
+    width: 40%
+    padding: 10px 20px
+    @include border-radius(5px)
+
+    h3
+      color: white

@@ -3,7 +3,7 @@ define [
   'jade.templates'
   'moment'
   'humanize'
-], (_, jade, Teams, Jailbreak, moment) ->
+], (_, jade, moment) ->
   class TeamsMapView extends Backbone.View
 
     #
@@ -21,6 +21,7 @@ define [
       @teams = options.teams
 
       # async load flags
+      @error = false
       @createdMap = false
       @delayedStartFinish = false
       @delayedTeamMarkers = false
@@ -28,9 +29,14 @@ define [
       @listenTo @settings, 'sync', @renderStartFinish
       @listenTo @teams, 'sync', @renderTeamMarkers
 
+      @listenTo @settings, 'error', @renderError
+
       @mapElement = options.mapElement or 'map-canvas'
 
     googleMapsLoaded: =>
+      if @error
+        return
+
       @createdMap = true
 
       mapOptions =
@@ -133,3 +139,8 @@ define [
           @markerBounds.extend marker.position
 
       @map.fitBounds(@markerBounds)
+
+    renderError: =>
+      @error = true
+      console.log jade
+      $("##{@mapElement}").html jade.mapsFailure()
