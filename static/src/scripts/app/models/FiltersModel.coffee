@@ -1,6 +1,4 @@
 define [
-  'jquery'
-  'underscore'
   'backbone'
-], ($, _, Backbone) ->
+], (Backbone) ->
   class Filters extends Backbone.Model

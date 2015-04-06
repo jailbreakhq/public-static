@@ -1,8 +1,6 @@
 define [
-  'jquery'
-  'underscore'
   'backbone'
-], ($, _, Backbone) ->
+], (Backbone) ->
   class Position extends Backbone.Model
     defaults:
       lat: ''

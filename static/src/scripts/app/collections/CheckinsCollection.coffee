@@ -1,11 +1,8 @@
 define [
-  'jquery'
-  'underscore'
-  'backbone'
   'mixen'
   'mixens/BaseCollectionMixen'
   'models/CheckinModel'
-], ($, _, Backbone, Mixen, BaseCollectionMixen, Checkin) ->
+], (Mixen, BaseCollectionMixen, Checkin) ->
   class Checkins extends Mixen(BaseCollectionMixen)
     model: Checkin
 

@@ -1,10 +1,7 @@
 define [
-  'jquery'
-  'underscore'
-  'backbone'
   'mixen'
   'mixens/BaseModelMixen'
-], ($, _, Backbone, Mixen, BaseModelMixen) ->
+], (Mixen, BaseModelMixen) ->
   class Checkin extends Mixen(BaseModelMixen)
 
     initialize: (options) ->
@@ -26,6 +23,7 @@ define [
       response
 
     parseTeam: (response) ->
+      # necessary to avoid a circular dependency on the Team model
       lastCheckin = response.lastCheckin
       if lastCheckin
         response.lastCheckin = new Checkin lastCheckin

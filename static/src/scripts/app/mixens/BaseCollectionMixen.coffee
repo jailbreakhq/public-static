@@ -3,10 +3,10 @@ define [
   'backbone'
   'mixen'
   'mixens/AuthMixen'
-  'mixens/LoadedMixen'
+  'mixens/SyncingMixen'
   'jsUri'
-], (_, backbone, Mixen, AuthMixen, LoadedMixen, Uri) ->
-  class BaseCollection extends Mixen(LoadedMixen, AuthMixen, Backbone.Collection)
+], (_, backbone, Mixen, AuthMixen, SyncingMixen, Uri) ->
+  class BaseCollection extends Mixen(SyncingMixen, AuthMixen, Backbone.Collection)
     urlRoot: jailbreak.api_host
 
     initialize: (models, options) ->
@@ -24,3 +24,8 @@ define [
         uri.addQueryParam(key, @urlParams[key])
 
       uri.toString()
+
+    sync: ->
+      # do not remove
+
+      super
