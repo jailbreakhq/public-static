@@ -5,14 +5,14 @@ define [
   'models/FiltersModel'
   'models/TeamModel'
   'views/IndexView'
-  'views/TeamsListView'
+  'views/teams/ListPageView'
   'views/TeamProfileView'
   'views/DonationFormView'
   'views/LoginView'
   'views/admin/MainView'
   'views/admin/AddFeedView'
   'views/ErrorView'
-], (Backbone, Teams, TeamsByCheckin, Filters, Team, IndexView, TeamsListView, TeamProfileView, DonationFormView, LoginView, AdminView, AdminFeedView, ErrorView) ->
+], (Backbone, Teams, TeamsByCheckin, Filters, Team, IndexView, TeamsListPageView, TeamProfileView, DonationFormView, LoginView, AdminView, AdminFeedView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
       '':                   'index'
@@ -45,7 +45,7 @@ define [
       teams = new Teams [],
         filters: filters
       teams.fetch()
-      teamsView = new TeamsListView
+      teamsView = new TeamsListPageView
         collection: teams
         filters: filters
       @_showView teamsView

@@ -1,11 +1,11 @@
 define [
   'jquery'
-  'underscore'
-  'backbone'
   'jade.templates'
-], ($, _, Backbone, jade) ->
-  class FiltersView extends Backbone.View
-    template: jade.filters
+  'mixen'
+  'mixens/BaseViewMixen'
+], ($, jade, Mixen, BaseView) ->
+  class Filterbar extends Mixen(BaseView)
+    template: jade.teamsFilterbar
     events:
       'change #university': 'changeUniversity'
       'change #order-by': 'changeOrderBy'

@@ -1,8 +1,6 @@
 define [
-  'jquery'
   'underscore'
-  'backbone'
-], ($, _, backbone, Mixen, AuthMixen, LoadedMixen) ->
+], (_) ->
   class TotalCountCollection
     totalCount: null
 

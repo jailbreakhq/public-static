@@ -5,7 +5,7 @@ if error
     h2.page-header Team Not Found
     +alert("team", errorMessage, errorStatus)
     #broken-glass
-else if !loaded
+else if loading
   include loading.jade
 else
   #team

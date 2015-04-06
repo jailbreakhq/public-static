@@ -54,9 +54,10 @@ define [
 
       # render sub views
       @renderTeamsMapView()
-      @renderIndexStatsView()
-      @renderEventsStream()
-      @renderDonationsList()
+      
+      $('#index-stats', @$el).append @indexStatsView.render().$el
+      $('#events-stream', @$el).append @eventsListView.render().$el
+      $('#all-donations', @$el).append @donationsListView.render().$el
 
       @slick()
 
@@ -71,15 +72,6 @@ define [
 
       require ['async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'], (data) ->
         teamsMapView.googleMapsLoaded()
-
-    renderIndexStatsView: =>
-      $('#index-stats', @$el).append @indexStatsView.render().$el
-
-    renderEventsStream: =>
-      $('#events-stream', @$el).append @eventsListView.render().$el
-
-    renderDonationsList: =>
-      $('#all-donations', @$el).append @donationsListView.render().$el
 
     slick: ->
       $('.video-slick', @$el).slick

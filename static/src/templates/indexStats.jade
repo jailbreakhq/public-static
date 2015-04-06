@@ -1,21 +1,28 @@
 .row
   .small-12.medium-10.columns
     .progress-info
-      .progress.radius
-        span.meter(style="width: #{percentageWidth}%")
-          if percentage > 20
-            | &euro;
-            = Humanize.intComma(amountRaised/100)
-            |  raised
-        if percentage < 75
-          | &euro;100,000 goal
-      if percentage < 20
-        | &euro;
-        = Humanize.intComma(amountRaised/100)
-        |  raised
-      if percentage > 75
-        | &euro;100,000 (
-        = Humanize.toFixed(percentage, 1)
-        | %) of goal
+      if error
+        .progress.radius
+          | We're having slight technical difficulties. Check back later.
+      else if loading
+        .progress.radius
+          | Loading...
+      else
+        .progress.radius
+          span.meter(style="width: #{percentageWidth}%")
+            if percentage > 20
+              | &euro;
+              = Humanize.intComma(amountRaised/100)
+              |  raised
+          if percentage < 75
+            | &euro;100,000 goal
+        if percentage < 20
+          | &euro;
+          = Humanize.intComma(amountRaised/100)
+          |  raised
+        if percentage > 75
+          | &euro;100,000 (
+          = Humanize.toFixed(percentage, 1)
+          | %) of goal
   .small-12.medium-2.columns
     a.button.round.expand.donate-button Donate Now
