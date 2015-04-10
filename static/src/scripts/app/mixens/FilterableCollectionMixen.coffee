@@ -9,6 +9,7 @@ define [
         @filters = options.filters
 
         @filters?.on('change', =>
+          @page = 1 # reset pagination if it exists
           @.fetch() # when filters change reload the collection
         , @)
 

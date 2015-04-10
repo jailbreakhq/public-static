@@ -7,7 +7,7 @@ define [
       if not options.collection
         new Error 'This view needs a collection in the initialize options'
       @collection = options.collection
-      @listenTo @collection, 'loading loaded error', =>
+      @listenTo @collection, 'loaded error', =>
         @render()
 
     getRenderContext: ->

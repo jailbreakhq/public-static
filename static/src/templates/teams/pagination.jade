@@ -1,0 +1,8 @@
+if collectionSize == totalCount
+  span.loaded Loaded all #{totalCount} teams
+else
+  span.loaded Loaded #{collectionSize} of #{totalCount} teams
+
+if collectionSize < totalCount
+  a.content-button#load-more-teams 
+    | Load More

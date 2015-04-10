@@ -2,8 +2,10 @@ define [
   'mixen'
   'mixens/FilterableCollectionMixen'
   'mixens/BaseCollectionMixen'
+  'mixens/TotalCountCollectionMixen'
+  'mixens/PaginatableCollectionMixen'
   'models/TeamModel'
-], (Mixen, FilterableCollectionMixen, BaseCollectionMixen, Team) ->
-  class Teams extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
+], (Mixen, FilterableCollectionMixen, BaseCollectionMixen, TotalCountCollection, PaginatableCollection, Team) ->
+  class Teams extends Mixen(PaginatableCollection, FilterableCollectionMixen, TotalCountCollection, BaseCollectionMixen)
     model: Team
     urlPath: '/teams'

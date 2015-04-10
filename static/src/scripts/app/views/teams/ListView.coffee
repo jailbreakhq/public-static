@@ -14,9 +14,10 @@ define [
     initialize: (options) ->
       super
 
+      @listenTo @collection, 'add', @renderTeam
+
     render: =>
-      context = @getRenderContext()
-      @$el.html @template context
+      @$el.html @template @getRenderContext()
 
       _.each @collection.models, (team) =>
         @renderTeam team
@@ -28,3 +29,9 @@ define [
         model: team
       @rememberView teamView
       $('#teams').append teamView.render().$el
+
+    loadMore: (event) ->
+      console.log 'load more'
+      @collection.nextPage()
+      @collection.fetch
+        add: true

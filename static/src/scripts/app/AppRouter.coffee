@@ -44,6 +44,7 @@ define [
       filters = new Filters
       teams = new Teams [],
         filters: filters
+        limit: 20
       teams.fetch()
       teamsView = new TeamsListPageView
         collection: teams

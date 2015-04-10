@@ -17,7 +17,7 @@ define [
         @errorStatus = error?.status or 500
       , @
 
-    sync: ->
+    sync: (method, model, options) ->
       @syncing = true
       @trigger 'loading'
 
