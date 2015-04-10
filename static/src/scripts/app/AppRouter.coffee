@@ -38,7 +38,7 @@ define [
 
     index: ->
       indexView = new IndexView
-      @_showView indexView
+      @_showView indexView, ''
 
     teams: ->
       filters = new Filters
@@ -49,7 +49,7 @@ define [
       teamsView = new TeamsListPageView
         collection: teams
         filters: filters
-      @_showView teamsView
+      @_showView teamsView, 'Teams List'
 
     team: (slug) ->
       team = new Team
@@ -57,12 +57,12 @@ define [
       team.fetch()
       teamProfileView = new TeamProfileView
         model: team
-      @_showView teamProfileView
+      @_showView teamProfileView, ''
 
     donate: ->
       donateView = new DonationFormView
         iphoneRedirect: @_isIphoneRedirect()
-      @_showView donateView
+      @_showView donateView, 'Donate'
 
     donateTeam: (slug) ->
       team = new Team
@@ -73,36 +73,46 @@ define [
             teamId: team.get 'id'
             name: team.get 'names'
             iphoneRedirect: @_isIphoneRedirect()
-          @_showView donateView
+          @_showView donateView, "Donate to " + team.get 'names'
 
     login: ->
       loginView = new LoginView
-      @_showView loginView
+      @_showView loginView, 'Login'
 
     admin: ->
       teamsByCheckin = new TeamsByCheckin
       teamsByCheckin.fetch()
       adminView = new AdminView
         teams: teamsByCheckin
-      @_showView adminView
+      @_showView adminView, 'Admin'
 
     adminFeed: ->
       feedView = new AdminFeedView
-      @_showView feedView
+      @_showView feedView, 'Admin'
 
     notFound: ->
       errorView = new ErrorView
         error: 404
 
-      @_showView errorView
+      @_showView errorView, 'Page Not Found'
 
-    _showView: (view) ->
+    _showView: (view, title) ->
       if @currentView?.close
         @currentView.close()
 
       @currentView = view
-
       @bodyContainer.html view.render().$el
+      @_updateTitle(title)
+
+    _updateTitle: (title) ->
+      if title
+        sep = ' | '
+      else
+        sep = ''
+
+      document.title = title + sep + '''JailbreakHQ 2015 a global
+        charity race in aid of Amnesty International and St.
+        Vincent de Paul'''
 
     _isIphoneRedirect: ->
       url = Backbone.history.getFragment()
