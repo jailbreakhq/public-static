@@ -25,7 +25,8 @@ define [
       @jailbreakModel = new Jailbreak
       @jailbreakModel.fetch()
 
-      @teams = new Teams
+      @teams = new Teams [],
+        urlPath: '/teams/all'
       @teams.fetch()
 
       @eventItems = new FeedEvents [],

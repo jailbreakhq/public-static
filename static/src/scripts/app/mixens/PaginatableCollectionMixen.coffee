@@ -2,7 +2,6 @@ define [
   'underscore'
 ], (_) ->
   class PaginatableCollection
-    page: 1
 
     constructor: (models, options) ->
       if options?.page
@@ -15,4 +14,4 @@ define [
       super
 
     nextPage: =>
-      @page += 1
+      @page = (@page or 1) + 1
