@@ -1,0 +1,43 @@
+.team
+  padding: 0 20px
+  text-align: center
+
+  .university
+    font-color: $secondary-text-color
+    padding-right: 20px
+
+  .amount-raised
+    font-color: $secondary-text-color
+
+  .featured
+    font-size: 2.4rem
+    line-height: 10px
+    vertical-align: top
+    width: 5px
+    display: inline-block
+
+.teams-list > li
+  text-align: center
+  border-bottom: 1px solid $seperator-border-color
+  margin-bottom: 20px
+  padding-bottom: 10px
+
+.teams-list > li:last-child
+  border-bottom: none
+  margin-bottom: 0
+
+@media #{$medium-up}  
+  .teams-list > li
+    border-bottom: none
+    border-right: 1px solid $seperator-border-color
+
+@media #{$medium-only}
+  .teams-list.medium-block-grid-2 > li:nth-child(2n),
+  .teams-list.medium-block-grid-3 > li:nth-child(3n)
+    border-right: none !important
+
+@media #{$large-only}
+  .teams-list.large-block-grid-2 > li:nth-child(2n),
+  .teams-list.large-block-grid-3 > li:nth-child(3n),
+  .teams-list.large-block-grid-4 > li:nth-child(4n)
+    border-right: none !important
