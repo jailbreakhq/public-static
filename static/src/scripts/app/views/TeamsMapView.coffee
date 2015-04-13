@@ -40,7 +40,7 @@ define [
       @createdMap = true
 
       mapOptions =
-        zoom: 14
+        zoom: 6
         center: new google.maps.LatLng 53.349, -6.260
         mapTypeId: google.maps.MapTypeId.ROADMAP
         streetViewControl: false

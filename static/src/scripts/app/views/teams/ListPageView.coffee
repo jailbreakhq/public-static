@@ -3,11 +3,10 @@ define [
   'jade.templates'
   'mixen'
   'mixens/BaseViewMixen'
-  'models/PaginationModel'
   'views/teams/FilterbarView'
   'views/teams/ListView'
   'views/teams/PaginationView'
-], ($, jade, Mixen, BaseView, Pagination, FilterbarView, ListView, PaginationView) ->
+], ($, jade, Mixen, BaseView, FilterbarView, ListView, PaginationView) ->
   class TeamsListPageView extends Mixen(BaseView)
     template: jade.teamsPage
 
@@ -25,6 +24,7 @@ define [
 
       @paginationView = new PaginationView
         collection: options.collection
+      @rememberView @paginationView
 
     render: =>
       @$el.html @template()
