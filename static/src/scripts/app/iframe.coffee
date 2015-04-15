@@ -27,7 +27,8 @@ require [
     settings = new Jailbreak
     settings.fetch()
 
-    teams = new Teams
+    teams = new Teams [],
+      urlPath: '/teams/all'
     teams.fetch()
 
     teamsMapView = new TeamsMapView

@@ -2,7 +2,7 @@ include ../mixins.jade
 
 if error
   +alert("top teams list", errorMessage, errorStatus)
-else if !loaded
+else if loading
   include ../loading.jade
 else
   #leaders-list
