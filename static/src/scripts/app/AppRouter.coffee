@@ -110,7 +110,7 @@ define [
       else
         sep = ''
 
-      document.title = title + sep + '''JailbreakHQ 2015 a global
+      document.title = title + sep + '''JailbreakHQ is a global
         charity race in aid of Amnesty International and St.
         Vincent de Paul'''
 

@@ -75,7 +75,7 @@ define [
       # start and end markers
       startMarkerContext =
         title: 'Collins Barracks Dublin'
-        description: 'The start point of the Jailbreak 2015 race'
+        description: 'The start point of the Jailbreak race'
       @startMarker = new google.maps.Marker
         position: new google.maps.LatLng startLat, startLon
         map: @map

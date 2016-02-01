@@ -35,7 +35,7 @@ define [
       # can only be loaded after we determine the id for the team slug
       names = @model.get 'names'
       uni = @model.get 'university'
-      document.title = "#{names} (#{uni}) | JailbreakHQ 2015"
+      document.title = "#{names} (#{uni}) | JailbreakHQ"
       @render()
 
       # Events
