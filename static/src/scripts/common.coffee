@@ -2,7 +2,7 @@ requirejs.config
   waitSeconds: 15
   baseUrl: '/build/scripts/app'
   paths:
-    'jquery': '../../../components/jquery/dist/jquery',
+    'jquery': '../../../components/jquery/dist/jquery'
     'underscore': '../../../components/underscore/underscore'
     'backbone': '../../../components/backbone/backbone'
     'moment': '../../../components/moment/moment'
