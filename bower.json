@@ -2,6 +2,7 @@
   "name": "JailbreakHQ Static",
   "version": "0.0.1",
   "dependencies": {
+    "modernizr": "2.8.3",
     "bower-foundation": "https://github.com/zurb/bower-foundation.git#5.5.0",
     "backbone": "~1.1.2",
     "requirejs": "~2.1.15",
