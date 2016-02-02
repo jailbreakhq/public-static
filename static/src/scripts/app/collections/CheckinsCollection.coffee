@@ -1,11 +1,8 @@
 define [
-  'jquery'
-  'underscore'
-  'backbone'
   'mixen'
   'mixens/BaseCollectionMixen'
   'models/CheckinModel'
-], ($, _, Backbone, Mixen, BaseCollectionMixen, Checkin) ->
+], (Mixen, BaseCollectionMixen, Checkin) ->
   class Checkins extends Mixen(BaseCollectionMixen)
     model: Checkin
 
@@ -15,4 +12,4 @@ define [
       super
 
     url: =>
-      super + "/teams/#{@teamId}/checkins?limit=20"
+      jailbreak.api_host + "/teams/#{@teamId}/checkins?limit=20"

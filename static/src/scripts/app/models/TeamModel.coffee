@@ -1,11 +1,8 @@
 define [
-  'jquery'
-  'underscore'
-  'backbone'
   'mixen'
   'mixens/BaseModelMixen'
   'models/CheckinModel'
-], ($, _, Backbone, Mixen, BaseModelMixen, Checkin) ->
+], (Mixen, BaseModelMixen, Checkin) ->
   class Team extends Mixen(BaseModelMixen)
     defaults:
       avatar: 'https://static.jailbreakhq.org/avatars/jb-default-avatar.jpg'
@@ -15,7 +12,7 @@ define [
 
     url: =>
       if @get 'slug'
-        jailbreak.api_host + '/teams/slug/' + @get 'slug'
+        jailbreak.api_host + '/teams/' + @get 'slug'
       else
         jailbreak.api_host + '/teams/' + @get 'id'
 
@@ -27,9 +24,7 @@ define [
       response
 
     getRenderContext: ->
-      context = super ? {}
-
-      context = _.extend context, @.toJSON()
+      context = @.toJSON()
       if @.has 'lastCheckin'
         context.lastCheckin = @.get('lastCheckin').toJSON()
 

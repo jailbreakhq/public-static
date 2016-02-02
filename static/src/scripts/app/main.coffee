@@ -1,6 +1,5 @@
 require [
   'jquery'
-  'underscore'
   'backbone'
   'foundation'
   'foundation.topbar'
@@ -9,7 +8,7 @@ require [
   'messenger'
   'signet'
   'async'
-], ($, _, Backbone, foundation, topbar, Raven, Router, Messenger) ->
+], ($, Backbone, foundation, topbar, Raven, Router, Messenger) ->
   
   $ ->
     # Config Sentry Raven Client

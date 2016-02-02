@@ -1,4 +1,4 @@
-# JailbreakHQ 2015 Public Static [![Build Status](https://travis-ci.org/jailbreakhq/public-static.svg?branch=master)](https://travis-ci.org/jailbreakhq/public-static)
+# JailbreakHQ Public Static [![Build Status](https://travis-ci.org/jailbreakhq/public-static.svg?branch=master)](https://travis-ci.org/jailbreakhq/public-static)
 A single-page backbone static app for jailbreakhq.org that uses the jbapi.net REST-like JSON API.
 
 ## Development

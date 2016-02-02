@@ -14,7 +14,7 @@ define [
     
     initialize: (options) =>
       if not options.team
-        throw new Error('AddCheckinView requires a team id')
+        throw new Error('AddCheckinView requires a team model')
       @team = options.team
 
       @parent = options.parent

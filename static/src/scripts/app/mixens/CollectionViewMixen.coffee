@@ -7,9 +7,8 @@ define [
       if not options.collection
         new Error 'This view needs a collection in the initialize options'
       @collection = options.collection
-      @listenTo @collection, 'sync error', =>
+      @listenTo @collection, 'loaded error', =>
         @render()
-        @renderCollection?()
 
     getRenderContext: ->
       context = super ? {}
@@ -18,6 +17,6 @@ define [
         error: @collection.error
         errorMessage: @collection.errorMessage
         errorStatus: @collection.errorStatus
-        loaded: @collection.loaded
+        loading: @collection.syncing
 
       _.extend context, data

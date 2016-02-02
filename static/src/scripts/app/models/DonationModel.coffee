@@ -1,11 +1,8 @@
 define [
-  'jquery'
-  'underscore'
-  'backbone'
   'mixen'
   'models/TeamModel'
   'mixens/BaseModelMixen'
-], ($, _, Backbone, Mixen, Team, BaseModelMixen) ->
+], (Mixen, Team, BaseModelMixen) ->
   class Donation extends Mixen(BaseModelMixen)
     
     initialize: (options) ->

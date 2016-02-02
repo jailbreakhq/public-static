@@ -1,27 +1,17 @@
 define [
-  "jquery"
-  "underscore"
-  "backbone"
-  "mixen"
-  "mixens/BaseModelMixen"
-  "models/TeamModel"
-], ($, _, Backbone, Mixen, BaseModelMixen, Team) ->
+  'mixen'
+  'mixens/BaseModelMixen'
+  'models/TeamModel'
+], (Mixen, BaseModelMixen, Team) ->
   class DonateEvent extends Mixen(BaseModelMixen)
     defaults:
-      linkText: "Donate"
+      linkText: 'Donate'
 
     initialize: (options) ->
       super
 
     url: ->
-      jailbreak.api_host + "/events/donates"
-
-    getRenderContext: ->
-      donate = @.toJSON()
-      if @.has('team')
-        donate.team = @.get('team').toJSON()
-
-      donate
+      jailbreak.api_host + '/events/donates'
 
     parse: (response) ->
       team = response.team
@@ -29,3 +19,10 @@ define [
         response.team = new Team team
 
       response
+
+    getRenderContext: ->
+      donate = @.toJSON()
+      if @.has('team')
+        donate.team = @.get('team').toJSON()
+
+      donate

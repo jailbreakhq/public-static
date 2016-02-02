@@ -1,23 +1,17 @@
 define [
-  'jquery'
-  'underscore'
-  'backbone'
   'mixen'
   'mixens/FilterableCollectionMixen'
   'mixens/BaseCollectionMixen'
+  'mixens/TotalCountCollectionMixen'
+  'mixens/PaginatableCollectionMixen'
   'models/TeamModel'
-], ($, _, Backbone, Mixen, FilterableCollectionMixen, BaseCollectionMixen, Team) ->
-  class Teams extends Mixen(FilterableCollectionMixen, BaseCollectionMixen)
+], (Mixen, FilterableCollectionMixen, BaseCollectionMixen, TotalCountCollection, PaginatableCollection, Team) ->
+  class Teams extends Mixen(PaginatableCollection, FilterableCollectionMixen, TotalCountCollection, BaseCollectionMixen)
     model: Team
+    urlPath: '/teams'
 
-    url: =>
-      if @filters
-        encodedFilters = encodeURIComponent JSON.stringify @filters
-        url = '/teams?filters=' + encodedFilters
-      else
-        url = '/teams'
+    initialize: (models, options) ->
+      super
 
-      super + url
-
-    comparator: (item) ->
-      item.get 'position'
+      if options?.urlPath
+        @urlPath = options.urlPath

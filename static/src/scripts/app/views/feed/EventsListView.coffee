@@ -17,9 +17,6 @@ define [
       context = @getRenderContext()
       @$el.html @template context
 
-      @
-
-    renderCollection: =>
       htmlList = $('#events-stream-list', @$el)
       for feedEvent in @collection.models
         switch feedEvent.get 'type'
@@ -30,6 +27,7 @@ define [
               model: donate
             htmlList.append donateView.render().$el
             @rememberView donateView
+
           when 'LINK'
             link = feedEvent.get 'link'
             link.set 'time', feedEvent.get 'time'
@@ -37,9 +35,12 @@ define [
               model: link
             htmlList.append linkView.render().$el
             @rememberView linkView
+            
           when 'CHECKIN'
             checkin = feedEvent.get 'checkin'
             checkinView = new CheckinView
               model: checkin
             htmlList.append checkinView.render().$el
             @rememberView checkinView
+
+      @

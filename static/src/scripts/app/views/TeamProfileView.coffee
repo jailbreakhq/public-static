@@ -7,17 +7,19 @@ define [
   'jade.templates'
   'mixen'
   'mixens/BaseViewMixen'
+  'mixens/ModelViewMixen'
   'collections/DonationsCollection'
   'collections/EventsCollection'
   'collections/CheckinsCollection'
+  'models/FiltersModel'
   'views/DonationsListView'
   'views/DonationFormView'
   'views/TeamMapView'
   'views/feed/EventsListView'
   'vex'
   'autolink'
-], ($, _, Backbone, foundation, tabs, jade, Mixen, BaseView, Donations, FeedEvents, Checkins, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
-  class TeamProfile extends Mixen(BaseView)
+], ($, _, Backbone, foundation, tabs, jade, Mixen, BaseView, ModelView, Donations, FeedEvents, Checkins, Filters, DonationsListView, DonationFormView, TeamMapView, EventsListView, vex, autolink) ->
+  class TeamProfile extends Mixen(ModelView, BaseView)
     template: jade.team
     events:
       'click .team-avatar.avatar-large': 'openLargeAvatar'
@@ -30,44 +32,49 @@ define [
       super
 
     loadChildData: =>
+      # can only be loaded after we determine the id for the team slug
+      names = @model.get 'names'
+      uni = @model.get 'university'
+      document.title = "#{names} (#{uni}) | JailbreakHQ"
       @render()
 
-      # can only be loaded after we determine the id for the team slug
-      @storyEvents = new FeedEvents [],
-        filters:
-          teamId: @model.get 'id'
-      @storyEvents.fetch()
-      @renderStoryEvents()
+      # Events
+      feedFilters = new Filters
+        teamId: @model.get 'id'
+      storyEvents = new FeedEvents [],
+        filters: feedFilters
+      storyEvents.fetch()
 
-      @donations = new Donations [],
-        filters:
-          teamId: @model.get 'id'
-      @donations.fetch()
-      @listenTo @donations, 'sync', @renderDonationsList
+      @eventsListView = new EventsListView
+        collection: storyEvents
+      @rememberView @eventsListView
 
+      # Donations
+      donationFilters = new Filters
+        teamId: @model.get 'id'
+      donations = new Donations [],
+        filters: donationFilters
+      donations.fetch()
+
+      @donationsListView = new DonationsListView
+        collection: donations
+      @rememberView @donationsListView
+
+      # Checkins
       @checkins = new Checkins [],
         teamId: @model.get 'id'
       @checkins.fetch()
       @listenTo @checkins, 'sync', @renderTeamMap
 
     render: =>
-      @$el.html @template @model.getRenderContext()
+      @$el.html @template @getRenderContext()
 
       $(document).foundation() # tabs
 
+      $('#donations-panel', @$el).html @donationsListView?.render().$el
+      $('#team-story', @$el).append @eventsListView?.render().$el
+
       @
-
-    renderDonationsList: =>
-      donationsListView = new DonationsListView
-        collection: @donations
-      @rememberView donationsListView
-      $('#donations-panel', @$el).html donationsListView.render().$el
-
-    renderStoryEvents: =>
-      eventsListView = new EventsListView
-        collection: @storyEvents
-      @rememberView eventsListView
-      $('#team-story', @$el).append eventsListView.render().$el
 
     renderTeamMap: =>
       require ['async!//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'], (data) =>
@@ -99,8 +106,8 @@ define [
 
     donate: (event) =>
       donationView = new DonationFormView
-        teamId: @model.get('id')
-        name: @model.get('names')
+        teamId: @model.get 'id'
+        name: @model.get 'names'
         parent: @
 
       vex.defaultOptions.className = 'vex-theme-default'
@@ -114,4 +121,4 @@ define [
       @donateVexId = $vexContent.data().vex.id
 
     closeDonateVex: =>
-      vex.close(@donateVexId)
+      vex.close @donateVexId

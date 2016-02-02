@@ -2,16 +2,17 @@ define [
   'backbone',
   'collections/TeamsCollection'
   'collections/TeamsByCheckinCollection'
+  'models/FiltersModel'
   'models/TeamModel'
   'views/IndexView'
-  'views/TeamsListView'
+  'views/teams/ListPageView'
   'views/TeamProfileView'
   'views/DonationFormView'
   'views/LoginView'
   'views/admin/MainView'
   'views/admin/AddFeedView'
   'views/ErrorView'
-], (Backbone, Teams, TeamsByCheckin, Team, IndexView, TeamsListView, TeamProfileView, DonationFormView, LoginView, AdminView, AdminFeedView, ErrorView) ->
+], (Backbone, Teams, TeamsByCheckin, Filters, Team, IndexView, TeamsListPageView, TeamProfileView, DonationFormView, LoginView, AdminView, AdminFeedView, ErrorView) ->
   class Router extends Backbone.Router
     routes:
       '':                   'index'
@@ -37,14 +38,18 @@ define [
 
     index: ->
       indexView = new IndexView
-      @_showView indexView
+      @_showView indexView, ''
 
     teams: ->
-      teams = new Teams
+      filters = new Filters
+      teams = new Teams [],
+        filters: filters
+        limit: 20
       teams.fetch()
-      teamsView = new TeamsListView
+      teamsView = new TeamsListPageView
         collection: teams
-      @_showView teamsView
+        filters: filters
+      @_showView teamsView, 'Teams List'
 
     team: (slug) ->
       team = new Team
@@ -52,12 +57,12 @@ define [
       team.fetch()
       teamProfileView = new TeamProfileView
         model: team
-      @_showView teamProfileView
+      @_showView teamProfileView, ''
 
     donate: ->
       donateView = new DonationFormView
         iphoneRedirect: @_isIphoneRedirect()
-      @_showView donateView
+      @_showView donateView, 'Donate'
 
     donateTeam: (slug) ->
       team = new Team
@@ -68,36 +73,46 @@ define [
             teamId: team.get 'id'
             name: team.get 'names'
             iphoneRedirect: @_isIphoneRedirect()
-          @_showView donateView
+          @_showView donateView, "Donate to " + team.get 'names'
 
     login: ->
       loginView = new LoginView
-      @_showView loginView
+      @_showView loginView, 'Login'
 
     admin: ->
       teamsByCheckin = new TeamsByCheckin
       teamsByCheckin.fetch()
       adminView = new AdminView
         teams: teamsByCheckin
-      @_showView adminView
+      @_showView adminView, 'Admin'
 
     adminFeed: ->
       feedView = new AdminFeedView
-      @_showView feedView
+      @_showView feedView, 'Admin'
 
     notFound: ->
       errorView = new ErrorView
         error: 404
 
-      @_showView errorView
+      @_showView errorView, 'Page Not Found'
 
-    _showView: (view) ->
+    _showView: (view, title) ->
       if @currentView?.close
         @currentView.close()
 
       @currentView = view
-
       @bodyContainer.html view.render().$el
+      @_updateTitle(title)
+
+    _updateTitle: (title) ->
+      if title
+        sep = ' | '
+      else
+        sep = ''
+
+      document.title = title + sep + '''JailbreakHQ is a global
+        charity race in aid of Amnesty International and St.
+        Vincent de Paul'''
 
     _isIphoneRedirect: ->
       url = Backbone.history.getFragment()

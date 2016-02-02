@@ -1,11 +1,10 @@
 define [
   'jquery'
-  'underscore'
   'backbone'
   'jade.templates'
   'views/admin/AddCheckinFormView'
   'vex'
-], ($, _, Backbone, jade, AddCheckinView, vex) ->
+], ($, Backbone, jade, AddCheckinView, vex) ->
   class TeamItem extends Backbone.View
     tagName: 'li'
     className: 'team'

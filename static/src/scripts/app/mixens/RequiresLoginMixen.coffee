@@ -2,7 +2,7 @@ define [
   'backbone'
   'moment'
 ], (Backbone, moment) ->
-  class RequireLogin
+  class RequiresLogin
 
     render: ->
       tokenJSON = localStorage.getItem 'apiToken'

@@ -1,29 +1,31 @@
 define [
   'jquery'
   'underscore'
-  'backbone'
   'jade.templates'
+  'mixen'
+  'mixens/BaseViewMixen'
+  'mixens/ModelViewMixen'
   'views/DonationFormView'
   'vex'
-], ($, _, Backbone, jade, DonationFormView, vex) ->
-  class IndexStats extends Backbone.View
+], ($, _, jade, Mixen, BaseView, ModelView, DonationFormView, vex) ->
+  class IndexStats extends Mixen(ModelView, BaseView)
     template: jade.indexStats
     events:
       'click .donate-button': 'donate'
-    
-    initialize: =>
-      @listenTo @model, 'sync change', @render
 
     render: =>
+      loadingContext = @getRenderContext()
+
       percent = (((@model.get('amountRaised') / 100) / 100000) * 100) or 0
       percentWidth = if (percent > 100) then 100 else percent
 
-      data =
+      context =
         percentageWidth: percentWidth
         percentage: percent
-      _.extend data, @model.toJSON()
+      _.extend context, loadingContext
+      _.extend context, @model.toJSON()
 
-      @$el.html @template data
+      @$el.html @template context
       @
 
     donate: (event) =>

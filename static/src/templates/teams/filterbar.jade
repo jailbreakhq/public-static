@@ -1,0 +1,21 @@
+include ../mixins.jade
+
+ul.filters
+  li 
+    label College
+    select#university
+      +option("ALL", university, "All Colleges")
+      +option("TCD", university, "TCD")
+      +option("UCD", university, "UCD")
+      +option("UCC", university, "UCC")
+      +option("NUIG", university, "NUIG")
+      +option("NUIM", university, "NUIM")
+      +option("NCI", university, "NCI")
+      +option("CIT", university, "Cork IT")
+      +option("ITT", university, "ITT")
+  li
+    label Order By
+    select#order-by 
+      +option("POSITION", orderBy, "Position")
+      +option("AMOUNT_RAISED", orderBy, "Amount Raised")
+      +option("TEAM_NUMBER", orderBy, "Team Number")

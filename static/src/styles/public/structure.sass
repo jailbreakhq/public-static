@@ -32,6 +32,31 @@
 
 ul.items
   margin-left: 0
+  list-style: none
 
 .contains-table
   overflow: scroll
+
+.position
+  top: -7px
+  margin: 0 5px
+
+/*
+ * Large Content Button 
+ */
+.content-button
+  display: block
+  margin: 15px 0
+  padding: 10px
+  border: 1px solid $secondary-content-border-color
+  @include border-radius(5px)
+  text-align: center
+  background: $secondary-content-color
+  font-weight: bold
+
+  &:hover
+    background: $third-content-color
+
+  &:active,
+  &:focus
+    @include inset-box-shadow(0 0 6px rgba(0, 0, 0, 0.2))
