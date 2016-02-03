@@ -91,9 +91,8 @@ define [
         @infowindow.open @map, @startMarker
 
       @markerBounds.extend @startMarker.position
-
+      ###
       
-###
       # only add marker after the compeition has started
       endMarkerContext =
         title: 'Location X'
@@ -112,11 +111,9 @@ define [
       google.maps.event.addListener @endMarker, 'click', (endMarker) =>
         @infowindow.setContent @endMarker.html
         @infowindow.open @map, @endMarker
-###
-
 
       @markerBounds.extend @endMarker.position
-
+      ###
       # used to force minimum zoom if all competitors at the start position
       @markerBounds.extend (new google.maps.LatLng(53.3471, -6.28789))
 
