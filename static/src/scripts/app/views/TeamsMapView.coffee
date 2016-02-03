@@ -92,6 +92,8 @@ define [
 
       @markerBounds.extend @startMarker.position
 
+      
+###
       # only add marker after the compeition has started
       endMarkerContext =
         title: 'Location X'
@@ -110,6 +112,8 @@ define [
       google.maps.event.addListener @endMarker, 'click', (endMarker) =>
         @infowindow.setContent @endMarker.html
         @infowindow.open @map, @endMarker
+###
+
 
       @markerBounds.extend @endMarker.position
 
