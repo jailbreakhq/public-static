@@ -12,11 +12,12 @@ define [
     template: jade.indexStats
     events:
       'click .donate-button': 'donate'
+    target: 50000 # targeted amount in euros
 
     render: =>
       loadingContext = @getRenderContext()
 
-      percent = (((@model.get('amountRaised') / 100) / 100000) * 100) or 0
+      percent = (((@model.get('amountRaised') / 100) / @target) * 100) or 0
       percentWidth = if (percent > 100) then 100 else percent
 
       context =
