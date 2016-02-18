@@ -112,8 +112,8 @@ define [
           location += ', ' + place.vicinity
 
         # update the model and re-render the actual input fields
-        @position.set 'lat', place.geometry.location.k
-        @position.set 'lon', place.geometry.location.D
+        @position.set 'lat', place.geometry.location.lat()
+        @position.set 'lon', place.geometry.location.lng()
         @position.set 'location', location
 
     addCheckin: (event) ->
